@@ -2,8 +2,10 @@
 title: Courses
 summary: My courses
 type: landing
+draft: true
 
 cascade:
+  - draft: true
   - target:
       path: '{/courses/*/**}'
     type: docs

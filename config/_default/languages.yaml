@@ -3,10 +3,11 @@
 #   Documentation: https://docs.hugoblox.com/reference/language/
 
 # Default language
-en:
-  locale: en-us
-  # Uncomment for multi-lingual sites, and move English content into `en` sub-folder.
-  #contentDir: content/en
+ko:
+  locale: ko-kr
+  title: JaeHyeok | CV
+  params:
+    description: 소프트웨어 개발자 JaeHyeok의 온라인 CV와 프로젝트 포트폴리오입니다.
 
 # Uncomment the lines below to configure your website in a second language.
 #zh:

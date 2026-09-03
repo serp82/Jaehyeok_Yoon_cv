@@ -14,6 +14,8 @@ resources/
 
 # Hugo build lock
 .hugo_build.lock
+.tools/
+.hugo_cache/
 
 # Hugo stats
 hugo_stats.json
@@ -27,6 +29,7 @@ hugo_stats.json
 
 # Dependencies
 node_modules/
+.pnpm-store/
 
 # ============================================================================
 # Environment & Configuration

@@ -1,6 +1,6 @@
 ---
-title: 'Experience'
-date: 2023-10-24
+title: '경험과 역량'
+date: 2026-09-03
 type: landing
 
 design:
@@ -12,22 +12,17 @@ design:
 sections:
   - block: resume-experience
     content:
+      title: 경험
       username: me
     design:
-      # Hugo date format
-      date_format: 'January 2006'
-      # Education or Experience section first?
+      date_format: '2006년 1월'
       is_education_first: false
   - block: resume-skills
     content:
-      title: Skills & Hobbies
-      username: me
-  - block: resume-awards
-    content:
-      title: Awards
+      title: 기술
       username: me
   - block: resume-languages
     content:
-      title: Languages
+      title: 언어
       username: me
 ---
