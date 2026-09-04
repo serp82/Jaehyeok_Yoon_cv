@@ -1,0 +1,34 @@
+{{/* Compact text-first skills block without proficiency bars. */}}
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $content := $block.content }}
+{{ if not (reflect.IsMap $content) }}{{ $content = dict }}{{ end }}
+
+{{ $username := index $content "username" | default "me" }}
+{{ $profile := partial "functions/get_author_profile" $username }}
+{{ $title := index $content "title" | default "R&D 역량" }}
+{{ $skills := $profile.skills }}
+
+<div class="resume-skills-compact mx-auto w-full max-w-6xl px-6">
+  <h2 class="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-white">
+    {{ $title | markdownify | emojify }}
+  </h2>
+  <div class="grid grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
+    {{ range $skills }}
+      <section>
+        <h3 class="mb-3 text-xl font-bold text-gray-900 dark:text-white">
+          {{ index . "name" | markdownify | emojify }}
+        </h3>
+        <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+          {{ range (index . "items") }}
+            {{ $label := index . "label" | default (index . "name") }}
+            <li class="flex items-start gap-2">
+              <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-500" aria-hidden="true"></span>
+              <span>{{ $label | markdownify | emojify }}</span>
+            </li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}
+  </div>
+</div>

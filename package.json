@@ -7,7 +7,7 @@
   "scripts": {
     "prepare:hugo": "node scripts/hugo-tailwind-fix.mjs",
     "dev": "pnpm run prepare:hugo && hugo server --disableFastRender",
-    "build": "pnpm run prepare:hugo && hugo --minify && pnpm run pagefind",
+    "build": "pnpm run prepare:hugo && hugo --minify --cleanDestinationDir && pnpm run pagefind",
     "pagefind": "pagefind --site public"
   },
   "dependencies": {

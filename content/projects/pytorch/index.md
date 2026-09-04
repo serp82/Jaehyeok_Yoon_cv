@@ -1,16 +1,16 @@
 ---
-title: Portfolio Case Studies
-date: 2026-09-03
-slug: portfolio-case-studies
-summary: 실제 프로젝트의 문제, 역할, 기술 선택, 결과를 정리하기 위한 케이스 스터디 영역입니다.
+title: 이종신호 중첩 및 주파수 공유 환경 전파 식별
+date: 2025-01-01
+slug: heterogeneous-signal-identification
+summary: 이종신호가 중첩되거나 주파수를 공유하는 환경에서 신호를 식별하고 간섭을 제거하는 연구입니다.
 links: []
 tags:
-  - Case Study
-  - Product
-  - Web
+  - Signal Identification
+  - Spectrum Sharing
+  - Interference Mitigation
 ---
 
-프로젝트별로 해결한 문제, 맡은 역할, 사용한 기술, 개선 결과를 짧은 사례 형식으로 정리하는 공간입니다.
-스크린샷, 저장소 링크, 성과 지표를 추가하면 포트폴리오의 설득력이 커집니다.
+주파수 공유 환경의 신호를 식별하고, 중첩 신호를 인지하며, 간섭 신호를 제거하기 위한
+신호처리·딥러닝 알고리즘과 전파 식별·주파수 공유 평가 체계를 연구합니다.
 
 <!--more-->

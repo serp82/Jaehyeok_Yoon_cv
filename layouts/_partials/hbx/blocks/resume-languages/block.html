@@ -1,0 +1,25 @@
+{{/* Compact language list without percentage circles. */}}
+{{ $block := .wcBlock }}
+{{ $content := $block.content }}
+{{ if not (reflect.IsMap $content) }}{{ $content = dict }}{{ end }}
+
+{{ $username := index $content "username" | default "me" }}
+{{ $profile := partial "functions/get_author_profile" $username }}
+{{ $title := index $content "title" | default "외국어 역량" }}
+{{ $languages := $profile.languages }}
+
+<div class="resume-languages-compact mx-auto w-full max-w-6xl px-6">
+  <h2 class="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-white">
+    {{ $title | markdownify | emojify }}
+  </h2>
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+    {{ range $languages }}
+      <div class="border-l-4 border-primary-500 pl-4">
+        <div class="text-xl font-bold text-gray-900 dark:text-white">{{ index . "name" }}</div>
+        {{ with index . "label" }}
+          <div class="mt-1 text-gray-600 dark:text-gray-400">{{ . }}</div>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+</div>

@@ -7,6 +7,9 @@ main:
   - name: 소개
     url: /
     weight: 10
+  - name: 연구실적
+    url: research/
+    weight: 15
   - name: 경험
     url: experience/
     weight: 20

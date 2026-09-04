@@ -1,0 +1,110 @@
+/* Keep the portrait's top margin visible and preserve the intentional name line break. */
+.resume-biography .avatar {
+  object-position: center top !important;
+}
+
+.resume-biography h1 {
+  white-space: pre-line;
+}
+
+/* Give the detailed CV sections enough horizontal room on desktop. */
+.hbb-section > .max-w-prose,
+.hbb-section > .max-w-4xl {
+  width: min(calc(100% - 3rem), 80rem);
+  max-width: 80rem !important;
+}
+
+.hbb-section > .max-w-prose > .prose {
+  width: 100%;
+  max-width: none !important;
+}
+
+.hbb-section .max-w-screen-lg,
+.resume-skills-compact,
+.resume-languages-compact {
+  max-width: 80rem !important;
+}
+
+/* Keep publication citations readable while using the desktop canvas efficiently. */
+.hbb-section .max-w-3xl:has(.pub-list-item.view-citation) {
+  max-width: 80rem !important;
+}
+
+.hbb-section .max-w-3xl:has(.pub-list-item.view-citation) > .flex.flex-col.space-y-3 {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 3rem;
+  row-gap: 1.5rem;
+}
+
+.hbb-section .pub-list-item.view-citation {
+  font-size: 1.125rem;
+  line-height: 1.65;
+  min-width: 0;
+}
+
+@media (max-width: 767px) {
+  .hbb-section .max-w-3xl:has(.pub-list-item.view-citation) > .flex.flex-col.space-y-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Keep publications and conference presentations together as two parallel columns. */
+.research-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3rem;
+  width: min(calc(100% - 3rem), 80rem);
+  max-width: 80rem;
+  margin-inline: auto;
+  align-items: start;
+}
+
+.research-highlights-column {
+  min-width: 0;
+}
+
+.research-highlights-column--conferences {
+  border-left: 1px solid rgb(203 213 225);
+  padding-left: 3rem;
+}
+
+.research-highlights-column .max-w-prose,
+.research-highlights-column .max-w-3xl {
+  width: 100%;
+  max-width: none !important;
+}
+
+.research-highlights-column .max-w-prose {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.research-highlights-column .max-w-3xl:has(.pub-list-item.view-citation) {
+  margin-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.research-highlights-column .max-w-3xl:has(.pub-list-item.view-citation) > .flex.flex-col.space-y-3 {
+  display: flex !important;
+  flex-direction: column;
+  gap: 0;
+}
+
+.research-highlights-column .pub-list-item.view-citation,
+.research-highlights-column--conferences .prose {
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+
+@media (max-width: 1023px) {
+  .research-highlights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .research-highlights-column--conferences {
+    border-left: 0;
+    padding-left: 0;
+  }
+}

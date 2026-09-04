@@ -2,73 +2,136 @@ schema: hugoblox/author/v1
 slug: me
 is_owner: true
 name:
-  display: JaeHyeok
-  given: JaeHyeok
-  family: ''
-  alternate: ''
+  display: |-
+    윤재혁
+    Jaehyeok Yoon
+  given: Jaehyeok
+  family: Yoon
+  alternate: 윤재혁
   pronunciation: ''
   pronouns: ''
 postnominals: []
 status:
   icon: ''
-role: Software Developer
+role: 레이더·통신 신호 처리 R&D 연구자
 bio: |
-  사용자 흐름과 구현 품질을 함께 생각하는 소프트웨어 개발자입니다.
-  웹 기반 제품을 만들 때 정보 구조, 반응형 UI, 접근성, 성능, 유지보수성을
-  균형 있게 다루는 것을 중요하게 생각합니다.
+  레이더·통신 신호 처리 R&D를 수행하며, 저 SNR 레이더 신호의 검출·복원·제원추정과
+  미확인 레이더 신호의 분류·탐지·인식을 연구·개발하고 있습니다.
+  실제 무선 환경에서 신호 데이터 생성·전처리, 알고리즘 설계, 딥러닝 모델 개발,
+  SDR/FPGA 기반 구현과 실험 검증까지 연결합니다.
 
 affiliations:
-  - name: Open to software engineering opportunities
+  - name: '한양대학교 전자공학과 지능통신시스템연구실 (지도교수: 남해운) 석박사통합과정 12기'
+    url: ''
+  - name: 한양대학교 공학기술연구소
     url: ''
 
-links: []
+links:
+  - icon: hero/at-symbol
+    url: 'mailto:serp82@hanyang.ac.kr'
+    label: Email
+  - icon: hero/phone
+    url: 'tel:+821054943450'
+    label: Phone
 
 interests:
-  - Frontend Engineering
-  - Product UI
-  - Responsive Web
-  - Performance & Accessibility
+  - 레이더·통신 신호 처리 R&D
+  - 저 SNR 레이더 신호 검출·복원 및 제원추정
+  - 레이더 신호 분류 및 미확인 신호 탐지
+  - 이종신호 중첩·주파수 공유 환경 전파 식별
+  - 레이더 신호 처리
 
-education: []
+education:
+  - degree: 석·박사통합과정 (M.S. & Ph.D.)
+    institution: 한양대학교 대학원 전자공학과
+    start: 2021-03-01
+    end: ''
+    summary: '지능통신시스템연구실 (지도교수: 남해운) · 석박사통합과정 12기'
+  - degree: 학사 (B.S.)
+    institution: 한양대학교 ERICA캠퍼스 전자공학과
+    start: 2016-03-01
+    end: 2021-02-28
 
 experience:
-  - role: Personal CV Website
-    org: HugoBlox Academic CV
-    start: 2026-09-01
+  - role: 석박사통합과정 연구원
+    org: 한양대학교 전자공학과 지능통신시스템연구실
+    start: 2021-03-01
     summary: |
-      HugoBlox Academic CV 템플릿을 기반으로 개인 온라인 CV와 프로젝트 포트폴리오를 구성했습니다.
-      Markdown과 YAML 중심 구조라 이력, 프로젝트, 링크를 빠르게 업데이트할 수 있습니다.
-  - role: Portfolio Projects
-    org: Personal Work
-    start: 2025-01-01
+      저 SNR 레이더 신호의 검출·복원·제원추정, 미확인 신호 탐지와 이종신호 중첩 환경의
+      전파 식별을 위한 신호처리·딥러닝 알고리즘을 연구하고 실제 무선 환경에서 검증합니다.
+  - role: 전문연구요원
+    org: 한양대학교 공학기술연구소
+    start: 2024-02-22
+    end: '2027년 2월 (예정)'
     summary: |
-      웹 서비스와 UI 구현 사례를 정리하는 공간입니다. 실제 프로젝트명, 담당 역할, 사용 기술,
-      성과 지표를 추가하면 채용 담당자가 빠르게 훑어볼 수 있는 구조로 설계했습니다.
+      전문연구요원으로 현재 복무 중이며, 2027년 2월 21일 복무 종료 예정입니다.
+      레이더·통신 신호 처리 기술의 연구개발과 실험 환경 구축에 참여하고 있습니다.
+  - role: 연구 파견
+    org: Univ. of Michigan-Dearborn 자율주행 연구실
+    start: 2024-10-01
+    end: 2025-02-28
+    summary: 자율주행 및 레이더·비전 융합 관련 연구 협업
+  - role: 연구 인턴
+    org: IIT Guwahati
+    start: 2020-01-01
+    end: 2020-02-29
+    summary: 해외 연구 인턴십
 
 skills:
-  - name: Frontend
+  - name: 신호처리·시뮬레이션
     items:
-      - label: HTML/CSS
-        level: 4
-      - label: JavaScript
-        level: 4
-      - label: Responsive UI
-        level: 4
-  - name: Product Engineering
+      - label: MATLAB
+        level: 5
+      - label: Python
+        level: 5
+  - name: SDR/RF 개발 환경
     items:
-      - label: User Flow Design
+      - label: GNU Radio
+        level: 5
+      - label: USRP
         level: 4
-      - label: Performance
-        level: 3
-      - label: Documentation
+      - label: HackRF
         level: 4
+  - name: AI/딥러닝 개발 환경
+    items:
+      - label: PyTorch
+        level: 5
+      - label: TensorFlow
+        level: 4
+      - label: Docker
+        level: 4
+  - name: FPGA 기반 구현
+    items:
+      - label: Verilog HDL
+        level: 4
+      - label: HLS (C/C++)
+        level: 4
+      - label: Vivado
+        level: 4
+      - label: RFNoC
+        level: 4
+  - name: 이종센서 융합
+    items:
+      - label: ROS-Python
+        level: 4
+      - label: 카메라-레이더 센서 융합
+        level: 5
 
 languages:
-  - name: Korean
-    level: 5
-    label: Native
   - name: English
-    level: 3
-    label: Working proficiency
+    level: 4
+    label: OPIC Intermediate High (IH), 2025.07.26
 
-awards: []
+awards:
+  - name: ICNGC 2025 Best Paper Award
+    date: '2025-12-19'
+    awarder: ICNGC
+  - name: 한국통신학회 국내논문지 우수논문상
+    date: '2025-11-20'
+    awarder: 한국통신학회
+  - name: 2024 제 4회 ERICA 해동창업경진대회(대상)
+    date: '2024-12-04'
+    awarder: 한양대학교
+  - name: 2023 4D 이미징 레이다 시스템 부트캠프(우수상)
+    date: '2023-08-24'
+    awarder: 한국전자파학회

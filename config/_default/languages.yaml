@@ -5,9 +5,9 @@
 # Default language
 ko:
   locale: ko-kr
-  title: JaeHyeok | CV
+  title: 윤재혁 | Jaehyeok Yoon
   params:
-    description: 소프트웨어 개발자 JaeHyeok의 온라인 CV와 프로젝트 포트폴리오입니다.
+    description: 레이더·통신 신호 처리 R&D 연구자 윤재혁의 온라인 CV입니다.
 
 # Uncomment the lines below to configure your website in a second language.
 #zh:
