@@ -108,3 +108,101 @@
     padding-left: 0;
   }
 }
+
+/* Pair supporting CV sections while keeping long lists full-width. */
+.research-paired-sections {
+  width: min(calc(100% - 3rem), 80rem);
+  max-width: 80rem;
+  margin-inline: auto;
+}
+
+.research-paired-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3rem;
+  align-items: start;
+  padding-block: 2.5rem;
+  border-top: 1px solid rgb(226 232 240);
+}
+
+.research-paired-row:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.research-paired-column {
+  min-width: 0;
+}
+
+.research-paired-column--right {
+  border-left: 1px solid rgb(203 213 225);
+  padding-left: 3rem;
+}
+
+.research-paired-column > .max-w-prose {
+  width: 100%;
+  max-width: none !important;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.research-paired-column > .max-w-prose + .max-w-prose {
+  margin-top: 2.5rem;
+}
+
+.research-paired-column .max-w-prose > .mb-6 {
+  align-self: stretch;
+  margin-bottom: 1.25rem;
+  text-align: left;
+  font-size: 1.875rem;
+  line-height: 1.25;
+}
+
+.research-paired-column .prose {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+.research-paired-column .prose h2,
+.research-paired-column .resume-skills-compact > h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  font-size: 1.875rem;
+  line-height: 1.25;
+}
+
+.research-paired-column .prose h3 {
+  font-size: 1.25rem;
+}
+
+.research-paired-column .prose ul {
+  margin-top: 0.75rem;
+}
+
+.research-paired-column .resume-skills-compact {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none !important;
+}
+
+.research-paired-column .resume-skills-compact > div {
+  grid-template-columns: 1fr;
+}
+
+.research-paired-column .resume-skills-compact h3 {
+  font-size: 1.125rem;
+  line-height: 1.35;
+}
+
+@media (max-width: 1023px) {
+  .research-paired-row {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .research-paired-column--right {
+    border-left: 0;
+    padding-left: 0;
+  }
+}

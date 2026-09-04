@@ -1,0 +1,28 @@
+{{/* Paired CV sections for compact, scan-friendly research highlights. */}}
+<div class='research-paired-sections'>
+  <div class='research-paired-row'>
+    <div class='research-paired-column'>
+        {{ partial `hbx/blocks/markdown/block.html` (dict `wcPage` .wcPage `wcBlock` .wcBlock.content.patents `wcIdentifier` `research-paired-patents`) }}
+        {{ partial `hbx/blocks/markdown/block.html` (dict `wcPage` .wcPage `wcBlock` .wcBlock.content.software `wcIdentifier` `research-paired-software`) }}
+    </div>
+    <div class='research-paired-column research-paired-column--right'>
+        {{ partial `hbx/blocks/markdown/block.html` (dict `wcPage` .wcPage `wcBlock` .wcBlock.content.awards `wcIdentifier` `research-paired-awards`) }}
+    </div>
+  </div>
+  <div class='research-paired-row'>
+    <div class='research-paired-column'>
+        {{ partial `hbx/blocks/markdown/block.html` (dict `wcPage` .wcPage `wcBlock` .wcBlock.content.overseas `wcIdentifier` `research-paired-overseas`) }}
+    </div>
+    <div class='research-paired-column research-paired-column--right'>
+        {{ partial `hbx/blocks/markdown/block.html` (dict `wcPage` .wcPage `wcBlock` .wcBlock.content.languages `wcIdentifier` `research-paired-languages`) }}
+    </div>
+  </div>
+  <div class='research-paired-row'>
+    <div class='research-paired-column'>
+        {{ partial `hbx/blocks/resume-skills/block.html` (dict `wcPage` .wcPage `wcBlock` .wcBlock.content.skills `wcIdentifier` `research-paired-skills`) }}
+    </div>
+    <div class='research-paired-column research-paired-column--right'>
+        {{ partial `hbx/blocks/markdown/block.html` (dict `wcPage` .wcPage `wcBlock` .wcBlock.content.academics `wcIdentifier` `research-paired-academics`) }}
+    </div>
+  </div>
+</div>

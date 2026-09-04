@@ -77,15 +77,72 @@ sections:
             - Jaehyeok Yoon, Haewoon Nam, Jaerock Kwon, “Joint Recognition of LPI Radar Signals Using a VLM with TFD-Text Alignment,” ICNGC, Da Nang, Vietnam, 2025.12 · 우수논문상
         design:
           columns: '1'
-  - block: markdown
+  - block: research-paired-sections
+    id: research-paired-sections
     content:
-      title: 특허
-      text: |-
-        **총 3건 (출원 2건, 등록 1건)**
+      patents:
+        block: markdown
+        content:
+          title: 특허
+          text: |-
+            **총 3건 (출원 2건, 등록 1건)**
 
-        - 사람의 동작에 대한 정확한 인체 모션 감지를 위한 RGB-D 카메라 데이터와 레이더 포인트 클라우드를 활용한 스켈레톤 추출 기술, 등록번호 10-2842830, 2025.08.01
-        - 딥러닝 기반 저피탐 레이더 신호의 잡음 제거 및 파라미터 추출 방법, 이를 수행하는 장치 및 컴퓨터 프로그램, 출원번호(대한민국) 10-2024-0092816, 2024.07.15
-        - 레이더를 통해 레이더 시스템의 간섭을 제거하는 OFDM 기반 드론 신호처리 장치 및 방법, 출원번호(대한민국) 10-2025-0191251, 2025.12.05
+            - 사람의 동작에 대한 정확한 인체 모션 감지를 위한 RGB-D 카메라 데이터와 레이더 포인트 클라우드를 활용한 스켈레톤 추출 기술, 등록번호 10-2842830, 2025.08.01
+            - 딥러닝 기반 저피탐 레이더 신호의 잡음 제거 및 파라미터 추출 방법, 이를 수행하는 장치 및 컴퓨터 프로그램, 출원번호(대한민국) 10-2024-0092816, 2024.07.15
+            - 레이더를 통해 레이더 시스템의 간섭을 제거하는 OFDM 기반 드론 신호처리 장치 및 방법, 출원번호(대한민국) 10-2025-0191251, 2025.12.05
+        design:
+          columns: '1'
+      software:
+        block: markdown
+        content:
+          title: 소프트웨어 등록
+          text: |-
+            - 파이썬 기반 Radar-Vision-Language(레이더-비전-언어) 구축, C-2025-005640
+        design:
+          columns: '1'
+      awards:
+        block: markdown
+        content:
+          title: 수상 실적
+          text: |-
+            - ICNGC 2025 Best Paper Award, 2025.12.19
+            - 한국통신학회 국내논문지 우수논문상, 한국통신학회, 2025.11.20.
+            - 제 4회 ERICA 해동창업경진대회(대상), 한양대학교, 2024.12.04.
+            - 2023 4D 이미징 레이다 시스템 부트캠프(우수상), 한국전자파학회, 2023.08.24.
+        design:
+          columns: '1'
+      overseas:
+        block: markdown
+        content:
+          title: 해외 경험
+          text: |-
+            - **미국 Univ. of Michigan-Dearborn 자율주행 연구실 파견**: 2024.10–2025.02
+            - **인도 IIT Guwahati 연구 인턴**: 2020.01–2020.02
+        design:
+          columns: '1'
+      languages:
+        block: markdown
+        content:
+          title: 외국어 역량
+          text: |-
+            - **OPIC**: Intermediate High (IH), 2025.07.26
+        design:
+          columns: '1'
+      skills:
+        block: resume-skills
+        content:
+          title: R&D 역량
+          username: me
+      academics:
+        block: markdown
+        content:
+          title: 학업 성과
+          text: |-
+            - **학부 GPA**: 3.8 / 4.5 (전공 3.85)
+            - **대학원 석·박사통합과정 GPA**: 4.21 / 4.5
+            - **전문연구요원**: 2024년 2월 22일 – 2027년 2월 21일 (복무 종료 예정), 한양대학교 공학기술연구소
+        design:
+          columns: '1'
     design:
       columns: '1'
   - block: markdown
@@ -106,31 +163,6 @@ sections:
         10. **위성신호 수집 및 분석 테스트베드** · 책임연구원: 남해운 · 2025.07.01–현재 · 엘아이지넥스원 (LIG) · **[연구참여]**
     design:
       columns: '1'
-  - block: markdown
-    content:
-      title: 해외 경험
-      text: |-
-        - **미국 Univ. of Michigan-Dearborn 자율주행 연구실 파견**: 2024.10–2025.02
-        - **인도 IIT Guwahati 연구 인턴**: 2020.01–2020.02
-    design:
-      columns: '1'
-  - block: markdown
-    content:
-      title: 수상 실적
-      text: |-
-        - ICNGC 2025 Best Paper Award, 2025.12.19
-        - 한국통신학회 국내논문지 우수논문상, 한국통신학회, 2025.11.20.
-        - 제 4회 ERICA 해동창업경진대회(대상), 한양대학교, 2024.12.04.
-        - 2023 4D 이미징 레이다 시스템 부트캠프(우수상), 한국전자파학회, 2023.08.24.
-    design:
-      columns: '1'
-  - block: markdown
-    content:
-      title: 소프트웨어 등록
-      text: |-
-        - 파이썬 기반 Radar-Vision-Language(레이더-비전-언어) 구축, C-2025-005640
-    design:
-      columns: '1'
   - block: resume-experience
     content:
       title: 경험
@@ -138,23 +170,6 @@ sections:
     design:
       date_format: '2006년 1월'
       is_education_first: false
-  - block: resume-skills
-    content:
-      title: R&D 역량
-      username: me
-  - block: resume-languages
-    content:
-      title: 외국어 역량
-      username: me
-  - block: markdown
-    content:
-      title: 학업 성과
-      text: |-
-        - **학부 GPA**: 3.8 / 4.5 (전공 3.85)
-        - **대학원 석·박사통합과정 GPA**: 4.21 / 4.5
-        - **전문연구요원**: 2024년 2월 22일 – 2027년 2월 21일 (복무 종료 예정), 한양대학교 공학기술연구소
-    design:
-      columns: '1'
   - block: collection
     id: projects
     content:
