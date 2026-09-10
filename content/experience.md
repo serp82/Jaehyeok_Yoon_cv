@@ -27,9 +27,8 @@ sections:
       username: me
   - block: markdown
     content:
-      title: 학업 성과
+      title: GPA
       text: |-
         - **학부 GPA**: 3.8 / 4.5 (전공 3.85)
         - **대학원 석·박사통합과정 GPA**: 4.21 / 4.5
-        - **전문연구요원**: 2024년 2월 22일 – 2027년 2월 21일 (복무 종료 예정), 한양대학교 공학기술연구소
 ---

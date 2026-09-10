@@ -225,7 +225,7 @@
 }
 
 .research-paired-column .resume-skills-compact > div {
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .research-paired-column .resume-skills-compact h3 {
@@ -242,5 +242,11 @@
   .research-paired-column--right {
     border-left: 0;
     padding-left: 0;
+  }
+}
+
+@media (max-width: 639px) {
+  .research-paired-column .resume-skills-compact > div {
+    grid-template-columns: 1fr;
   }
 }
