@@ -1,8 +1,24 @@
 ---
 layout: project
+type: project
 title: "Implementation of an RFNoC/FPGA-Based LPI Radar Pulse-Train Detector and Classifier"
 slug: "rfnoc-fpga-radar-detector-classifier"
-order: 4
+order: 3
+project_number: "03"
+project_stage: "Algorithm → hardware architecture → OTA validation"
+korean_title: "SDR/FPGA 기반 LPI 레이더 검출–분류 시스템 구현"
+research_year: "2024–2026"
+hero_claim: "A software radar processing chain mapped to fixed-point STFT, RFNoC detection, and an HLS CNN for OTA validation."
+research_question: "Software radar processing chain을 fixed-point STFT, RFNoC detector, HLS CNN으로 구현하고 OTA 환경에서 end-to-end 검증할 수 있는가?"
+result_highlight: "3,600 OTA records · 93.69% FPGA classification accuracy · 93.14% end-to-end"
+technology_tags:
+  - RFNoC
+  - FPGA
+  - HLS
+  - USRP / OTA
+project_statuses:
+  - label: "Implementation manuscript · 2026"
+    class: manuscript
 status: "Manuscript (2026)"
 publication:
   name: RFNoC/FPGA implementation study
@@ -23,8 +39,6 @@ tags:
 ---
 
 # Implementation of an RFNoC/FPGA-Based LPI Radar Pulse-Train Detector and Classifier
-
-![RFNoC/FPGA processing architecture](figures/rfnoc_processing_architecture.png)
 
 ## Research question
 
@@ -78,4 +92,4 @@ This is an implementation-feasibility study for a representative STFT-detector�
 
 ## Publication status
 
-Jaehyeok Yoon and Haewoon Nam, “Implementation of an RFNoC/FPGA-Based LPI Radar Pulse-Train Detector and Classifier,” manuscript, 2026. The current dissertation source marks this work as a manuscript.
+윤재혁, 남해운, “RFNoC/FPGA 기반 LPI 레이다 펄스열 검출 및 분류기 구현,” 한국통신학회 국내논문지, 게재 확정.

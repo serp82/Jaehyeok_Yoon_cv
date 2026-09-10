@@ -25,7 +25,7 @@ sections:
         block: collection
         content:
           title: 논문
-          text: '총 5건 (SCI 3건, KCI 2건)'
+          text: 'SCI Journals: 2 Published · 1 Under Revision · KCI Journals: 1 Published · 1 Accepted'
           count: 5
           sort_by: Date
           sort_order: desc

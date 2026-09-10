@@ -1,10 +1,17 @@
 ---
 layout: project
+type: project
 title: "SAVOR: Semantic Attribute-Guided Vision-Language Framework for Open-Set Radar Waveform Recognition"
 slug: "savor-open-set-radar-waveform-recognition"
 aliases:
   - /projects/radar-communication-recognition/
-order: 3
+order: 1
+project_number: "01"
+project_stage: "Featured research line · 2022–2026"
+korean_title: "저 SNR 환경의 미확인 레이더 파형 탐지 및 Open-Set 인식"
+research_year: "2022–2026"
+parent_project: "/projects/unknown-open-set-recognition/"
+legacy_project: true
 status: "Manuscript (2026)"
 publication:
   name: SAVOR
@@ -23,8 +30,6 @@ tags:
 ---
 
 # SAVOR: Semantic Attribute-Guided Vision-Language Framework for Open-Set Radar Waveform Recognition
-
-![SAVOR architecture](figures/savor_architecture.png)
 
 ## Research question
 
@@ -67,4 +72,4 @@ Reconstruction-based unknown detection is useful for binary novelty screening, b
 
 ## Publication status
 
-Jaehyeok Yoon and Haewoon Nam, “SAVOR: Semantic Attribute-Guided Vision-Language Framework for Open-Set Radar Waveform Recognition,” manuscript, 2026. The current dissertation source marks this work as a manuscript.
+Jaehyeok Yoon and Haewoon Nam, “SAVOR: Semantic Attribute-Guided Vision-Language Framework for Open-Set Radar Waveform Recognition,” *IEEE Transactions on Aerospace and Electronic Systems*, Under Revision.

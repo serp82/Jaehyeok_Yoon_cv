@@ -1,0 +1,43 @@
+{{ define "main" }}
+  {{ $featured := partial "functions/get_featured_image.html" . }}
+  {{ $image_alt := .Title }}
+  {{ $image_caption := "" }}
+  {{ with .Params.image }}
+    {{ $image_alt = .alt_text | default $.Title }}
+    {{ $image_caption = .caption | default "" }}
+  {{ end }}
+  <main class="project-detail-page">
+    <div class="project-detail-shell">
+      <a class="project-detail-back" href="{{ "projects/" | relLangURL }}">← All research projects</a>
+      <header class="project-detail-header">
+        {{ with .Params.project_number }}<p class="project-detail-kicker">PROJECT {{ . }}</p>{{ end }}
+        <h1>{{ .Title }}</h1>
+        {{ with .Params.korean_title }}<p class="project-detail-korean">{{ . }}</p>{{ end }}
+        {{ with .Params.hero_claim }}<p class="project-detail-claim">{{ . }}</p>{{ end }}
+        <div class="project-detail-meta">
+          {{ with .Params.research_year }}<span>{{ . }}</span>{{ end }}
+          {{ with .Params.project_statuses }}
+            {{ range . }}
+              <span class="project-status project-status--{{ .class | default "neutral" }}">{{ .label }}</span>
+            {{ end }}
+          {{ end }}
+        </div>
+        {{ with .Params.technology_tags }}
+          <ul class="project-detail-tags" aria-label="Technology tags">
+            {{ range . }}<li>{{ . }}</li>{{ end }}
+          </ul>
+        {{ end }}
+      </header>
+      {{ with $featured }}
+        <figure class="project-detail-hero">
+          <img src="{{ .RelPermalink }}" alt="{{ $image_alt }}" fetchpriority="high">
+          {{ with $image_caption }}<figcaption>{{ . | markdownify | emojify }}</figcaption>{{ end }}
+        </figure>
+      {{ end }}
+      <article class="project-detail-content prose prose-slate lg:prose-xl dark:prose-invert" data-pagefind-body>
+        <span data-pagefind-filter="type" style="display:none;">projects</span>
+        {{ .Content }}
+      </article>
+    </div>
+  </main>
+{{ end }}

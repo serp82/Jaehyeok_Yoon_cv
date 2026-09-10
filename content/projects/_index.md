@@ -5,20 +5,13 @@ type: landing
 
 # Page sections
 sections:
-  - block: collection
+  - block: research-projects
     content:
       title: 대표 프로젝트
-      text: 채용 담당자가 빠르게 훑어볼 수 있도록 문제, 역할, 기술, 결과 중심으로 정리한 프로젝트 섹션입니다.
-      filters:
-        folders:
-          - projects
-      sort_by: order
-      sort_ascending: true
-    design:
-      view: article-grid
-      fill_image: false
-      columns: 3
-      show_date: false
-      show_read_time: false
-      show_read_more: false
+      text: 문제, 연구 발전, 대표 결과, 구현 환경을 중심으로 정리한 핵심 연구 프로젝트입니다.
+      projects:
+        - projects/unknown-open-set
+        - projects/pandas
+        - projects/rfnoc-fpga
+        - projects/coexisting-spectrum
 ---

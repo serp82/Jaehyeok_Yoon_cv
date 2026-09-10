@@ -13,12 +13,11 @@ name:
 postnominals: []
 status:
   icon: ''
-role: 레이더·통신 신호 처리 R&D 연구자
+role: Low-SNR Radar Signal Processing · Open-Set Recognition · SDR/FPGA
 bio: |
-  레이더·통신 신호 처리 R&D를 수행하며, 저 SNR 레이더 신호의 검출·복원·제원추정과
-  미확인 레이더 신호의 분류·탐지·인식을 연구·개발하고 있습니다.
-  실제 무선 환경에서 신호 데이터 생성·전처리, 알고리즘 설계, 딥러닝 모델 개발,
-  SDR/FPGA 기반 구현과 실험 검증까지 연결합니다.
+  저 SNR·비협조 수신 환경에서 레이더 신호를 검출하고 제원을 추정하며,
+  학습되지 않은 파형까지 인식하는 AI 기반 신호처리 알고리즘을 연구합니다.
+  개발한 알고리즘을 USRP/RFNoC/FPGA 기반 실환경 시스템으로 구현하고 검증합니다.
 
 affiliations:
   - name: '한양대학교 전자공학과 지능통신시스템연구실 (지도교수: 남해운) 석박사통합과정 12기'
@@ -81,44 +80,43 @@ experience:
     summary: 해외 연구 인턴십
 
 skills:
-  - name: 신호처리·시뮬레이션
+  - name: Radar Signal Processing
     items:
-      - label: MATLAB
-        level: 5
-      - label: Python
-        level: 5
-  - name: SDR/RF 개발 환경
+      - label: STFT
+      - label: CWD
+      - label: SPWVD
+      - label: FFT
+      - label: Pulse Detection
+      - label: Parameter Estimation
+  - name: AI / Representation Learning
+    items:
+      - label: CNN
+      - label: U-Net
+      - label: Autoencoder
+      - label: DSAE-MAAE
+      - label: VLM / CLIP
+      - label: Open-Set Recognition
+  - name: SDR / OTA Experiment
     items:
       - label: GNU Radio
-        level: 5
       - label: USRP
-        level: 4
-      - label: HackRF
-        level: 4
-  - name: AI/딥러닝 개발 환경
+      - label: OTA Dataset Generation
+      - label: Channel Measurement
+  - name: FPGA / Embedded Processing
     items:
-      - label: PyTorch
-        level: 5
-      - label: TensorFlow
-        level: 4
-      - label: Docker
-        level: 4
-  - name: FPGA 기반 구현
-    items:
-      - label: Verilog HDL
-        level: 4
-      - label: HLS (C/C++)
-        level: 4
-      - label: Vivado
-        level: 4
       - label: RFNoC
-        level: 4
-  - name: 이종센서 융합
+      - label: HLS
+      - label: Verilog HDL
+      - label: Fixed-Point
+      - label: Quantization
+      - label: Vivado
+  - name: Programming / Development
     items:
-      - label: ROS-Python
-        level: 4
-      - label: 카메라-레이더 센서 융합
-        level: 5
+      - label: Python
+      - label: MATLAB
+      - label: C / C++
+      - label: PyTorch
+      - label: Docker
 
 languages:
   - name: English

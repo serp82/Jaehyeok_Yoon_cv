@@ -1,10 +1,17 @@
 ---
 layout: project
+type: project
 title: "Unsupervised Unknown Radar Waveform Detection"
 slug: "unsupervised-unknown-radar-waveform-detection"
 aliases:
   - /projects/heterogeneous-signal-identification/
-order: 2
+order: 1
+project_number: "01"
+project_stage: "Featured research line · 2022–2026"
+korean_title: "저 SNR 환경의 미확인 레이더 파형 탐지 및 Open-Set 인식"
+research_year: "2022–2026"
+parent_project: "/projects/unknown-open-set-recognition/"
+legacy_project: true
 status: "Published in IEEE Transactions on Aerospace and Electronic Systems (2025)"
 publication:
   name: IEEE Transactions on Aerospace and Electronic Systems
@@ -27,8 +34,6 @@ tags:
 ---
 
 # Unsupervised Unknown Radar Waveform Detection
-
-![DSAE–MAAE framework](figures/dsae_maae_framework.png)
 
 ## Research question
 

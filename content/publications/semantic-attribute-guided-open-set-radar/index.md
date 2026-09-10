@@ -1,5 +1,5 @@
 ---
-title: 'Semantic Attribute-Guided Open-set Radar Waveform Recognition with Vision-Language Models'
+title: 'SAVOR: Semantic Attribute-Guided Vision-Language Framework for Open-Set Radar Waveform Recognition'
 authors:
   - me
   - Haewoon Nam
@@ -16,7 +16,7 @@ tags:
   - SCI
   - Radar Waveform Recognition
   - Vision-Language Model
-featured: false
+featured: true
 ---
 
 **상태:** Under Revision

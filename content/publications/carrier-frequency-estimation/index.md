@@ -27,7 +27,7 @@ tags:
   - Radar Signal Processing
   - Denoising Autoencoder
   - DBSCAN
-featured: true
+featured: false
 links: []
 ---
 

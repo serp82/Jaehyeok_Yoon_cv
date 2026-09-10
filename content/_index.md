@@ -1,28 +1,27 @@
 ---
 title: ''
 summary: ''
-date: 2026-09-03
+date: 2026-09-10
 type: landing
 
 sections:
   - block: resume-biography-3
     content:
       username: me
+      show_education: false
+      show_interests: false
       text: |-
-        한양대학교 전자공학과 지능통신시스템연구실에서 레이더 신호 처리 R&D를 수행하는 연구자입니다.
-        저 SNR·저피탐 레이더 신호를 대상으로 신호처리 알고리즘, 딥러닝 모델, SDR/FPGA 기반 실환경 시스템을 개발합니다.
+        저 SNR·비협조 수신 환경에서 레이더 신호를 검출하고 제원을 추정하며,
+        학습되지 않은 파형까지 인식하는 AI 기반 신호처리 알고리즘을 연구합니다.
+        개발한 알고리즘을 USRP/RFNoC/FPGA 기반 실환경 시스템으로 구현하고 검증합니다.
 
-        **주요 R&D**
-        - 저 SNR 환경 레이더 신호 검출·복원 및 제원추정
-        - 레이더 신호 분류, 미확인 신호 탐지와 Vision-Language 기반 파형 인식
-        - SDR/FPGA 기반 실환경 신호처리 시스템 구현
-        - 이종신호 중첩·주파수 공유 환경의 전파 식별 및 간섭 제거
-
-        **연구 성과**: 국제저널(SCI) 3편, 국내저널(KCI) 2편, 학회 9건, 특허 3건, 소프트웨어 등록 1건, 연구과제 10건
+        **Research focus**
+        - Low-SNR Radar
+        - Unknown / Open-Set Recognition
+        - Vision-Language Model
+        - RFNoC / FPGA
       headings:
-        about: '소개'
-        education: '학력'
-        interests: '연구 분야'
+        about: Research identity
     design:
       background:
         gradient_mesh:
@@ -32,95 +31,97 @@ sections:
       avatar:
         size: medium
         shape: rounded
-  - block: resume-experience
+
+  - block: research-overview
+    id: research-overview
     content:
-      title: 경험
+      title: Research Overview
+      text: Detection → Estimation → Unknown / Open-Set Recognition → Real-System Implementation
+      stages:
+        - eyebrow: "01 · Environment"
+          title: Low-SNR Radar
+          detail: "Weak and non-cooperative radar signals"
+        - eyebrow: "02 · Front end"
+          title: Detection
+          detail: "Find pulse presence and boundaries"
+        - eyebrow: "03 · Inference"
+          title: Estimation
+          detail: "Recover physical radar parameters"
+        - eyebrow: "04 · Recognition"
+          title: Unknown / Open-Set
+          detail: "Reject or recognize unseen waveforms"
+        - eyebrow: "05 · Deployment"
+          title: SDR / RFNoC / FPGA
+          detail: "Validate the chain in real systems"
+      mission: "저 SNR 환경에서 신호를 찾아내고, 제원을 추정하고, 처음 보는 파형까지 판단하며, 이를 실제 SDR/FPGA 수신 시스템으로 구현합니다."
+
+  - block: research-projects
+    id: featured-research-projects
+    content:
+      title: Featured Research Projects
+      text: 문제, 연구 발전, 대표 결과, 구현 환경을 중심으로 정리한 핵심 연구 프로젝트입니다.
+      projects:
+        - projects/unknown-open-set
+        - projects/pandas
+        - projects/rfnoc-fpga
+        - projects/coexisting-spectrum
+
+  - block: collection
+    id: selected-publications
+    content:
+      title: Selected Publications
+      text: 대표 논문과 현재 진행 중인 핵심 연구를 상태와 함께 표시합니다.
+      count: 4
+      sort_by: Date
+      sort_order: desc
+      filters:
+        folders:
+          - publications
+        featured_only: true
+    design:
+      view: citation
+      columns: 1
+      show_date: true
+
+  - block: markdown
+    id: publications-link
+    content:
+      title: ''
+      text: |-
+        [View all publications and conference papers](research/)
+    design:
+      columns: '1'
+
+  - block: resume-experience
+    id: experience
+    content:
+      title: Experience & Education
       username: me
     design:
       date_format: '2006년 1월'
       is_education_first: false
-  - block: markdown
-    content:
-      title: 연구 실적 요약
-      subtitle: ''
-      text: |-
-        **국제저널(SCI) 3편** · **국내저널(KCI) 2편** · **학회 9건** · **특허 3건** · **소프트웨어 등록 1건** · **연구과제 10건**
 
-        레이더 신호 검출·복원·제원추정, 미확인 신호 탐지, 이종신호 중첩·주파수 공유 환경의
-        전파 식별 문제를 중심으로 연구하고 있습니다.
+  - block: markdown
+    id: selected-rd-projects
+    content:
+      title: Selected R&D Projects
+      text: |-
+        - **Low-SNR Signal Detection & Parameter Estimation** · 한국연구재단 / LIG · 2022–2024
+        - **Spectrum Sharing & Signal Identification** · 한국전자통신연구원 (ETRI) · 2021–2023
+        - **OFDM Drone Signal Processing** · 엘아이지넥스원 (LIG) · 2024–현재
+
+        [View all R&D projects](rd-projects/)
     design:
       columns: '1'
-  - block: research-highlights
-    id: publications
+
+  - block: resume-skills
+    id: skills
     content:
-      publications:
-        block: collection
-        content:
-          title: 논문
-          text: '총 5건 (SCI 3건, KCI 2건)'
-          count: 5
-          sort_by: Date
-          sort_order: desc
-          filters:
-            folders:
-              - publications
-        design:
-          view: citation
-          columns: 1
-          show_date: true
-      conferences:
-        block: research-conferences
-        content:
-          title: 학회 발표
-          summary: 총 9건 (국내 6건, 해외 3건)
-          items:
-            - authors: 윤재혁, 서동호, 김동현, 남해운
-              title: Comparison of CNN Performance According to Weight Initialization Method when Classifying Signals Through Spectrogram
-              venue: 한국통신학회 동계종합학술발표회, 용평리조트
-              date: 2021.02
-            - authors: Jaehyeok Yoon, Hyeongyun Kim, Dongho Seo, Haewoon Nam
-              title: Performance Comparison of NLOS Detection Methods in UWB
-              venue: International Conference on ICT Convergence (ICTC), Jeju, Korea
-              date: 2021.10
-            - authors: 윤재혁, 윤우진, 김형윤, 남해운
-              title: 오토엔코더 기반 미확인 저피탐 레이더 파형 탐지 기술
-              venue: 한국통신학회 동계종합학술발표회, 평창 알펜시아 리조트
-              date: 2022.02
-            - authors: 조재연, 윤재혁, 남해운
-              title: FMCW 레이더 스펙트로그램 기반 동작 인식 기법
-              venue: 한국통신학회 하계종합학술발표회, 제주 그랜드하얏트호텔
-              date: 2022.06
-              badge:
-                label: 학술논문우수상
-                class: award
-            - authors: 정석현, 윤재혁, 남해운
-              title: Multi-Moving Average filter 기반 저피탐 레이더 신호 검출
-              venue: 한국통신학회 동계종합학술발표회, 용평리조트
-              date: 2023.02
-            - authors: 윤재혁, 남해운
-              title: LPI 레이더 중첩 신호 인지를 위한 ResNeXt 기반 다중 라벨 분류
-              venue: 한국통신학회 하계종합학술발표회, 제주
-              date: 2023.06
-            - authors: Jaehyeok Yoon, Haewoon Nam, Jaerock Kwon
-              title: Joint Recognition of LPI Radar Signals Using a VLM with TFD-Text Alignment
-              venue: ICNGC, Da Nang, Vietnam
-              date: 2025.12
-              badge:
-                label: 우수논문상
-                class: award
-            - authors: 윤재혁, 남해운
-              title: 지도 학습 기반 CLIP을 활용한 레이더 신호 스펙트로그램 식별
-              venue: 2026년도 한국통신학회 동계종합학술발표회, 용평
-              date: 2026.02.04
-            - authors: Jaehyeok Yoon, Haewoon Nam
-              title: Cross-Resolution STFT Distillation for FPGA-Efficient Radar Waveform Classification
-              venue: The 31st Asia-Pacific Conference on Communications (APCC)
-              date: 2026
-              badge:
-                label: 발표 예정
-                class: pending
+      title: Skills & Capabilities
+      username: me
+
   - block: research-paired-sections
-    id: research-paired-sections
+    id: supporting-records
     content:
       patents:
         block: research-patents
@@ -197,36 +198,24 @@ sections:
           columns: '1'
     design:
       columns: '1'
-  - block: markdown
-    content:
-      title: 수행 과제
-      text: |-
-        **총 10건 · 산학 과제 3건 · 정부기관 과제 7건**
 
-        1. **GPS 비의존적 군집 무인기용 고정밀 자율 위치 측위 기술 연구** · 책임연구원: 남해운 · 2019.11.29–2021.12.31 · 한국연구재단 (NRF)
-        2. **페이딩 기반의 전파식별 방법과 주파수 공유 방법에 대한 평가 연구** · 책임연구원: 남해운 · 2021.04.16–2021.11.30 · 한국전자통신연구원 (ETRI)
-        3. **이종 신호 중첩 환경 전파식별 방법과 주파수 공유방법에 대한 평가 연구** · 책임연구원: 남해운 · 2022.01.01–2022.12.31 · 한국전자통신연구원 (ETRI)
-        4. **개인화된 주행스타일 및 인지예측 기반 딥러닝 자율주행 기술 연구** · 책임연구원: 남해운 · 2022.03.01–2025.02.29 · 한국연구재단 (NRF)
-        5. **머신러닝 기반 미약신호 검출 및 제원 추정 모델 연구** · 책임연구원: 남해운 · 2022.05.01–2024.04.30 · 엘아이지넥스원 (LIG)
-        6. **이종 신호 중첩 환경 전파식별 방법과 주파수 공유방법에 대한 평가 연구** · 책임연구원: 남해운 · 2023.01.01–2023.12.31 · 한국전자통신연구원 (ETRI)
-        7. **DJI OcuSync 프로토콜 기반의 OFDM 드론 신호 복조 구현** · 책임연구원: 남해운 · 2024.03.01–현재 · 엘아이지넥스원 (LIG)
-        8. **자율주행 자동 체화인지 및 제어 시스템을 위한 능동추론 기반의 인간형 기계학습 기술 개발** · 책임연구원: 남해운 · 2024.04.01–현재 · 정보통신기획평가원 (IITP)
-        9. **불완전 수신신호 환경에서의 신속 자동 다중표적 추적기술 연구** · 책임연구원: 최지웅 · 2024.09.13–현재 · 국방기술진흥연구소
-        10. **위성신호 수집 및 분석 테스트베드** · 책임연구원: 남해운 · 2025.07.01–현재 · 엘아이지넥스원 (LIG)
+  - block: markdown
+    id: additional-research
+    content:
+      title: Additional Research
+      text: |-
+        UWB NLOS detection, FMCW radar motion recognition, radar-camera / skeleton research, autonomous driving and other communication-signal research are separated from the four main research lines.
+
+        [View additional research](additional-research/)
     design:
       columns: '1'
-  - block: collection
-    id: projects
+
+  - block: markdown
+    id: full-cv
     content:
-      title: 연구 프로젝트
-      text: 레이더·통신 신호 처리 연구를 문제 영역별로 정리했습니다.
-      filters:
-        folders:
-          - projects
+      title: Full CV / Additional Information
+      text: |-
+        [Research records](research/) · [Experience & Education](experience/) · [All R&D projects](rd-projects/)
     design:
-      view: article-grid
-      columns: 3
-      show_date: false
-      show_read_time: false
-      show_read_more: false
+      columns: '1'
 ---

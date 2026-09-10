@@ -1,5 +1,5 @@
 ---
-title: 'RFNoC/FPGA 기반 레이더 신호의 실시간 저피탐 신호 검출 및 분류기 구현'
+title: 'RFNoC/FPGA 기반 LPI 레이다 펄스열 검출 및 분류기 구현'
 authors:
   - me
   - 남해운
@@ -18,7 +18,7 @@ tags:
   - RFNoC
   - FPGA
   - Real-time Signal Processing
-featured: false
+featured: true
 links: []
 ---
 

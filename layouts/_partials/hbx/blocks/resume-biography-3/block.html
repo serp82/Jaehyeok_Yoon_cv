@@ -20,6 +20,8 @@
 {{ $avatar := $profile.avatar }}
 {{ $headings := index $content "headings" }}
 {{ if not (reflect.IsMap $headings) }}{{ $headings = dict }}{{ end }}
+{{ $show_education := partial "functions/coerce_bool" (dict "value" (index $content "show_education") "default" true) }}
+{{ $show_interests := partial "functions/coerce_bool" (dict "value" (index $content "show_interests") "default" true) }}
 
 {{/* Avatar customization parameters */}}
 {{ $avatar_size := "large" }}
@@ -412,7 +414,7 @@
         {{ if reflect.IsSlice $education_raw }}
           {{ $education = $education_raw }}
         {{ end }}
-        {{ if gt (len $education) 0 }}
+        {{ if and $show_education (gt (len $education) 0) }}
         <div class="mb-16">
           <div class="flex items-center gap-4 mb-8">
             <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center">
@@ -490,7 +492,7 @@
         {{ else if eq (printf "%T" $interests_raw) "string" }}
           {{ $interests = slice $interests_raw }}
         {{ end }}
-        {{ if gt (len $interests) 0 }}
+        {{ if and $show_interests (gt (len $interests) 0) }}
         <div>
           <div class="flex items-center gap-4 mb-8">
             <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center">

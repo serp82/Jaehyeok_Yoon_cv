@@ -1,0 +1,48 @@
+{{- $content := .wcBlock.content -}}
+<section class="research-projects" aria-labelledby="research-projects-title">
+  <div class="research-projects-header">
+    {{ with $content.title }}
+      <h2 id="research-projects-title">{{ . | markdownify | emojify }}</h2>
+    {{ end }}
+    {{ with $content.text }}<p>{{ . | markdownify | emojify }}</p>{{ end }}
+  </div>
+  <div class="research-project-grid">
+    {{ range $index, $path := $content.projects }}
+      {{ with site.GetPage $path }}
+        {{ $project := . }}
+        {{ $featured := partial "functions/get_featured_image.html" $project }}
+        <article class="research-project-card{{ if eq $index 0 }} research-project-card--featured{{ end }}">
+          <a class="research-project-media" href="{{ $project.RelPermalink }}" aria-label="View {{ $project.Title }}">
+            {{ with $featured }}
+              <img src="{{ .RelPermalink }}" alt="{{ with $project.Params.image }}{{ .alt_text | default $project.Title }}{{ else }}{{ $project.Title }}{{ end }}" loading="{{ if eq $index 0 }}eager{{ else }}lazy{{ end }}">
+            {{ end }}
+          </a>
+          <div class="research-project-content">
+            <div class="research-project-meta">
+              {{ with $project.Params.project_number }}<span class="research-project-number">{{ . }}</span>{{ end }}
+              {{ with $project.Params.project_stage }}<span>{{ . }}</span>{{ end }}
+            </div>
+            <h3><a href="{{ $project.RelPermalink }}">{{ $project.Title }}</a></h3>
+            {{ with $project.Params.korean_title }}<p class="research-project-korean">{{ . }}</p>{{ end }}
+            {{ with $project.Params.research_question }}
+              <div class="research-project-question">
+                <span>Research question</span>
+                <p>{{ . }}</p>
+              </div>
+            {{ end }}
+            {{ with $project.Params.summary }}<p class="research-project-summary">{{ . }}</p>{{ end }}
+            {{ with $project.Params.result_highlight }}
+              <p class="research-project-result"><strong>Key result</strong>{{ . }}</p>
+            {{ end }}
+            {{ with $project.Params.technology_tags }}
+              <ul class="research-project-tags" aria-label="Technology tags">
+                {{ range . }}<li>{{ . }}</li>{{ end }}
+              </ul>
+            {{ end }}
+            <a class="research-project-link" href="{{ $project.RelPermalink }}">View project <span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      {{ end }}
+    {{ end }}
+  </div>
+</section>

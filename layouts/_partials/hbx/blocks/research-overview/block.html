@@ -1,0 +1,26 @@
+{{- $content := .wcBlock.content -}}
+<section class="research-overview" aria-labelledby="research-overview-title">
+  <div class="research-overview-inner">
+    {{ with $content.title }}
+      <h2 id="research-overview-title" class="research-overview-title">{{ . | markdownify | emojify }}</h2>
+    {{ end }}
+    {{ with $content.text }}
+      <p class="research-overview-intro">{{ . | markdownify | emojify }}</p>
+    {{ end }}
+    <div class="research-flow">
+      {{ range $index, $stage := $content.stages }}
+        {{ if gt $index 0 }}
+          <span class="research-flow-arrow" aria-hidden="true">→</span>
+        {{ end }}
+        <div class="research-flow-stage">
+          {{ with $stage.eyebrow }}<span class="research-flow-eyebrow">{{ . }}</span>{{ end }}
+          <h3>{{ $stage.title }}</h3>
+          {{ with $stage.detail }}<p>{{ . }}</p>{{ end }}
+        </div>
+      {{ end }}
+    </div>
+    {{ with $content.mission }}
+      <p class="research-overview-mission">{{ . | markdownify | emojify }}</p>
+    {{ end }}
+  </div>
+</section>

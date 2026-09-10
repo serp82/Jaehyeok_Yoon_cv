@@ -1,5 +1,5 @@
 ---
-title: 'Unsupervised Denoising for Unknown Radar Waveform detection'
+title: 'Unsupervised Unknown Radar Waveform Detection'
 authors:
   - me
   - Haewoon Nam

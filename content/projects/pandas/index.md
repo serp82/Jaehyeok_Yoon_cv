@@ -1,10 +1,26 @@
 ---
 layout: project
+type: project
 title: "High-Accuracy Radar Parameter Estimation Under Low SNR Environments"
 slug: "low-snr-radar-parameter-estimation"
 aliases:
   - /projects/radar-waveform-estimation/
-order: 1
+order: 2
+project_number: "02"
+project_stage: "Detection & estimation · 2021–2025"
+korean_title: "저 SNR 레이더 펄스 검출 및 제원 추정"
+research_year: "2021–2025"
+hero_claim: "Frequency-domain detection, STFT denoising, and edge-based parameter estimation for weak radar pulses."
+research_question: "잡음보다 약한 레이더 펄스에서 pulse 위치와 경계를 찾아 주요 radar parameter를 안정적으로 추정할 수 있는가?"
+result_highlight: "FPD AUC 0.912 at −18 dB · 0.964 at −15 dB"
+technology_tags:
+  - STFT
+  - U-Net
+  - CCA
+  - USRP / GNU Radio
+project_statuses:
+  - label: "IEEE Access · 게재"
+    class: published
 status: "Published in IEEE Access (2025)"
 publication:
   name: IEEE Access
@@ -26,8 +42,6 @@ tags:
 ---
 
 # High-Accuracy Radar Parameter Estimation Under Low SNR Environments
-
-![Low-SNR pulse detection and parameter-estimation framework](figures/processing_framework.png)
 
 ## Research question
 
