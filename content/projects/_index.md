@@ -12,6 +12,8 @@ sections:
       filters:
         folders:
           - projects
+      sort_by: order
+      sort_ascending: true
     design:
       view: article-grid
       fill_image: false
