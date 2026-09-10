@@ -2,7 +2,7 @@
 <div class='research-paired-sections'>
   <div class='research-paired-row'>
     <div class='research-paired-column'>
-        {{ partial `hbx/blocks/markdown/block.html` (dict `wcPage` .wcPage `wcBlock` .wcBlock.content.patents `wcIdentifier` `research-paired-patents`) }}
+        {{ partial `hbx/blocks/research-patents/block.html` (dict `wcPage` .wcPage `wcBlock` .wcBlock.content.patents `wcIdentifier` `research-paired-patents`) }}
         {{ partial `hbx/blocks/markdown/block.html` (dict `wcPage` .wcPage `wcBlock` .wcBlock.content.software `wcIdentifier` `research-paired-software`) }}
     </div>
     <div class='research-paired-column research-paired-column--right'>

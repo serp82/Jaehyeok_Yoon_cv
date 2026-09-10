@@ -1,0 +1,17 @@
+{{ $content := .wcBlock.content }}
+<div class='max-w-prose research-records-block'>
+  {{ with $content.title }}
+    <h2 class='mb-6 text-3xl font-bold'>{{ . }}</h2>
+  {{ end }}
+  <div class='prose max-w-none'>
+    {{ with $content.summary }}<p><strong>{{ . }}</strong></p>{{ end }}
+    <ul class='research-record-list'>
+      {{ range $content.items }}
+        <li>
+          <span class='research-record-authors'>{{ .authors }}</span>, “{{ .title }},” {{ .venue }}, {{ .date }}
+          {{ with .badge }}<span class='cv-badge cv-badge--{{ .class }}'>{{ .label }}</span>{{ end }}
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+</div>

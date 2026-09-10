@@ -18,7 +18,7 @@ sections:
         - SDR/FPGA 기반 실환경 신호처리 시스템 구현
         - 이종신호 중첩·주파수 공유 환경의 전파 식별 및 간섭 제거
 
-        **연구 성과**: 국제저널(SCI) 3편, 국내저널(KCI) 2편, 학회 7건, 특허 3건, 소프트웨어 등록 1건, 연구과제 10건
+        **연구 성과**: 국제저널(SCI) 3편, 국내저널(KCI) 2편, 학회 9건, 특허 3건, 소프트웨어 등록 1건, 연구과제 10건
       headings:
         about: '소개'
         education: '학력'
@@ -37,7 +37,7 @@ sections:
       title: 연구 실적 요약
       subtitle: ''
       text: |-
-        **국제저널(SCI) 3편** · **국내저널(KCI) 2편** · **학회 7건** · **특허 3건** · **소프트웨어 등록 1건** · **연구과제 10건**
+        **국제저널(SCI) 3편** · **국내저널(KCI) 2편** · **학회 9건** · **특허 3건** · **소프트웨어 등록 1건** · **연구과제 10건**
 
         레이더 신호 검출·복원·제원추정, 미확인 신호 탐지, 이종신호 중첩·주파수 공유 환경의
         전파 식별 문제를 중심으로 연구하고 있습니다.
@@ -62,36 +62,82 @@ sections:
           columns: 1
           show_date: true
       conferences:
-        block: markdown
+        block: research-conferences
         content:
           title: 학회 발표
-          text: |-
-            **총 7건 (국내 5건, 해외 2건)**
-
-            - 윤재혁, 서동호, 김동현, 남해운, “Comparison of CNN Performance According to Weight Initialization Method when Classifying Signals Through Spectrogram,” 한국통신학회 동계종합학술발표회, 용평리조트, 2021.02
-            - Jaehyeok Yoon, Hyeongyun Kim, Dongho Seo, Haewoon Nam, “Performance Comparison of NLOS Detection Methods in UWB,” International Conference on ICT Convergence (ICTC), Jeju, Korea, 2021.10
-            - 윤재혁, 윤우진, 김형윤, 남해운, “오토엔코더 기반 미확인 저피탐 레이더 파형 탐지 기술,” 한국통신학회 동계종합학술발표회, 평창 알펜시아 리조트, 2022.02
-            - 조재연, 윤재혁, 남해운, “FMCW 레이더 스펙트로그램 기반 동작 인식 기법,” 한국통신학회 하계종합학술발표회, 제주 그랜드하얏트호텔, 2022.06 · 학술논문우수상
-            - 정석현, 윤재혁, 남해운, “Multi-Moving Average filter 기반 저피탐 레이더 신호 검출,” 한국통신학회 동계종합학술발표회, 용평리조트, 2023.02
-            - 윤재혁, 남해운, “LPI 레이더 중첩 신호 인지를 위한 ResNeXt 기반 다중 라벨 분류,” 한국통신학회 하계종합학술발표회, 제주, 2023.06
-            - Jaehyeok Yoon, Haewoon Nam, Jaerock Kwon, “Joint Recognition of LPI Radar Signals Using a VLM with TFD-Text Alignment,” ICNGC, Da Nang, Vietnam, 2025.12 · 우수논문상
-        design:
-          columns: '1'
+          summary: 총 9건 (국내 6건, 해외 3건)
+          items:
+            - authors: 윤재혁, 서동호, 김동현, 남해운
+              title: Comparison of CNN Performance According to Weight Initialization Method when Classifying Signals Through Spectrogram
+              venue: 한국통신학회 동계종합학술발표회, 용평리조트
+              date: 2021.02
+            - authors: Jaehyeok Yoon, Hyeongyun Kim, Dongho Seo, Haewoon Nam
+              title: Performance Comparison of NLOS Detection Methods in UWB
+              venue: International Conference on ICT Convergence (ICTC), Jeju, Korea
+              date: 2021.10
+            - authors: 윤재혁, 윤우진, 김형윤, 남해운
+              title: 오토엔코더 기반 미확인 저피탐 레이더 파형 탐지 기술
+              venue: 한국통신학회 동계종합학술발표회, 평창 알펜시아 리조트
+              date: 2022.02
+            - authors: 조재연, 윤재혁, 남해운
+              title: FMCW 레이더 스펙트로그램 기반 동작 인식 기법
+              venue: 한국통신학회 하계종합학술발표회, 제주 그랜드하얏트호텔
+              date: 2022.06
+              badge:
+                label: 학술논문우수상
+                class: award
+            - authors: 정석현, 윤재혁, 남해운
+              title: Multi-Moving Average filter 기반 저피탐 레이더 신호 검출
+              venue: 한국통신학회 동계종합학술발표회, 용평리조트
+              date: 2023.02
+            - authors: 윤재혁, 남해운
+              title: LPI 레이더 중첩 신호 인지를 위한 ResNeXt 기반 다중 라벨 분류
+              venue: 한국통신학회 하계종합학술발표회, 제주
+              date: 2023.06
+            - authors: Jaehyeok Yoon, Haewoon Nam, Jaerock Kwon
+              title: Joint Recognition of LPI Radar Signals Using a VLM with TFD-Text Alignment
+              venue: ICNGC, Da Nang, Vietnam
+              date: 2025.12
+              badge:
+                label: 우수논문상
+                class: award
+            - authors: 윤재혁, 남해운
+              title: 지도 학습 기반 CLIP을 활용한 레이더 신호 스펙트로그램 식별
+              venue: 2026년도 한국통신학회 동계종합학술발표회, 용평
+              date: 2026.02.04
+            - authors: Jaehyeok Yoon, Haewoon Nam
+              title: Cross-Resolution STFT Distillation for FPGA-Efficient Radar Waveform Classification
+              venue: The 31st Asia-Pacific Conference on Communications (APCC)
+              date: 2026
+              badge:
+                label: 발표 예정
+                class: pending
   - block: research-paired-sections
     id: research-paired-sections
     content:
       patents:
-        block: markdown
+        block: research-patents
         content:
           title: 특허
-          text: |-
-            **총 3건 (출원 2건, 등록 1건)**
-
-            - 사람의 동작에 대한 정확한 인체 모션 감지를 위한 RGB-D 카메라 데이터와 레이더 포인트 클라우드를 활용한 스켈레톤 추출 기술, 등록번호 10-2842830, 2025.08.01
-            - 딥러닝 기반 저피탐 레이더 신호의 잡음 제거 및 파라미터 추출 방법, 이를 수행하는 장치 및 컴퓨터 프로그램, 출원번호(대한민국) 10-2024-0092816, 2024.07.15
-            - 레이더를 통해 레이더 시스템의 간섭을 제거하는 OFDM 기반 드론 신호처리 장치 및 방법, 출원번호(대한민국) 10-2025-0191251, 2025.12.05
-        design:
-          columns: '1'
+          summary: 총 3건
+          summary_badges:
+            - label: 등록 1건
+              class: registered
+            - label: 출원 2건
+              class: filed
+          items:
+            - title: 사람의 동작에 대한 정확한 인체 모션 감지를 위한 RGB-D 카메라 데이터와 레이더 포인트 클라우드를 활용한 스켈레톤 추출 기술
+              status: 등록
+              number: 등록번호 10-2842830
+              date: 2025.08.01
+            - title: 딥러닝 기반 저피탐 레이더 신호의 잡음 제거 및 파라미터 추출 방법, 이를 수행하는 장치 및 컴퓨터 프로그램
+              status: 출원
+              number: 출원번호(대한민국) 10-2024-0092816
+              date: 2024.07.15
+            - title: 레이더를 통해 레이더 시스템의 간섭을 제거하는 OFDM 기반 드론 신호처리 장치 및 방법
+              status: 출원
+              number: 출원번호(대한민국) 10-2025-0191251
+              date: 2025.12.05
       software:
         block: markdown
         content:

@@ -1,0 +1,19 @@
+{{ $content := .wcBlock.content }}
+<div class='max-w-prose research-records-block'>
+  {{ with $content.title }}
+    <h2 class='mb-6 text-3xl font-bold'>{{ . }}</h2>
+  {{ end }}
+  <div class='prose max-w-none'>
+    <p>
+      {{ with $content.summary }}<strong>{{ . }}</strong>{{ end }}
+      {{ range $content.summary_badges }}<span class='cv-badge cv-badge--{{ .class }}'>{{ .label }}</span>{{ end }}
+    </p>
+    <ul class='research-record-list'>
+      {{ range $content.items }}
+        <li>
+          {{ .title }} <span class='cv-badge cv-badge--{{ if eq .status "등록" }}registered{{ else }}filed{{ end }}'>{{ .status }}</span>, {{ .number }}, {{ .date }}
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+</div>

@@ -4,6 +4,6 @@
     {{ partial `hbx/blocks/content-collection/block.html` (dict `wcPage` .wcPage `wcBlock` (index .wcBlock.content `publications`) `wcIdentifier` (printf `%s-publications` .wcIdentifier)) }}
   </div>
   <div class='research-highlights-column research-highlights-column--conferences'>
-    {{ partial `hbx/blocks/markdown/block.html` (dict `wcPage` .wcPage `wcBlock` (index .wcBlock.content `conferences`) `wcIdentifier` (printf `%s-conferences` .wcIdentifier)) }}
+    {{ partial `hbx/blocks/research-conferences/block.html` (dict `wcPage` .wcPage `wcBlock` (index .wcBlock.content `conferences`) `wcIdentifier` (printf `%s-conferences` .wcIdentifier)) }}
   </div>
 </div>
