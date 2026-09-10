@@ -33,6 +33,9 @@ links:
   - icon: hero/phone
     url: 'tel:+821054943450'
     label: Phone
+  - icon: hero/academic-cap
+    url: 'https://scholar.google.com/citations?user=fJY8exEAAAAJ&hl=ko'
+    label: Google Scholar
 
 interests:
   - 레이더·통신 신호 처리 R&D
