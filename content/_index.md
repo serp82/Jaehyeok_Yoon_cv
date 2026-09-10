@@ -127,7 +127,6 @@ sections:
         block: research-patents
         content:
           title: 특허
-          summary: 총 3건
           summary_badges:
             - label: 등록 1건
               class: registered

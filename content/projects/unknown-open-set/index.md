@@ -111,7 +111,7 @@ Reconstruction-based detection은 파형이 known library에 속하는지 여부
 
 - [Unsupervised Unknown Radar Waveform Detection](../../publications/unknown-radar-waveform-detection/) · *IEEE Transactions on Aerospace and Electronic Systems* · 게재
 - [SAVOR: Semantic Attribute-Guided Vision-Language Framework for Open-Set Radar Waveform Recognition](../../publications/semantic-attribute-guided-open-set-radar/) · *IEEE Transactions on Aerospace and Electronic Systems* · Under Revision
-- Joint Recognition of LPI Radar Signals Using a VLM with TFD-Text Alignment · ICNGC, 2025 · 우수논문상
+- Joint Recognition of LPI Radar Signals Using a VLM with TFD-Text Alignment · ICNGC, 2025 · Best Paper Award
 - 지도 학습 기반 CLIP을 활용한 레이더 신호 스펙트로그램 식별 · 한국통신학회 동계종합학술발표회, 2026
 
 ## Research continuation

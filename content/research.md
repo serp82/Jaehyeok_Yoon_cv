@@ -25,7 +25,6 @@ sections:
         block: collection
         content:
           title: 논문
-          text: 'SCI Journals: 2 Published · 1 Under Revision · KCI Journals: 1 Published · 1 Accepted'
           count: 5
           sort_by: Date
           sort_order: desc
@@ -40,7 +39,6 @@ sections:
         block: research-conferences
         content:
           title: 학회 발표
-          summary: 총 9건 (국내 6건, 해외 3건)
           items:
             - authors: 윤재혁, 서동호, 김동현, 남해운
               title: Comparison of CNN Performance According to Weight Initialization Method when Classifying Signals Through Spectrogram
@@ -74,7 +72,7 @@ sections:
               venue: ICNGC, Da Nang, Vietnam
               date: 2025.12
               badge:
-                label: 우수논문상
+                label: Best Paper Award
                 class: award
             - authors: 윤재혁, 남해운
               title: 지도 학습 기반 CLIP을 활용한 레이더 신호 스펙트로그램 식별
@@ -94,7 +92,6 @@ sections:
         block: research-patents
         content:
           title: 특허
-          summary: 총 3건
           summary_badges:
             - label: 등록 1건
               class: registered
@@ -169,8 +166,6 @@ sections:
     content:
       title: 수행 과제
       text: |-
-        **총 10건 · 산학 과제 3건 · 정부기관 과제 7건**
-
         1. **GPS 비의존적 군집 무인기용 고정밀 자율 위치 측위 기술 연구** · 책임연구원: 남해운 · 2019.11.29–2021.12.31 · 한국연구재단 (NRF)
         2. **페이딩 기반의 전파식별 방법과 주파수 공유 방법에 대한 평가 연구** · 책임연구원: 남해운 · 2021.04.16–2021.11.30 · 한국전자통신연구원 (ETRI)
         3. **이종 신호 중첩 환경 전파식별 방법과 주파수 공유방법에 대한 평가 연구** · 책임연구원: 남해운 · 2022.01.01–2022.12.31 · 한국전자통신연구원 (ETRI)
