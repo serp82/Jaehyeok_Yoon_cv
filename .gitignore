@@ -8,6 +8,7 @@
 
 # Generated site output
 public/
+dist/
 
 # Hugo resources (processed assets)
 resources/
