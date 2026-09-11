@@ -3,12 +3,12 @@
   <div class='research-paired-row'>
     <div class='research-paired-column'>
       {{ partial "hbx/blocks/research-patents/block.html" (dict "wcPage" .wcPage "wcBlock" .wcBlock.content.patents "wcIdentifier" "research-paired-patents") }}
+      <div class='research-paired-software'>
+        {{ partial "hbx/blocks/markdown/block.html" (dict "wcPage" .wcPage "wcBlock" .wcBlock.content.software "wcIdentifier" "research-paired-software") }}
+      </div>
     </div>
     <div class='research-paired-column research-paired-column--right'>
       {{ partial "hbx/blocks/markdown/block.html" (dict "wcPage" .wcPage "wcBlock" .wcBlock.content.awards "wcIdentifier" "research-paired-awards") }}
     </div>
-  </div>
-  <div class='research-paired-full-row'>
-    {{ partial "hbx/blocks/markdown/block.html" (dict "wcPage" .wcPage "wcBlock" .wcBlock.content.software "wcIdentifier" "research-paired-software") }}
   </div>
 </div>
