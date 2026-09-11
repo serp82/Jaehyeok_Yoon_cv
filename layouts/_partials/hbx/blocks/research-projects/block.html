@@ -11,12 +11,12 @@
       {{ with site.GetPage $path }}
         {{ $project := . }}
         {{ $featured := partial "functions/get_featured_image.html" $project }}
-        <article class="research-project-card">
+        <article class="research-project-card{{ if not $featured }} research-project-card--text-only{{ end }}">
+          {{ with $featured }}
           <a class="research-project-media" href="{{ $project.RelPermalink }}" aria-label="연구 상세 보기: {{ $project.Title }}">
-            {{ with $featured }}
               <img src="{{ .RelPermalink }}" alt="{{ with $project.Params.image }}{{ .alt_text | default $project.Title }}{{ else }}{{ $project.Title }}{{ end }}" loading="{{ if eq $index 0 }}eager{{ else }}lazy{{ end }}">
-            {{ end }}
           </a>
+          {{ end }}
           <div class="research-project-content">
             <div class="research-project-meta">
               {{ with $project.Params.project_number }}<span class="research-project-number">{{ . }}</span>{{ end }}
