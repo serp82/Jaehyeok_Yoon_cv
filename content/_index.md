@@ -114,6 +114,13 @@ sections:
       languages:
         title: 외국어 역량
         username: me
+      international_experience:
+        title: 해외 연구 경험
+        items:
+          - name: 미국 Univ. of Michigan-Dearborn 자율주행 연구실 파견
+            period: 2024.10–2025.02
+          - name: 인도 IIT Guwahati 연구 인턴
+            period: 2020.01–2020.02
 
   - block: research-supporting
     id: supporting-records
