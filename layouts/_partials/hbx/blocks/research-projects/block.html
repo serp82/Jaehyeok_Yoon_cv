@@ -25,7 +25,7 @@
             <h3><a href="{{ $project.RelPermalink }}">{{ $project.Title }}</a></h3>
             {{ with $project.Params.summary }}<p class="research-project-summary">{{ . }}</p>{{ end }}
             {{ with $project.Params.result_highlight }}
-              <p class="research-project-result"><strong>대표 결과</strong>{{ . }}</p>
+              <p class="research-project-result"><strong>핵심 내용</strong>{{ . }}</p>
             {{ end }}
             {{ with $project.Params.technology_tags }}
               <ul class="research-project-tags" aria-label="기술 태그">
