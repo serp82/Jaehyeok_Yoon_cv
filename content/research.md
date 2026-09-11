@@ -1,5 +1,5 @@
 ---
-title: '연구실적'
+title: '연구'
 date: 2026-09-04
 type: landing
 
@@ -9,14 +9,14 @@ design:
 sections:
   - block: markdown
     content:
-      title: 주요 연구분야
+      title: 연구 분야
       text: |-
-        **전공분야: 레이더 신호 처리**
+        **전공분야: 레이다 신호처리**
 
-        레이더와 통신 신호를 실제 무선 환경에서 분석하고, 신호처리·딥러닝·SDR/FPGA 기술을 연결해 연구개발합니다.
+        레이다와 통신 신호를 실제 무선 환경에서 분석하고, 신호처리·딥러닝·SDR/FPGA 기술을 연결해 연구개발합니다.
 
-        1. **저 SNR 환경의 레이더 신호 검출·복원 및 제원추정**: 저피탐(LPI) 파형 검출·제원 추정, 잡음 제거, 신호 복원, SDR/FPGA 기반 실환경 신호처리 시스템
-        2. **레이더 신호 분류 및 미확인 신호 탐지**: 딥러닝 기반 레이더 파형 분류, 비지도 학습 기반 미확인 신호 탐지, Vision-Language 기반 미확인 파형 인식, SDR/FPGA 기반 구현
+        1. **저 SNR 환경의 레이다 신호 검출·복원 및 제원추정**: 저피탐(LPI) 파형 검출·제원 추정, 잡음 제거, 신호 복원, SDR/FPGA 기반 실환경 신호처리 시스템
+        2. **레이다 신호 분류 및 미확인 신호 탐지**: 딥러닝 기반 레이다 파형 분류, 비지도 학습 기반 미확인 신호 탐지, Vision-Language 기반 미확인 파형 인식, SDR/FPGA 기반 구현
         3. **이종신호 중첩·주파수 공유 환경의 전파 식별**: 주파수 공유 환경 신호 식별, 중첩신호 인지 및 간섭 신호 제거, 전파 식별·주파수 공유 평가 체계 설계
   - block: research-highlights
     id: research-publications
@@ -25,7 +25,7 @@ sections:
         block: collection
         content:
           title: 논문
-          count: 5
+          count: 0
           sort_by: Date
           sort_order: desc
           filters:
@@ -92,11 +92,6 @@ sections:
         block: research-patents
         content:
           title: 특허
-          summary_badges:
-            - label: 등록 1건
-              class: registered
-            - label: 출원 2건
-              class: filed
           items:
             - title: 사람의 동작에 대한 정확한 인체 모션 감지를 위한 RGB-D 카메라 데이터와 레이더 포인트 클라우드를 활용한 스켈레톤 추출 기술
               status: 등록

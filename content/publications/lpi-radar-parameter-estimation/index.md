@@ -1,5 +1,5 @@
 ---
-title: 'High-accuracy radar parameter estimation under low SNR environments'
+title: 'High-Accuracy Radar Parameter Estimation Under Low SNR Environments'
 authors:
   - me
   - Siho Lee
@@ -16,7 +16,7 @@ publication:
   pages: '171170-171184'
 peer_reviewed: true
 open_access: true
-summary: '저 SNR 환경에서 레이더 신호의 주요 파라미터를 고정밀 추정하는 연구입니다.'
+summary: '저 SNR 환경에서 레이다 신호의 주요 파라미터를 고정밀 추정하는 연구입니다.'
 tags:
   - SCI
   - LPI Radar
@@ -26,4 +26,4 @@ featured: true
 links: []
 ---
 
-저 SNR 환경에서 레이더 신호의 주요 파라미터를 고정밀 추정하기 위한 딥러닝 기반 방법을 연구합니다.
+저 SNR 환경에서 레이다 신호의 주요 파라미터를 고정밀 추정하기 위한 딥러닝 기반 방법을 연구합니다.

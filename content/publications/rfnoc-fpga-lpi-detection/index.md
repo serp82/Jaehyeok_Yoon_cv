@@ -12,7 +12,7 @@ publication:
   name: 'The Journal of Korean Institute of Communications and Information Science'
 peer_reviewed: true
 open_access: false
-summary: 'RFNoC와 FPGA를 활용해 저피탐 레이더 신호를 실시간으로 검출하고 분류하는 시스템 구현 연구입니다.'
+summary: 'RFNoC와 FPGA를 활용해 저피탐 레이다 신호를 검출하고 분류하는 시스템 구현 연구입니다.'
 tags:
   - KCI
   - RFNoC
@@ -22,6 +22,6 @@ featured: true
 links: []
 ---
 
-SDR/FPGA 환경에서 저피탐 레이더 신호의 실시간 검출 및 분류기를 구현하고 실환경 신호처리 시스템으로 확장합니다.
+SDR/FPGA 환경에서 저피탐 레이다 신호의 검출 및 분류기를 구현하고 실환경 신호처리 시스템으로 확장합니다.
 
 **상태:** 게재 확정

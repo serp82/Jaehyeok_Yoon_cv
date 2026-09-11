@@ -1,0 +1,39 @@
+{{- $content := .wcBlock.content -}}
+<section class="research-supporting" aria-labelledby="research-supporting-title">
+  <div class="research-supporting-inner">
+    {{ with $content.title }}
+      <h2 id="research-supporting-title" class="research-supporting-title">{{ . | markdownify | emojify }}</h2>
+    {{ end }}
+    <div class="research-supporting-grid">
+      <section class="research-supporting-group">
+        <h3>특허</h3>
+        <ul>
+          {{ range $content.patents }}
+            <li>
+              <strong>{{ .title }}</strong>
+              <span class="research-record-meta"><span class="cv-badge cv-badge--{{ if eq .status "등록" }}registered{{ else }}filed{{ end }}">{{ .status }}</span> {{ .number }} · {{ .date }}</span>
+            </li>
+          {{ end }}
+        </ul>
+      </section>
+      <div class="research-supporting-column">
+        <section class="research-supporting-group">
+          <h3>소프트웨어 등록</h3>
+          <ul>
+            {{ range $content.software }}
+              <li><strong>{{ .name }}</strong><span class="research-record-meta">{{ .registration }}</span></li>
+            {{ end }}
+          </ul>
+        </section>
+        <section class="research-supporting-group">
+          <h3>수상 실적</h3>
+          <ul>
+            {{ range $content.awards }}
+              <li><strong>{{ .name }}</strong><span class="research-record-meta">{{ .awarder }} · {{ .date }}</span></li>
+            {{ end }}
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>

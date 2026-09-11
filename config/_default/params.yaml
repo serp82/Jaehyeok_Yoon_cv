@@ -21,7 +21,7 @@ hugoblox:
     # Short tagline displayed on your site
     tagline: ""
     # Site meta description for search engines and social sharing
-    description: "레이더·통신 신호 처리 R&D를 수행하는 윤재혁의 연구개발 CV입니다."
+    description: "레이다·통신 신호 처리 R&D를 수행하는 윤재혁의 연구개발 CV입니다."
     # Social accounts (used for meta tags like Twitter Cards)
     social:
       twitter: "" # Twitter/X handle for Twitter Cards (without @)

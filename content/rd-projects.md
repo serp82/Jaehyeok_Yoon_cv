@@ -4,7 +4,7 @@ date: 2026-09-10
 type: page
 ---
 
-## Research and development projects
+## 연구개발 수행 과제
 
 ### 1. GPS 비의존적 군집 무인기용 고정밀 자율 위치 측위 기술 연구
 

@@ -1,128 +1,88 @@
 ---
 layout: project
 type: project
-title: "High-Accuracy Radar Parameter Estimation Under Low SNR Environments"
+title: "저 SNR 레이다 신호 검출 및 제원 추정"
+english_title: "High-Accuracy Radar Parameter Estimation Under Low SNR Environments"
 slug: "low-snr-radar-parameter-estimation"
 aliases:
   - /projects/radar-waveform-estimation/
 order: 2
 project_number: "02"
-project_stage: "Detection & estimation · 2021–2025"
-korean_title: "저 SNR 레이더 펄스 검출 및 제원 추정"
+project_stage: "신호 검출·제원 추정 연구 · 2021–2025"
 research_year: "2021–2025"
-hero_claim: "Frequency-domain detection, STFT denoising, and edge-based parameter estimation for weak radar pulses."
-research_question: "잡음보다 약한 레이더 펄스에서 pulse 위치와 경계를 찾아 주요 radar parameter를 안정적으로 추정할 수 있는가?"
-result_highlight: "FPD AUC 0.912 at −18 dB · 0.964 at −15 dB"
+hero_claim: "주파수 영역 pulse detection, STFT denoising, CCA 기반 edge detection을 결합해 저 SNR 레이다 제원을 추정했습니다."
+research_question: "잡음에 묻힌 레이다 펄스의 위치와 경계를 찾아 주요 신호 제원을 얼마나 안정적으로 추정할 수 있는가?"
+result_highlight: "FPD AUC 0.912 @ −18 dB · 0.964 @ −15 dB"
 technology_tags:
   - STFT
-  - U-Net
+  - UNet
   - CCA
   - USRP / GNU Radio
-project_statuses:
-  - label: "IEEE Access · 게재"
-    class: published
-status: "Published in IEEE Access (2025)"
-publication:
-  name: IEEE Access
-  volume: 13
-  pages: 171170–171184
-summary: "저 SNR 환경에서 펄스 검출과 잡음 제거를 결합해 레이더 신호의 시간·주파수 파라미터를 추정하는 연구입니다."
+publication_refs:
+  - /publications/lpi-radar-parameter-estimation/
+summary: "저 SNR 환경에서 펄스 검출과 잡음 제거를 결합해 레이다 신호의 시간·주파수 제원을 추정하는 연구입니다."
 image:
   filename: figures/processing_framework.png
   alt_text: Low-SNR pulse detection and parameter-estimation framework
-  caption: Frequency-domain pulse detection, STFT denoising, and edge-based parameter estimation.
+  caption: "Frequency-domain pulse detection, STFT denoising, and edge-based parameter estimation"
 links: []
 tags:
   - pulse detection
   - parameter estimation
   - STFT
-  - U-Net
+  - UNet
   - CCA
   - USRP/GNU Radio
 ---
 
-# High-Accuracy Radar Parameter Estimation Under Low SNR Environments
+## 연구 질문
 
-## Research question
+잡음에 묻힌 레이다 펄스의 위치와 경계를 찾아 주요 신호 제원을 얼마나 안정적으로 추정할 수 있는가?
 
-How can a receiver recover reliable radar pulse boundaries and physical parameters when the pulse is difficult to distinguish from noise in the time domain and its time-frequency structure is fragmented?
+저 SNR 환경에서는 pulse edge가 noise에 묻혀 ToA, PW, PRI뿐 아니라 BW와 Fc의 추정 오차도 증가합니다. 이를 위해 주파수 영역 pulse detection, STFT, UNet denoising, CCA-based edge detection을 결합한 통합 제원 추정 구조를 설계했습니다.
 
-## Proposed approach
+## 제안 방법
 
-The method separates coarse pulse observability from fine parameter extraction:
+<div class="research-pipeline" aria-label="저 SNR 제원 추정 처리 흐름">
+  <span>Received I/Q</span><b>↓</b><span>Frequency-domain pulse detection</span><b>↓</b><span>Pulse interval localization</span><b>↓</b><span>STFT</span><b>↓</b><span>UNet denoising</span><b>↓</b><span>CCA edge detection</span><b>↓</b><span>ToA · PW · PRI · BW · Fc</span>
+</div>
 
-1. Divide the received I/Q stream into fixed, non-overlapping time slots.
-2. Apply frequency-domain pulse detection (FPD) to decide whether each slot contains pulse energy.
-3. Localize pulse-relevant intervals and generate STFT images with task-specific time/frequency resolution.
-4. Apply separately optimized U-Net denoisers to suppress noise while preserving pulse structure.
-5. Use connected-component analysis (CCA) to remove isolated components and extract temporal and spectral edges.
-6. Compute time-domain parameters (ToA, PW, PRI) and frequency-domain parameters (BW, carrier frequency) from the recovered boundaries.
+1. 수신 I/Q stream을 고정된 non-overlapping time slot으로 나눕니다.
+2. **FPD(Frequency-domain Pulse Detection)**로 각 구간에 pulse energy가 포함되는지 판단합니다.
+3. pulse 구간만 localized STFT로 변환하고, 시간·주파수 해상도에 맞게 학습한 UNet denoiser를 적용합니다.
+4. **CCA(Connected-Component Analysis)**로 고립된 성분을 제거하고 시간·주파수 edge를 추출합니다.
+5. 복원된 경계에서 ToA, PW, PRI, BW, Fc를 계산합니다.
 
 ![Edge-based parameter computation](figures/edge_based_parameter_estimation.png)
 
-[Open the high-resolution Figure PDF](figures/edge_based_parameter_estimation.pdf)
+[고해상도 처리 구조 PDF](figures/edge_based_parameter_estimation.pdf)
 
-## Experimental protocol
+## 실험 구성
 
-- **Simulation waveforms:** 17 intrapulse-modulation waveform types, including rectangular, LFM, NLFM, non-Costas FSK, Costas, Barker, Frank, and P1–P4.
-- **Sampling rate:** 500 kHz.
-- **Pulse width:** 1–10 ms; duty cycle fixed at 20%.
-- **SNR range:** −20 to 10 dB in 1 dB increments.
-- **Simulation set:** 100 pulse trains per waveform type and SNR, for 52,700 pulse trains total; train/validation/test split 8:1:1.
-- **OTA test-bed:** two USRP-2920 devices controlled by GNU Radio, 910 MHz center frequency, 500 kHz sampling rate, measured SNR from −15 to 5 dB in 5 dB increments.
-- **Baselines:** I/Q amplitude, STFT, SPWVD, GLGCM, LPI-Net, Wigner–Hough transform (WHT), change-point detection (CPD), and DAT-Net, depending on the subtask.
+- **Simulation:** 17종 intrapulse-modulation waveform, 500 kHz sampling rate
+- **Pulse / SNR:** pulse width 1–10 ms, duty cycle 20%, SNR −20–10 dB
+- **Data:** waveform·SNR별 100개 pulse train, 총 52,700개, train/validation/test = 8:1:1
+- **OTA test-bed:** GNU Radio로 제어한 USRP-2920 2대, center frequency 910 MHz, sampling rate 500 kHz
+- **검증 환경:** Simulation · USRP · GNU Radio test-bed
 
-## Key results
+## 대표 결과
 
-### Slot-level pulse presence detection
+<div class="research-metric-grid">
+  <div class="research-metric"><strong class="research-metric-value">0.912</strong><span class="research-metric-label">FPD AUC @ −18 dB</span></div>
+  <div class="research-metric"><strong class="research-metric-value">0.964</strong><span class="research-metric-label">FPD AUC @ −15 dB</span></div>
+  <div class="research-metric"><strong class="research-metric-value">8 · 16 · 6 μs</strong><span class="research-metric-label">ToA · PW · PRI RMSE @ −8 dB</span></div>
+</div>
 
-The proposed FPD reaches AUC **0.912 at −18 dB** and **0.964 at −15 dB**, with the highest accuracy, precision, and AUC among the reported methods at those operating points.
-
-| SNR | Method | Accuracy | Precision | Recall | F1 | AUC |
-| --- | --- | ---: | ---: | ---: | ---: | ---: |
-| −18 dB | I/Q amplitude | 75.7% | 0.270 | 0.024 | 0.045 | 0.502 |
-| −18 dB | STFT | 95.2% | 0.968 | 0.790 | 0.870 | 0.892 |
-| −18 dB | SPWVD | 94.9% | 0.954 | 0.790 | 0.864 | 0.890 |
-| **−18 dB** | **FPD (ours)** | **95.7%** | **0.988** | 0.828 | 0.901 | **0.912** |
-| −18 dB | GLGCM | 81.3% | 0.804 | 0.999 | 0.891 | 0.875 |
-| −18 dB | LPI-Net | 89.5% | 0.984 | 0.744 | 0.904 | 0.895 |
-| −15 dB | I/Q amplitude | 76.1% | 0.303 | 0.025 | 0.047 | 0.504 |
-| −15 dB | STFT | 98.2% | 0.977 | 0.931 | 0.953 | 0.963 |
-| −15 dB | SPWVD | 98.1% | 0.984 | 0.918 | 0.950 | 0.957 |
-| **−15 dB** | **FPD (ours)** | **98.3%** | **0.994** | 0.930 | 0.961 | **0.964** |
-| −15 dB | GLGCM | 92.7% | 0.913 | 0.999 | 0.955 | 0.962 |
-| −15 dB | LPI-Net | 96.1% | 0.982 | 0.942 | 0.962 | 0.961 |
-
-### Time-domain parameter estimation
-
-| Parameter | Method | −16 dB (μs) | −12 dB (μs) | −8 dB (μs) |
-| --- | --- | ---: | ---: | ---: |
-| ToA | WHT | 378 | 203 | 162 |
-| ToA | CPD | 405 | 211 | 114 |
-| ToA | DAT-Net | 405 | 272 | 133 |
-| ToA | Proposed without denoising | 475 | 479 | 278 |
-| **ToA** | **Proposed** | **348** | **126** | **8** |
-| PW | WHT | 593 | 331 | 245 |
-| PW | CPD | 832 | 319 | 137 |
-| PW | DAT-Net | 753 | 549 | 330 |
-| PW | Proposed without denoising | 928 | 915 | 519 |
-| **PW** | **Proposed** | **589** | **180** | **16** |
-| PRI | WHT | 407 | 243 | 207 |
-| PRI | CPD | 551 | 299 | 123 |
-| PRI | DAT-Net | 521 | 425 | 230 |
-| PRI | Proposed without denoising | 401 | 415 | 319 |
-| **PRI** | **Proposed** | **400** | **159** | **6** |
-
-The selected U-Net configuration is `(N_f, N_e, S_f) = (8, 7, 7)` for time-domain estimation and `(8, 5, 7)` for frequency-domain estimation. At −8 dB, the reported RMSE is 8 μs for ToA, 16 μs for PW, and 6 μs for PRI.
+FPD는 −18 dB에서 AUC **0.912**, −15 dB에서 AUC **0.964**를 기록했습니다. −8 dB 조건에서 시간영역 제원 추정 RMSE는 ToA 8 μs, PW 16 μs, PRI 6 μs였습니다.
 
 ![Pulse-presence AUC](figures/pulse_detection_auc.png)
 
-[Open the AUC Figure PDF](figures/pulse_detection_auc.pdf) · [Full pulse-detection table](../../research-tables/low-snr-radar-parameter-estimation/tables/ch3_pulse_detection/) · [Full parameter-RMSE table](../../research-tables/low-snr-radar-parameter-estimation/tables/ch3_parameter_rmse/)
+[AUC 결과 PDF](figures/pulse_detection_auc.pdf) · [전체 pulse-detection 표](../../research-tables/low-snr-radar-parameter-estimation/tables/ch3_pulse_detection/) · [전체 parameter-RMSE 표](../../research-tables/low-snr-radar-parameter-estimation/tables/ch3_parameter_rmse/)
 
-## Why it matters
+## 연구 의의
 
-Reliable slot-level observability is a prerequisite for all downstream processing. The method uses frequency-domain evidence to identify pulse-containing regions, then spends higher-resolution STFT and denoising computation only where parameter extraction is meaningful.
+slot-level observability를 먼저 확보한 뒤, pulse가 존재하는 구간에만 고해상도 STFT와 denoising 연산을 집중합니다. 이 구조로 저 SNR 수신 환경에서 후속 제원 추정에 필요한 펄스 경계를 안정적으로 복원합니다.
 
-## Publication
+## 관련 논문
 
-Jaehyeok Yoon, Siho Lee, Woojin Yun, and Haewoon Nam, “High-Accuracy Radar Parameter Estimation Under Low SNR Environments,” *IEEE Access*, vol. 13, pp. 171170–171184, 2025. [DOI](https://doi.org/10.1109/ACCESS.2025.3614172)
+[High-Accuracy Radar Parameter Estimation Under Low SNR Environments](../../publications/lpi-radar-parameter-estimation/) · *IEEE Access*, 2025

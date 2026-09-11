@@ -15,7 +15,7 @@ publication:
   pages: '19316-19328'
 peer_reviewed: true
 open_access: false
-summary: '레이더 신호에 대한 비지도 잡음 제거를 통해 미확인 파형을 탐지하는 연구입니다.'
+summary: '레이다 신호에 대한 비지도 잡음 제거를 통해 미확인 파형을 탐지하는 연구입니다.'
 tags:
   - SCI
   - Radar Waveform Detection
@@ -25,4 +25,4 @@ featured: true
 links: []
 ---
 
-사전에 알려지지 않은 레이더 파형을 탐지하기 위해 비지도 학습 기반 잡음 제거 방법을 다룹니다.
+사전에 알려지지 않은 레이다 파형을 탐지하기 위해 비지도 학습 기반 잡음 제거 방법을 다룹니다.

@@ -7,12 +7,12 @@ main:
   - name: 소개
     url: /
     weight: 10
-  - name: 연구실적
+  - name: 연구
     url: research/
     weight: 15
+  - name: 주요 연구
+    url: projects/
+    weight: 20
   - name: 연구자 이력
     url: experience/
-    weight: 20
-  - name: 프로젝트
-    url: projects/
     weight: 30

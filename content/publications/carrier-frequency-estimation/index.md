@@ -25,7 +25,7 @@ awards:
     date: '2025-11-20'
 peer_reviewed: true
 open_access: false
-summary: '저 SNR 레이더 신호의 반송파 주파수 추정을 위해 Denoising Autoencoder와 DBSCAN을 결합한 연구입니다.'
+summary: '저 SNR 레이다 신호의 반송파 주파수 추정을 위해 Denoising Autoencoder와 DBSCAN을 결합한 연구입니다.'
 tags:
   - KCI
   - Radar Signal Processing
@@ -35,4 +35,4 @@ featured: false
 links: []
 ---
 
-저 SNR 환경에서 레이더 신호의 반송파 주파수를 추정하기 위한 신호 처리 및 딥러닝 기반 접근을 다룹니다.
+저 SNR 환경에서 레이다 신호의 반송파 주파수를 추정하기 위한 신호 처리 및 딥러닝 기반 접근을 다룹니다.

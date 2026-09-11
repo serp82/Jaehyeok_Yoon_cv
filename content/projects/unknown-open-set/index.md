@@ -1,119 +1,135 @@
 ---
 layout: project
 type: project
-title: "Unknown Radar Waveform Detection & Open-Set Recognition"
+title: "미확인 레이다 파형 탐지 및 Open-Set 인식"
+english_title: "Unknown Radar Waveform Detection & Open-Set Recognition"
 slug: "unknown-open-set-recognition"
+aliases:
+  - /projects/heterogeneous-signal-identification/
+  - /projects/radar-communication-recognition/
+  - /projects/unsupervised-unknown-radar-waveform-detection/
+  - /projects/savor-open-set-radar-waveform-recognition/
 project_number: "01"
-project_stage: "Featured research line · 2022–2026"
-korean_title: "저 SNR 환경의 미확인 레이더 파형 탐지 및 Open-Set 인식"
+project_stage: "미확인 파형 탐지·Open-Set Recognition 연구 · 2022–2026"
 research_year: "2022–2026"
-hero_claim: "From reconstruction-based unknown detection to semantic open-set recognition with DSAE–MAAE and VLM/SAVOR."
-research_question: "학습 과정에서 보지 못한 레이더 파형을 기존 파형으로 오분류하지 않고 탐지·인식할 수 있는가?"
-result_highlight: "DSAE–MAAE AUC > 0.77 / 0.78 · SAVOR AUC-OSCR +0.05 average, up to +0.10"
+hero_claim: "DSAE-MAAE 기반 reconstruction 방식에서 출발해, semantic VLM 기반 Open-Set Recognition으로 확장한 연구입니다."
+research_question: "학습에 없던 파형이 입력되었을 때, known waveform은 정확히 분류하면서 unknown waveform을 기존 class로 오분류하지 않고 거부할 수 있는가?"
+result_highlight: "AUC-OSCR 평균 약 +0.05 개선 · challenging low-SNR 환경 최대 약 +0.10"
 technology_tags:
-  - DSAE–MAAE
+  - DSAE-MAAE
   - VLM / CLIP
   - CWD / SPWVD
   - Open-Set Recognition
-project_statuses:
-  - label: "IEEE TAES · 게재 (2025)"
-    class: published
-  - label: "SAVOR · Under Revision"
-    class: revision
-summary: "DSAE–MAAE 기반의 미확인 파형 탐지에서 출발해, 레이더 time-frequency 구조를 semantic attribute로 표현하고 VLM과 정렬하는 SAVOR open-set recognition으로 확장한 연구 흐름입니다."
+publication_refs:
+  - /publications/unknown-radar-waveform-detection/
+  - /publications/semantic-attribute-guided-open-set-radar/
+summary: "저 SNR 환경의 미확인 레이다 파형 탐지에서 출발해, 시간–주파수 구조와 semantic attribute를 활용하는 Open-Set Recognition으로 확장한 연구 흐름입니다."
 image:
   filename: figures/savor_architecture.png
   alt_text: SAVOR semantic attribute-guided vision-language framework
-  caption: "Reconstruction-based unknown detection evolving into semantic open-set recognition."
+  caption: "DSAE-MAAE 기반 미확인 파형 탐지에서 semantic Open-Set Recognition으로 확장한 연구 흐름"
 links: []
 tags:
   - unknown waveform detection
   - open-set recognition
-  - DSAE
-  - MAAE
+  - DSAE-MAAE
   - VLM
   - radar signal processing
 ---
 
-## Research question
+## 연구 질문
 
-학습 과정에서 보지 못한 레이더 파형을 기존 파형으로 오분류하지 않고 탐지·인식할 수 있는가?
+학습에 없던 파형이 입력되었을 때, **known waveform은 정확히 분류하면서 unknown waveform을 기존 class로 오분류하지 않고 거부할 수 있는가?**
 
-이 질문을 **binary unknown detection**에서 시작해 **known-class recognition + unknown rejection** 문제로 확장했습니다. 첫 번째 연구는 재구성 오차로 미확인 파형을 걸러내고, 두 번째 연구는 파형의 구조와 스펙트럼 의미를 표현 공간에 반영합니다.
+이 질문을 **binary unknown detection**에서 시작해 **known-class recognition + unknown rejection** 문제로 확장했습니다. 첫 번째 연구는 reconstruction discrepancy로 미확인 파형을 탐지하고, 두 번째 연구는 파형의 구조와 스펙트럼 의미를 표현 공간에 반영합니다.
 
-## Research evolution
+## 연구 발전 과정
 
-<div class="research-timeline" aria-label="Research evolution">
-  <div class="research-timeline-item"><strong>2022</strong><span>Autoencoder-based unknown radar detection</span></div>
-  <div class="research-timeline-item"><strong>2025</strong><span>DSAE–MAAE: unsupervised denoising and memory-based unknown detection</span></div>
-  <div class="research-timeline-item"><strong>2025</strong><span>VLM with TFD–Text Alignment</span></div>
-  <div class="research-timeline-item"><strong>2026</strong><span>SAVOR: semantic attributes, TDU, and IVU for open-set recognition</span></div>
+<div class="research-timeline" aria-label="연구 발전 과정">
+  <div class="research-timeline-item"><strong>2022</strong><span>Autoencoder 기반 미확인 레이다 파형 탐지</span></div>
+  <div class="research-timeline-item"><strong>2025</strong><span>DSAE-MAAE: 비지도 denoising과 memory 기반 미확인 파형 탐지</span></div>
+  <div class="research-timeline-item"><strong>2025</strong><span>VLM과 TFD–Text Alignment를 활용한 파형 인식</span></div>
+  <div class="research-timeline-item"><strong>2026</strong><span>SAVOR: semantic attribute, TDU, IVU 기반 Open-Set Recognition</span></div>
 </div>
 
-## Study 01 · Reconstruction-Based Unknown Detection
+## Study 1 · Reconstruction-Based Unknown Detection
 
-### Pipeline
+### 처리 흐름
 
-<div class="research-pipeline" aria-label="DSAE MAAE pipeline">
-  <span>Radar I/Q</span><b>↓</b><span>CWD time-frequency representation</span><b>↓</b><span>DSAE</span><b>↓</b><span>Noise-suppressed representation</span><b>↓</b><span>MAAE memory reconstruction</span><b>↓</b><span>Reconstruction discrepancy</span><b>↓</b><span>Known / Unknown</span>
+<div class="research-pipeline" aria-label="DSAE MAAE 처리 흐름">
+  <span>Radar I/Q</span><b>↓</b><span>CWD time-frequency representation</span><b>↓</b><span>DSAE</span><b>↓</b><span>Noise-suppressed representation</span><b>↓</b><span>MAAE</span><b>↓</b><span>Memory-based reconstruction</span><b>↓</b><span>Reconstruction discrepancy</span><b>↓</b><span>Known / Unknown</span>
 </div>
 
-### Core idea
+### 핵심 방법
 
-- **DSAE:** clean reference 없이 noisy input만 사용해 저 SNR radar waveform feature를 보존하면서 noise를 억제합니다.
-- **MAAE:** known waveform pattern을 memory로 학습하고 known / unknown reconstruction difference를 이용해 unknown을 탐지합니다.
-- 두 단계의 reconstruction discrepancy를 continuous score로 사용해 운영 환경의 false-alarm과 missed-detection trade-off를 조정합니다.
+- **DSAE:** clean reference 없이 noisy input만으로 저 SNR 레이다 파형의 구조적 특징을 보존하면서 noise를 억제합니다.
+- **MAAE:** known waveform pattern을 memory로 학습하고 known / unknown 간 reconstruction discrepancy를 이용해 미확인 파형을 탐지합니다.
+- reconstruction discrepancy를 연속적인 score로 사용해 운영 환경의 false-alarm과 missed-detection trade-off를 조정합니다.
 
 ![DSAE–MAAE framework](figures/dsae_maae_framework.png)
 
-[Open the DSAE–MAAE framework PDF](figures/dsae_maae_framework.pdf) · [Denoising comparison](figures/denoising_method_comparison.pdf) · [AUC result](figures/one_vs_rest_auc_9_waveforms.pdf)
+[DSAE–MAAE framework PDF](figures/dsae_maae_framework.pdf) · [Denoising comparison](figures/denoising_method_comparison.pdf) · [AUC result](figures/one_vs_rest_auc_9_waveforms.pdf)
 
-### Reported results
+### 대표 결과
 
-- **5-waveform:** AUC > 0.77 for SNR ≥ −12 dB
-- **9-waveform:** AUC > 0.78 for SNR ≥ −10 dB
-- AWGN, Rayleigh fading, and measured wireless conditions에서 평가했습니다.
+- **5-waveform:** SNR ≥ −12 dB에서 AUC > 0.77
+- **9-waveform:** SNR ≥ −10 dB에서 AUC > 0.78
 
-## Why was another approach needed?
-
-Reconstruction-based detection은 파형이 known library에 속하는지 여부를 판별하는 데 유용하지만, 미확인 파형의 semantic class까지 설명하지는 않습니다. 또한 unknown waveform이 known waveform과 부분적인 구조를 공유하면 단순 reconstruction discrepancy만으로는 열린 공간(open space)을 충분히 표현하기 어렵습니다.
-
-이 한계에서 다음 연구 질문이 나옵니다.
-
-> 알려진 파형의 구조적·스펙트럼적 의미를 표현 공간에 넣으면, known classification과 unknown rejection을 함께 개선할 수 있는가?
-
-## Study 02 · Semantic Open-Set Radar Waveform Recognition
-
-### SAVOR pipeline
-
-<div class="research-pipeline" aria-label="SAVOR pipeline">
-  <span>Radar I/Q</span><b>↓</b><span>SPWVD time-frequency image</span><b>+</b><span>Structural pattern + spectral characteristics</span><b>↓</b><span>CLIP-based vision-language alignment</span><b>↓</b><span>Known classification + unknown rejection</span>
+<div class="research-validation" aria-label="검증 환경">
+  <span>AWGN</span><span>Rayleigh Fading</span><span>Measured Wireless</span>
 </div>
 
-단순 class label 대신 레이더 waveform의 **structural pattern + spectral characteristics**를 text semantic information으로 구성합니다.
+## 다음 연구가 필요했던 이유
 
-1. **Stage 1:** known-class semantic alignment
-2. **Stage 2:** unknown-aware representation learning
-   - **TDU:** Text-Driven Unknown Modeling
-   - **IVU:** Image-Space Virtual Unknown Modeling
+Reconstruction-based detection은 known waveform pattern에서 벗어난 입력을 탐지하는 데 효과적입니다.
+
+그러나 unknown waveform이 known class와 유사한 **frequency sweep, hopping pattern, time-frequency structure**를 공유하는 경우 reconstruction discrepancy만으로는 충분히 분리하기 어렵습니다.
+
+이를 해결하기 위해 semantic representation 기반 **Open-Set Recognition**으로 연구를 확장했습니다.
+
+## Study 2 · Semantic Open-Set Radar Waveform Recognition
+
+### SAVOR 처리 흐름
+
+<div class="research-pipeline" aria-label="SAVOR 처리 흐름">
+  <span>Radar I/Q</span><b>↓</b><span>SPWVD</span><b>↓</b><span>Time-frequency image</span><b>+</b><span>Structural pattern · Spectral characteristics</span><b>↓</b><span>Vision-Language alignment</span><b>↓</b><span>Known classification + unknown rejection</span>
+</div>
+
+단순 class label 대신 레이다 시간–주파수 영상의 **구조적 패턴과 스펙트럼 특성**을 semantic attribute로 표현합니다.
+
+1. **Stage 1 · Known-class semantic alignment:** known waveform의 image-text alignment를 학습합니다.
+2. **Stage 2 · Unknown-aware representation:** **TDU(Text-Driven Unknown Modeling)**와 **IVU(Image-Space Virtual Unknown Modeling)**를 이용해 unknown-aware representation을 구성합니다.
 
 ![SAVOR semantic attribute-guided framework](figures/savor_architecture.png)
 
-[Open the SAVOR framework PDF](figures/savor_architecture.pdf) · [Unknown-aware learning](figures/unknown_aware_learning.pdf) · [Channel AUC-OSCR](figures/channel_auc_oscr.png)
+[SAVOR framework PDF](figures/savor_architecture.pdf) · [Unknown-aware learning](figures/unknown_aware_learning.pdf) · [Channel AUC-OSCR](figures/channel_auc_oscr.png)
 
-### Reported results
+### 대표 결과
 
-- AUC-OSCR improvement은 평균 약 **+0.05**, challenging low-SNR 조건에서 최대 약 **+0.10**으로 보고되었습니다.
-- AWGN, Rayleigh fading, measured wireless / USRP 환경에서 검증되었습니다.
-- 목표는 단순히 더 많이 거부하는 것이 아니라, known-class recognition과 unknown rejection 사이의 trade-off를 개선하는 것입니다.
+<div class="research-metric-grid">
+  <div class="research-metric"><strong class="research-metric-value">+0.05</strong><span class="research-metric-label">AUC-OSCR 평균 개선</span></div>
+  <div class="research-metric"><strong class="research-metric-value">+0.10</strong><span class="research-metric-label">challenging low-SNR 환경 최대 개선</span></div>
+</div>
 
-## Publications and related conference work
+<div class="research-validation" aria-label="검증 환경">
+  <span>AWGN</span><span>Rayleigh Fading</span><span>Measured Wireless</span><span>USRP OTA</span>
+</div>
 
-- [Unsupervised Unknown Radar Waveform Detection](../../publications/unknown-radar-waveform-detection/) · *IEEE Transactions on Aerospace and Electronic Systems* · 게재
-- [SAVOR: Semantic Attribute-Guided Vision-Language Framework for Open-Set Radar Waveform Recognition](../../publications/semantic-attribute-guided-open-set-radar/) · *IEEE Transactions on Aerospace and Electronic Systems* · Under Revision
+목표는 단순히 더 많이 거부하는 것이 아니라, known-class recognition과 unknown rejection 사이의 trade-off를 개선하는 것입니다.
+
+## 별도의 시스템 구현 연구
+
+이와 병행한 별도의 시스템 구현 연구에서는 대표적인 **STFT detector–CNN classifier** 체인을 RFNoC/FPGA에 구현하여, OTA 환경에서 레이다 처리 알고리즘의 하드웨어 적용 가능성을 검증했습니다.
+
+향후에는 Open-Set Recognition 모델의 경량화와 실시간 구현으로 확장할 수 있습니다.
+
+## 관련 연구 기록
+
+- [Unsupervised Unknown Radar Waveform Detection](../../publications/unknown-radar-waveform-detection/) · *IEEE Transactions on Aerospace and Electronic Systems*
+- [SAVOR: Semantic Attribute-Guided Vision-Language Framework for Open-Set Radar Waveform Recognition](../../publications/semantic-attribute-guided-open-set-radar/) · *IEEE Transactions on Aerospace and Electronic Systems*
 - Joint Recognition of LPI Radar Signals Using a VLM with TFD-Text Alignment · ICNGC, 2025 · Best Paper Award
-- 지도 학습 기반 CLIP을 활용한 레이더 신호 스펙트로그램 식별 · 한국통신학회 동계종합학술발표회, 2026
+- 지도 학습 기반 CLIP을 활용한 레이다 신호 스펙트로그램 식별 · 한국통신학회 동계종합학술발표회, 2026
 
-## Research continuation
+## 연구 확장
 
-이 연구 흐름은 미확인 파형을 단순히 거부하는 단계에서, 파형의 의미 속성을 이용해 known / unknown 경계를 학습하는 단계로 확장되었습니다. 이후에는 이 표현 학습 결과를 SDR/FPGA 기반 실시간 처리 체인과 연결하는 방향으로 이어집니다.
+미확인 파형을 단순히 거부하는 단계에서, 파형의 의미 속성을 이용해 known / unknown 경계를 학습하는 단계로 확장했습니다. 다음 단계는 이 표현 학습 모델을 경량화하고 실시간 처리 환경에 맞추는 것입니다.
