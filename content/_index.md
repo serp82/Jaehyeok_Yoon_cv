@@ -69,22 +69,11 @@ sections:
         - projects/pandas
         - projects/rfnoc-fpga
 
-  - block: collection
+  - block: research-publications
     id: selected-publications
     content:
       title: 주요 논문
-      text: 대표 연구 결과를 원문 제목과 출판 상태로 확인할 수 있습니다.
-      count: 0
-      sort_by: Date
-      sort_order: desc
-      filters:
-        folders:
-          - publications
-        featured_only: true
-    design:
-      view: citation
-      columns: 1
-      show_date: true
+      text: SCI 논문을 먼저, KCI 논문을 이어서 최신 연구부터 정리했습니다.
 
   - block: markdown
     id: publications-link

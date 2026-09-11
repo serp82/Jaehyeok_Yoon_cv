@@ -1,0 +1,32 @@
+{{- $content := .wcBlock.content -}}
+{{- $publications := where site.RegularPages "Section" "publications" -}}
+{{- $sci := where $publications "Params.publication_category" "SCI" -}}
+{{- $kci := where $publications "Params.publication_category" "KCI" -}}
+{{- $sci = sort $sci "Date" "desc" -}}
+{{- $kci = sort $kci "Date" "desc" -}}
+
+<section class="research-publications" aria-labelledby="research-publications-title">
+  <div class="research-publications-header">
+    {{ with $content.title }}
+      <h2 id="research-publications-title">{{ . | markdownify | emojify }}</h2>
+    {{ end }}
+    {{ with $content.text }}
+      <p>{{ . | markdownify | emojify }}</p>
+    {{ end }}
+  </div>
+
+  <div class="research-publications-list">
+    <section class="research-publications-group" aria-labelledby="research-publications-sci-title">
+      <h3 id="research-publications-sci-title">SCI</h3>
+      {{ range $sci }}
+        {{ partial "views/citation.html" (dict "item" .) }}
+      {{ end }}
+    </section>
+    <section class="research-publications-group" aria-labelledby="research-publications-kci-title">
+      <h3 id="research-publications-kci-title">KCI</h3>
+      {{ range $kci }}
+        {{ partial "views/citation.html" (dict "item" .) }}
+      {{ end }}
+    </section>
+  </div>
+</section>
