@@ -10,7 +10,11 @@
         <li>
           <span class='research-record-authors'>{{ .authors }}</span>, “{{ .title }},” {{ .venue }}, {{ .date }}
           {{ with .badge }}
-            <span class='ml-1'>{{ partial "components/award_badge.html" (dict "award" (dict "name" .label) "variant" "inline") }}</span>
+            {{ if eq .class "award" }}
+              <span class='ml-1'>{{ partial "components/award_badge.html" (dict "award" (dict "name" .label) "variant" "inline") }}</span>
+            {{ else }}
+              <span class='ml-1 inline-flex items-center rounded-md px-2 py-0.5 text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200'>{{ .label }}</span>
+            {{ end }}
           {{ end }}
         </li>
       {{ end }}
