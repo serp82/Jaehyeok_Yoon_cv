@@ -70,10 +70,31 @@ sections:
             - 공학심리학
             - 영어논문및저널작성법
             - 차세대통신시스템의 정보이론적접근법
-  - block: resume-skills
+  - block: markdown
     content:
-      title: R&D 역량
-      username: me
+      title: 기술 스택
+      text: |-
+        **Programming**
+
+        \`Python · MATLAB · C/C++\`
+
+        **AI / Deep Learning**
+
+        \`PyTorch · CNN · Transformer · Autoencoder · VLM/CLIP\`
+
+        **SDR / Signal Processing**
+
+        \`GNU Radio · USRP · Time-Frequency analysis\`
+
+        **FPGA / Embedded**
+
+        \`Vivado · RFNoC · HLS · Verilog HDL\`
+
+        **Development Environment**
+
+        \`Linux · Docker\`
+    design:
+      columns: '1'
   - block: resume-languages
     content:
       title: 외국어 역량
