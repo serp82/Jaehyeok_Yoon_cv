@@ -58,6 +58,10 @@ sections:
           title: SDR / RFNoC / FPGA
           detail: "USRP · OTA · HLS 기반 검증"
       mission: 저 SNR 환경에서 신호를 찾아내고, 제원을 추정하고, 처음 보는 파형을 거부하며, 별도의 하드웨어 구현 연구로 실제 수신 시스템 적용 가능성을 검증했습니다.
+      image:
+        filename: home-research-flow.png
+        alt_text: "연구 흐름: 저 SNR 레이다 신호 입력, 신호 검출, 제원 추정, 미확인 파형 인식, SDR 및 FPGA 시스템 구현"
+        caption: "저 SNR 레이다 수신 환경에서 신호 검출·제원 추정·파형 인식·시스템 구현으로 이어지는 연구 흐름"
 
   - block: research-projects
     id: featured-research-projects

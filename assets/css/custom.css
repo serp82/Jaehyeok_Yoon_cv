@@ -461,6 +461,38 @@ h6 {
   color: rgb(203 213 225);
 }
 
+.research-overview-figure {
+  margin: 1.75rem 0 0;
+  overflow: hidden;
+  border: 1px solid rgb(226 232 240);
+  border-radius: 0.5rem;
+  background: rgb(248 250 252);
+}
+
+.dark .research-overview-figure {
+  border-color: rgb(71 85 105);
+  background: rgb(30 41 59);
+}
+
+.research-overview-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.research-overview-figure figcaption {
+  padding: 0.7rem 1rem;
+  border-top: 1px solid rgb(226 232 240);
+  color: rgb(100 116 139);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.dark .research-overview-figure figcaption {
+  border-color: rgb(51 65 85);
+  color: rgb(148 163 184);
+}
+
 .experience-capabilities {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -1345,6 +1377,12 @@ h6 {
   color: rgb(13 148 136);
 }
 
+@media (min-width: 768px) {
+  .research-flow--fallback {
+    display: none;
+  }
+}
+
 /* Keep the secondary research list compact and aligned with the site's main hierarchy. */
 .research-additional {
   width: min(calc(100% - 3rem), 80rem);
@@ -1443,6 +1481,10 @@ h6 {
   .research-supporting,
   .research-additional {
     width: min(calc(100% - 2rem), 80rem);
+  }
+
+  .research-overview-figure {
+    display: none;
   }
 
   .research-flow {
