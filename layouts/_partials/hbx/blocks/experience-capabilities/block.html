@@ -25,5 +25,18 @@
         </div>
       {{ end }}
     </div>
+    {{ with $content.international_experience }}
+      <section class="experience-international" aria-labelledby="experience-international-title">
+        <h3 id="experience-international-title">{{ .title | default "해외 연구 경험" }}</h3>
+        <ul class="experience-international-list">
+          {{ range .items }}
+            <li class="experience-international-item">
+              <strong>{{ .name }}</strong>
+              <span>{{ .period }}</span>
+            </li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}
   </div>
 </section>

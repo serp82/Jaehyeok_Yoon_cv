@@ -68,17 +68,6 @@ experience:
     summary: |
       전문연구요원으로 현재 복무 중이며, 2027년 2월 21일 복무 종료 예정입니다.
       레이다·통신 신호 처리 기술의 연구개발과 실험 환경 구축에 참여하고 있습니다.
-  - role: 연구 파견
-    org: Univ. of Michigan-Dearborn 자율주행 연구실
-    start: 2024-10-01
-    end: 2025-02-28
-    summary: 자율주행 및 레이다·비전 융합 관련 연구 협업
-  - role: 연구 인턴
-    org: IIT Guwahati
-    start: 2020-01-01
-    end: 2020-02-29
-    summary: 해외 연구 인턴십
-
 skills:
   - name: 레이다 신호처리
     items:

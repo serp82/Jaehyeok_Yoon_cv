@@ -518,6 +518,67 @@
   color: rgb(148 163 184);
 }
 
+.experience-international {
+  margin-top: 2.5rem;
+  border-top: 2px solid rgb(203 213 225);
+  padding-top: 1.5rem;
+}
+
+.dark .experience-international {
+  border-color: rgb(71 85 105);
+}
+
+.experience-international h3 {
+  margin: 0 0 1rem;
+  color: rgb(15 23 42);
+  font-size: 1.35rem;
+  line-height: 1.3;
+  font-weight: 750;
+}
+
+.dark .experience-international h3 {
+  color: rgb(241 245 249);
+}
+
+.experience-international-list {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.experience-international-item {
+  display: grid;
+  gap: 0.35rem;
+  border-top: 1px solid rgb(226 232 240);
+  padding-top: 0.85rem;
+}
+
+.dark .experience-international-item {
+  border-color: rgb(51 65 85);
+}
+
+.experience-international-item strong {
+  color: rgb(51 65 85);
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+
+.dark .experience-international-item strong {
+  color: rgb(226 232 240);
+}
+
+.experience-international-item span {
+  color: rgb(100 116 139);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.dark .experience-international-item span {
+  color: rgb(148 163 184);
+}
+
 .research-flow {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
