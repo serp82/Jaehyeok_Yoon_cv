@@ -14,7 +14,7 @@ sections:
         - projects/rfnoc-fpga
   - block: markdown
     content:
-      title: 추가 연구
+      title: 추가 프로젝트
       text: |-
         대표 연구 3개와 함께 다음 연구 경험도 수행했습니다.
 

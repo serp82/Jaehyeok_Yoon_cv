@@ -1,5 +1,5 @@
 ---
-title: "추가 연구"
+title: "추가 프로젝트"
 date: 2026-09-11
 type: page
 ---

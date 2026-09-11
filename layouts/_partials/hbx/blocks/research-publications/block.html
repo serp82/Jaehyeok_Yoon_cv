@@ -29,4 +29,9 @@
       {{ end }}
     </section>
   </div>
+  {{ with $content.link }}
+    <a class="research-publications-link" href="{{ .url | relLangURL }}">
+      {{ .label }} <span aria-hidden="true">→</span>
+    </a>
+  {{ end }}
 </section>

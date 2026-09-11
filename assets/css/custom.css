@@ -645,11 +645,12 @@
 
 .research-overview-mission {
   max-width: 52rem;
-  margin: 1.75rem 0 0;
+  margin: 1.75rem auto 0;
   color: rgb(15 23 42);
   font-size: 1.15rem;
   line-height: 1.65;
   font-weight: 650;
+  text-align: center;
 }
 
 .dark .research-overview-mission {
@@ -922,6 +923,20 @@
 
 .research-publications-group .pub-list-item {
   margin-bottom: 1.1rem !important;
+}
+
+.research-publications-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1.25rem;
+  color: rgb(13 148 136);
+  font-size: 0.95rem;
+  font-weight: 750;
+}
+
+.research-publications-link:hover {
+  text-decoration: underline;
 }
 
 .research-supporting {

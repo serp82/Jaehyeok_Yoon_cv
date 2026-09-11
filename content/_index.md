@@ -63,7 +63,6 @@ sections:
     id: featured-research-projects
     content:
       title: 대표 연구
-      text: 박사 연구의 핵심 흐름을 문제·방법·대표 결과 중심으로 정리했습니다.
       projects:
         - projects/unknown-open-set
         - projects/pandas
@@ -73,29 +72,26 @@ sections:
     id: selected-publications
     content:
       title: 주요 논문
-      text: SCI 논문을 먼저, KCI 논문을 이어서 최신 연구부터 정리했습니다.
-
-  - block: markdown
-    id: publications-link
-    content:
-      title: ''
-      text: |-
-        [전체 논문·학회 발표 보기 →](research/)
-    design:
-      columns: '1'
+      link:
+        label: 전체 논문·학회 발표 보기
+        url: research/
 
   - block: markdown
     id: additional-research
     content:
-      title: 추가 연구 및 R&D 경험
+      title: 추가 프로젝트
       text: |-
-        이종신호 중첩·주파수 공유, UWB NLOS, FMCW 동작 인식, 레이다–카메라 융합 등 주요 연구를 별도로 정리했습니다.
+        대표 연구 외에 수행한 프로젝트를 공식 연구과제명으로 정리했습니다.
 
-        - **전파식별·주파수 공유 평가** · 한국전자통신연구원 (ETRI) · 2021–2023
-        - **OFDM 드론 신호 복조** · 엘아이지넥스원 (LIG) · 2024–현재
-        - **자율주행·센서 융합 연구** · 한국연구재단 (NRF) · 2022–2025
+        - **페이딩 기반의 전파식별 방법과 주파수 공유 방법에 대한 평가 연구** · 한국전자통신연구원 (ETRI) · 2021.04.16–2021.11.30
+        - **이종 신호 중첩 환경 전파식별 방법과 주파수 공유방법에 대한 평가 연구** · 한국전자통신연구원 (ETRI) · 2022.01.01–2022.12.31 / 2023.01.01–2023.12.31
+        - **개인화된 주행스타일 및 인지예측 기반 딥러닝 자율주행 기술 연구** · 한국연구재단 (NRF) · 2022.03.01–2025.02.29
+        - **DJI OcuSync 프로토콜 기반의 OFDM 드론 신호 복조 구현** · 엘아이지넥스원 (LIG) · 2024.03.01–현재
+        - **자율주행 자동 체화인지 및 제어 시스템을 위한 능동추론 기반의 인간형 기계학습 기술 개발** · 정보통신기획평가원 (IITP) · 2024.04.01–현재
 
-        [추가 연구 보기 →](additional-research/) · [전체 수행 과제 보기 →](rd-projects/)
+        [추가 프로젝트 보기 →](additional-research/)
+
+        [전체 수행 과제 보기 →](rd-projects/)
     design:
       columns: '1'
 
