@@ -19,6 +19,10 @@ publication:
   volume: 49
   issue: 7
   pages: '923-926'
+awards:
+  - name: '한국통신학회 국내논문지 우수논문상'
+    level: winner
+    date: '2025-11-20'
 peer_reviewed: true
 open_access: false
 summary: '저 SNR 레이더 신호의 반송파 주파수 추정을 위해 Denoising Autoencoder와 DBSCAN을 결합한 연구입니다.'
