@@ -11,7 +11,7 @@
     <ul class='research-record-list'>
       {{ range $content.items }}
         <li>
-          {{ .title }} <span class='cv-badge cv-badge--{{ if eq .status "등록" }}registered{{ else }}filed{{ end }}'>{{ .status }}</span>, {{ .number }}, {{ .date }}
+          {{ .title }}, {{ .number }}, {{ .date }}
         </li>
       {{ end }}
     </ul>

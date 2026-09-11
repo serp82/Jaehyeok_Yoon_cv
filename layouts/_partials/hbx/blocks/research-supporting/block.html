@@ -11,7 +11,7 @@
           {{ range $content.patents }}
             <li>
               <strong>{{ .title }}</strong>
-              <span class="research-record-meta"><span class="cv-badge cv-badge--{{ if eq .status "등록" }}registered{{ else }}filed{{ end }}">{{ .status }}</span> {{ .number }} · {{ .date }}</span>
+              <span class="research-record-meta">{{ .number }} · {{ .date }}</span>
             </li>
           {{ end }}
         </ul>

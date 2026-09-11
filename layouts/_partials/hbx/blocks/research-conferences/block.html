@@ -9,7 +9,9 @@
       {{ range $content.items }}
         <li>
           <span class='research-record-authors'>{{ .authors }}</span>, “{{ .title }},” {{ .venue }}, {{ .date }}
-          {{ with .badge }}<span class='cv-badge cv-badge--{{ .class }}'>{{ .label }}</span>{{ end }}
+          {{ with .badge }}
+            <span class='ml-1'>{{ partial "components/award_badge.html" (dict "award" (dict "name" .label) "variant" "inline") }}</span>
+          {{ end }}
         </li>
       {{ end }}
     </ul>
