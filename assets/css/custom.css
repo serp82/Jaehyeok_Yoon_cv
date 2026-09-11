@@ -391,6 +391,109 @@
   color: rgb(203 213 225);
 }
 
+.experience-capabilities {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3rem;
+  width: min(calc(100% - 3rem), 80rem);
+  max-width: 80rem;
+  margin: 3.5rem auto 0;
+  border-top: 2px solid rgb(15 23 42);
+  padding-top: 1.5rem;
+}
+
+.dark .experience-capabilities {
+  border-color: rgb(226 232 240);
+}
+
+.experience-capabilities-column {
+  min-width: 0;
+}
+
+.experience-capabilities-column--right {
+  border-left: 1px solid rgb(203 213 225);
+  padding-left: 3rem;
+}
+
+.dark .experience-capabilities-column--right {
+  border-color: rgb(71 85 105);
+}
+
+.experience-capabilities h2 {
+  margin: 0 0 1.25rem;
+  color: rgb(15 23 42);
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 750;
+}
+
+.dark .experience-capabilities h2 {
+  color: rgb(241 245 249);
+}
+
+.experience-skill-list,
+.experience-language-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.experience-skill-row,
+.experience-language-item {
+  display: grid;
+  gap: 0.35rem;
+  border-top: 1px solid rgb(226 232 240);
+  padding-top: 0.85rem;
+}
+
+.dark .experience-skill-row,
+.dark .experience-language-item {
+  border-color: rgb(51 65 85);
+}
+
+.experience-skill-row h3 {
+  margin: 0;
+  color: rgb(51 65 85);
+  font-size: 1rem;
+  line-height: 1.35;
+  font-weight: 750;
+}
+
+.dark .experience-skill-row h3 {
+  color: rgb(226 232 240);
+}
+
+.experience-skill-row code {
+  width: fit-content;
+  max-width: 100%;
+  color: rgb(13 118 110);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  white-space: normal;
+}
+
+.dark .experience-skill-row code {
+  color: rgb(94 234 212);
+}
+
+.experience-language-item strong {
+  color: rgb(51 65 85);
+  font-size: 1.1rem;
+}
+
+.dark .experience-language-item strong {
+  color: rgb(226 232 240);
+}
+
+.experience-language-item span {
+  color: rgb(100 116 139);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.dark .experience-language-item span {
+  color: rgb(148 163 184);
+}
+
 .research-flow {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -1125,6 +1228,23 @@
 }
 
 @media (max-width: 767px) {
+  .experience-capabilities {
+    grid-template-columns: 1fr;
+    width: min(calc(100% - 2rem), 80rem);
+    gap: 2rem;
+  }
+
+  .experience-capabilities-column--right {
+    border-top: 1px solid rgb(203 213 225);
+    border-left: 0;
+    padding-top: 2rem;
+    padding-left: 0;
+  }
+
+  .dark .experience-capabilities-column--right {
+    border-color: rgb(71 85 105);
+  }
+
   .research-overview,
   .research-projects,
   .research-publications,

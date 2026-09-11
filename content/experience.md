@@ -70,33 +70,29 @@ sections:
             - 공학심리학
             - 영어논문및저널작성법
             - 차세대통신시스템의 정보이론적접근법
-  - block: markdown
+  - block: experience-capabilities
     content:
       title: 기술 스택
+      skills:
+        - name: Programming
+          tools: 'Python · MATLAB · C/C++'
+        - name: AI
+          tools: 'PyTorch · TensorFlow'
+        - name: SDR
+          tools: 'GNU Radio · USRP'
+        - name: FPGA
+          tools: 'Vivado · RFNoC · HLS · Verilog HDL'
+        - name: Environment
+          tools: 'Linux · Docker'
+      languages:
+        title: 외국어 역량
+        username: me
+  - block: markdown
+    content:
+      title: 해외 연구 경험
       text: |-
-        **Programming**
-
-        \`Python · MATLAB · C/C++\`
-
-        **AI / Deep Learning**
-
-        \`PyTorch · CNN · Transformer · Autoencoder · VLM/CLIP\`
-
-        **SDR / Signal Processing**
-
-        \`GNU Radio · USRP · Time-Frequency analysis\`
-
-        **FPGA / Embedded**
-
-        \`Vivado · RFNoC · HLS · Verilog HDL\`
-
-        **Development Environment**
-
-        \`Linux · Docker\`
+        - **미국 Univ. of Michigan-Dearborn 자율주행 연구실 파견**: 2024.10–2025.02
+        - **인도 IIT Guwahati 연구 인턴**: 2020.01–2020.02
     design:
       columns: '1'
-  - block: resume-languages
-    content:
-      title: 외국어 역량
-      username: me
 ---

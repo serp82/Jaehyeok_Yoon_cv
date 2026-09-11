@@ -124,37 +124,6 @@ sections:
             - 2023 4D 이미징 레이다 시스템 부트캠프(우수상), 한국전자파학회, 2023.08.24.
         design:
           columns: '1'
-      overseas:
-        block: markdown
-        content:
-          title: 해외 경험
-          text: |-
-            - **미국 Univ. of Michigan-Dearborn 자율주행 연구실 파견**: 2024.10–2025.02
-            - **인도 IIT Guwahati 연구 인턴**: 2020.01–2020.02
-        design:
-          columns: '1'
-      languages:
-        block: markdown
-        content:
-          title: 외국어 역량
-          text: |-
-            - **OPIC**: Intermediate High (IH), 2025.07.26
-        design:
-          columns: '1'
-      skills:
-        block: resume-skills
-        content:
-          title: R&D 역량
-          username: me
-      academics:
-        block: markdown
-        content:
-          title: GPA
-          text: |-
-            - **학부 GPA**: 3.8 / 4.5 (전공 3.85)
-            - **대학원 석·박사통합과정 GPA**: 4.21 / 4.5
-        design:
-          columns: '1'
     design:
       columns: '1'
   - block: markdown

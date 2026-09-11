@@ -1,0 +1,29 @@
+{{- $content := .wcBlock.content -}}
+{{- $profile_name := index $content.languages "username" | default "me" -}}
+{{- $profile := partial "functions/get_author_profile" $profile_name -}}
+{{- $language_title := index $content.languages "title" | default "외국어 역량" -}}
+
+<section class="experience-capabilities" aria-labelledby="experience-capabilities-title">
+  <div class="experience-capabilities-column">
+    <h2 id="experience-capabilities-title">{{ $content.title | default "기술 스택" }}</h2>
+    <div class="experience-skill-list">
+      {{ range $content.skills }}
+        <div class="experience-skill-row">
+          <h3>{{ .name }}</h3>
+          <code>{{ .tools }}</code>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+  <div class="experience-capabilities-column experience-capabilities-column--right">
+    <h2>{{ $language_title }}</h2>
+    <div class="experience-language-list">
+      {{ range $profile.languages }}
+        <div class="experience-language-item">
+          <strong>{{ .name }}</strong>
+          {{ with .label }}<span>{{ . }}</span>{{ end }}
+        </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
