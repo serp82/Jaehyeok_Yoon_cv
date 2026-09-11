@@ -1,5 +1,5 @@
 ---
-title: '연구'
+title: '연구 실적'
 date: 2026-09-04
 type: landing
 
@@ -40,33 +40,17 @@ sections:
         content:
           title: 학회 발표
           items:
-            - authors: 윤재혁, 서동호, 김동현, 남해운
-              title: Comparison of CNN Performance According to Weight Initialization Method when Classifying Signals Through Spectrogram
-              venue: 한국통신학회 동계종합학술발표회, 용평리조트
-              date: 2021.02
-            - authors: Jaehyeok Yoon, Hyeongyun Kim, Dongho Seo, Haewoon Nam
-              title: Performance Comparison of NLOS Detection Methods in UWB
-              venue: International Conference on ICT Convergence (ICTC), Jeju, Korea
-              date: 2021.10
-            - authors: 윤재혁, 윤우진, 김형윤, 남해운
-              title: 오토엔코더 기반 미확인 저피탐 레이더 파형 탐지 기술
-              venue: 한국통신학회 동계종합학술발표회, 평창 알펜시아 리조트
-              date: 2022.02
-            - authors: 조재연, 윤재혁, 남해운
-              title: FMCW 레이더 스펙트로그램 기반 동작 인식 기법
-              venue: 한국통신학회 하계종합학술발표회, 제주 그랜드하얏트호텔
-              date: 2022.06
+            - authors: Jaehyeok Yoon, Haewoon Nam
+              title: Cross-Resolution STFT Distillation for FPGA-Efficient Radar Waveform Classification
+              venue: The 31st Asia-Pacific Conference on Communications (APCC)
+              date: 2026
               badge:
-                label: 학술논문우수상
-                class: award
-            - authors: 정석현, 윤재혁, 남해운
-              title: Multi-Moving Average filter 기반 저피탐 레이더 신호 검출
-              venue: 한국통신학회 동계종합학술발표회, 용평리조트
-              date: 2023.02
+                label: 발표 예정
+                class: pending
             - authors: 윤재혁, 남해운
-              title: LPI 레이더 중첩 신호 인지를 위한 ResNeXt 기반 다중 라벨 분류
-              venue: 한국통신학회 하계종합학술발표회, 제주
-              date: 2023.06
+              title: 지도 학습 기반 CLIP을 활용한 레이더 신호 스펙트로그램 식별
+              venue: 2026년도 한국통신학회 동계종합학술발표회, 용평
+              date: 2026.02.04
             - authors: Jaehyeok Yoon, Haewoon Nam, Jaerock Kwon
               title: Joint Recognition of LPI Radar Signals Using a VLM with TFD-Text Alignment
               venue: ICNGC, Da Nang, Vietnam
@@ -75,69 +59,74 @@ sections:
                 label: Best Paper Award
                 class: award
             - authors: 윤재혁, 남해운
-              title: 지도 학습 기반 CLIP을 활용한 레이더 신호 스펙트로그램 식별
-              venue: 2026년도 한국통신학회 동계종합학술발표회, 용평
-              date: 2026.02.04
-            - authors: Jaehyeok Yoon, Haewoon Nam
-              title: Cross-Resolution STFT Distillation for FPGA-Efficient Radar Waveform Classification
-              venue: The 31st Asia-Pacific Conference on Communications (APCC)
-              date: 2026
+              title: LPI 레이더 중첩 신호 인지를 위한 ResNeXt 기반 다중 라벨 분류
+              venue: 한국통신학회 하계종합학술발표회, 제주
+              date: 2023.06
+            - authors: 정석현, 윤재혁, 남해운
+              title: Multi-Moving Average filter 기반 저피탐 레이더 신호 검출
+              venue: 한국통신학회 동계종합학술발표회, 용평리조트
+              date: 2023.02
+            - authors: 조재연, 윤재혁, 남해운
+              title: FMCW 레이더 스펙트로그램 기반 동작 인식 기법
+              venue: 한국통신학회 하계종합학술발표회, 제주 그랜드하얏트호텔
+              date: 2022.06
               badge:
-                label: 발표 예정
-                class: pending
-  - block: research-paired-sections
-    id: research-paired-sections
+                label: 학술논문우수상
+                class: award
+            - authors: 윤재혁, 윤우진, 김형윤, 남해운
+              title: 오토엔코더 기반 미확인 저피탐 레이더 파형 탐지 기술
+              venue: 한국통신학회 동계종합학술발표회, 평창 알펜시아 리조트
+              date: 2022.02
+            - authors: Jaehyeok Yoon, Hyeongyun Kim, Dongho Seo, Haewoon Nam
+              title: Performance Comparison of NLOS Detection Methods in UWB
+              venue: International Conference on ICT Convergence (ICTC), Jeju, Korea
+              date: 2021.10
+            - authors: 윤재혁, 서동호, 김동현, 남해운
+              title: Comparison of CNN Performance According to Weight Initialization Method when Classifying Signals Through Spectrogram
+              venue: 한국통신학회 동계종합학술발표회, 용평리조트
+              date: 2021.02
+  - block: research-supporting
+    id: research-supporting
     content:
+      title: 수상·특허·소프트웨어
       patents:
-        block: research-patents
-        content:
-          title: 특허
-          items:
-            - title: 사람의 동작에 대한 정확한 인체 모션 감지를 위한 RGB-D 카메라 데이터와 레이더 포인트 클라우드를 활용한 스켈레톤 추출 기술
-              status: 등록
-              number: 등록번호 10-2842830
-              date: 2025.08.01
-            - title: 딥러닝 기반 저피탐 레이더 신호의 잡음 제거 및 파라미터 추출 방법, 이를 수행하는 장치 및 컴퓨터 프로그램
-              status: 출원
-              number: 출원번호(대한민국) 10-2024-0092816
-              date: 2024.07.15
-            - title: 레이더를 통해 레이더 시스템의 간섭을 제거하는 OFDM 기반 드론 신호처리 장치 및 방법
-              status: 출원
-              number: 출원번호(대한민국) 10-2025-0191251
-              date: 2025.12.05
+        - title: 사람의 동작에 대한 정확한 인체 모션 감지를 위한 RGB-D 카메라 데이터와 레이더 포인트 클라우드를 활용한 스켈레톤 추출 기술
+          number: 등록번호 10-2842830
+          date: 2025.08.01
+        - title: 레이더를 통해 레이더 시스템의 간섭을 제거하는 OFDM 기반 드론 신호처리 장치 및 방법
+          number: 출원번호(대한민국) 10-2025-0191251
+          date: 2025.12.05
+        - title: 딥러닝 기반 저피탐 레이더 신호의 잡음 제거 및 파라미터 추출 방법, 이를 수행하는 장치 및 컴퓨터 프로그램
+          number: 출원번호(대한민국) 10-2024-0092816
+          date: 2024.07.15
       software:
-        block: markdown
-        content:
-          title: 소프트웨어 등록
-          text: |-
-            - 파이썬 기반 Radar-Vision-Language(레이더-비전-언어) 구축, C-2025-005640
-        design:
-          columns: '1'
+        - name: 파이썬 기반 Radar-Vision-Language(레이더-비전-언어) 구축
+          registration: 등록번호 C-2025-005640
       awards:
-        block: markdown
-        content:
-          title: 수상 실적
-          text: |-
-            - ICNGC 2025 Best Paper Award, 2025.12.19
-            - 한국통신학회 국내논문지 우수논문상, 한국통신학회, 2025.11.20.
-            - 제 4회 ERICA 해동창업경진대회(대상), 한양대학교, 2024.12.04.
-            - 2023 4D 이미징 레이다 시스템 부트캠프(우수상), 한국전자파학회, 2023.08.24.
-        design:
-          columns: '1'
-    design:
-      columns: '1'
+        - name: ICNGC 2025 Best Paper Award
+          awarder: ICNGC
+          date: 2025.12.19
+        - name: 한국통신학회 국내논문지 우수논문상
+          awarder: 한국통신학회
+          date: 2025.11.20
+        - name: 제 4회 ERICA 해동창업경진대회 (대상)
+          awarder: 한양대학교
+          date: 2024.12.04
+        - name: 2023 4D 이미징 레이다 시스템 부트캠프 (우수상)
+          awarder: 한국전자파학회
+          date: 2023.08.24
   - block: markdown
     content:
       title: 수행 과제
       text: |-
-        1. **GPS 비의존적 군집 무인기용 고정밀 자율 위치 측위 기술 연구** · 책임연구원: 남해운 · 2019.11.29–2021.12.31 · 한국연구재단 (NRF)
-        2. **페이딩 기반의 전파식별 방법과 주파수 공유 방법에 대한 평가 연구** · 책임연구원: 남해운 · 2021.04.16–2021.11.30 · 한국전자통신연구원 (ETRI)
-        3. **이종 신호 중첩 환경 전파식별 방법과 주파수 공유방법에 대한 평가 연구** · 책임연구원: 남해운 · 2022.01.01–2022.12.31 · 한국전자통신연구원 (ETRI)
-        4. **개인화된 주행스타일 및 인지예측 기반 딥러닝 자율주행 기술 연구** · 책임연구원: 남해운 · 2022.03.01–2025.02.29 · 한국연구재단 (NRF)
-        5. **머신러닝 기반 미약신호 검출 및 제원 추정 모델 연구** · 책임연구원: 남해운 · 2022.05.01–2024.04.30 · 엘아이지넥스원 (LIG)
-        6. **이종 신호 중첩 환경 전파식별 방법과 주파수 공유방법에 대한 평가 연구** · 책임연구원: 남해운 · 2023.01.01–2023.12.31 · 한국전자통신연구원 (ETRI)
-        7. **DJI OcuSync 프로토콜 기반의 OFDM 드론 신호 복조 구현** · 책임연구원: 남해운 · 2024.03.01–현재 · 엘아이지넥스원 (LIG)
-        8. **자율주행 자동 체화인지 및 제어 시스템을 위한 능동추론 기반의 인간형 기계학습 기술 개발** · 책임연구원: 남해운 · 2024.04.01–현재 · 정보통신기획평가원 (IITP)
-        9. **불완전 수신신호 환경에서의 신속 자동 다중표적 추적기술 연구** · 책임연구원: 최지웅 · 2024.09.13–현재 · 국방기술진흥연구소
-        10. **위성신호 수집 및 분석 테스트베드** · 책임연구원: 남해운 · 2025.07.01–현재 · 엘아이지넥스원 (LIG)
+        1. **위성신호 수집 및 분석 테스트베드** · 책임연구원: 남해운 · 2025.07.01–현재 · 엘아이지넥스원 (LIG)
+        2. **불완전 수신신호 환경에서의 신속 자동 다중표적 추적기술 연구** · 책임연구원: 최지웅 · 2024.09.13–현재 · 국방기술진흥연구소
+        3. **자율주행 자동 체화인지 및 제어 시스템을 위한 능동추론 기반의 인간형 기계학습 기술 개발** · 책임연구원: 남해운 · 2024.04.01–현재 · 정보통신기획평가원 (IITP)
+        4. **DJI OcuSync 프로토콜 기반의 OFDM 드론 신호 복조 구현** · 책임연구원: 남해운 · 2024.03.01–현재 · 엘아이지넥스원 (LIG)
+        5. **이종 신호 중첩 환경 전파식별 방법과 주파수 공유방법에 대한 평가 연구** · 책임연구원: 남해운 · 2023.01.01–2023.12.31 · 한국전자통신연구원 (ETRI)
+        6. **머신러닝 기반 미약신호 검출 및 제원 추정 모델 연구** · 책임연구원: 남해운 · 2022.05.01–2024.04.30 · 엘아이지넥스원 (LIG)
+        7. **개인화된 주행스타일 및 인지예측 기반 딥러닝 자율주행 기술 연구** · 책임연구원: 남해운 · 2022.03.01–2025.02.29 · 한국연구재단 (NRF)
+        8. **이종 신호 중첩 환경 전파식별 방법과 주파수 공유방법에 대한 평가 연구** · 책임연구원: 남해운 · 2022.01.01–2022.12.31 · 한국전자통신연구원 (ETRI)
+        9. **페이딩 기반의 전파식별 방법과 주파수 공유 방법에 대한 평가 연구** · 책임연구원: 남해운 · 2021.04.16–2021.11.30 · 한국전자통신연구원 (ETRI)
+        10. **GPS 비의존적 군집 무인기용 고정밀 자율 위치 측위 기술 연구** · 책임연구원: 남해운 · 2019.11.29–2021.12.31 · 한국연구재단 (NRF)
 ---

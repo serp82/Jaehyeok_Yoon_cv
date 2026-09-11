@@ -5,18 +5,18 @@
       <h2 id="research-supporting-title" class="research-supporting-title">{{ . | markdownify | emojify }}</h2>
     {{ end }}
     <div class="research-supporting-grid">
-      <section class="research-supporting-group">
-        <h3>특허</h3>
-        <ul>
-          {{ range $content.patents }}
-            <li>
-              <strong>{{ .title }}</strong>
-              <span class="research-record-meta">{{ .number }} · {{ .date }}</span>
-            </li>
-          {{ end }}
-        </ul>
-      </section>
       <div class="research-supporting-column">
+        <section class="research-supporting-group">
+          <h3>특허</h3>
+          <ul>
+            {{ range $content.patents }}
+              <li>
+                <strong>{{ .title }}</strong>
+                <span class="research-record-meta">{{ .number }} · {{ .date }}</span>
+              </li>
+            {{ end }}
+          </ul>
+        </section>
         <section class="research-supporting-group">
           <h3>소프트웨어 등록</h3>
           <ul>
@@ -25,15 +25,15 @@
             {{ end }}
           </ul>
         </section>
-        <section class="research-supporting-group">
-          <h3>수상 실적</h3>
-          <ul>
-            {{ range $content.awards }}
-              <li><strong>{{ .name }}</strong><span class="research-record-meta">{{ .awarder }} · {{ .date }}</span></li>
-            {{ end }}
-          </ul>
-        </section>
       </div>
+      <section class="research-supporting-group">
+        <h3>수상 실적</h3>
+        <ul>
+          {{ range $content.awards }}
+            <li><strong>{{ .name }}</strong><span class="research-record-meta">{{ .awarder }} · {{ .date }}</span></li>
+          {{ end }}
+        </ul>
+      </section>
     </div>
   </div>
 </section>

@@ -7,7 +7,7 @@ main:
   - name: 소개
     url: /
     weight: 10
-  - name: 연구
+  - name: 연구 실적
     url: research/
     weight: 15
   - name: 주요 연구

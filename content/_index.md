@@ -83,11 +83,11 @@ sections:
       text: |-
         대표 연구 외에 수행한 프로젝트를 공식 연구과제명으로 정리했습니다.
 
-        - **페이딩 기반의 전파식별 방법과 주파수 공유 방법에 대한 평가 연구** · 한국전자통신연구원 (ETRI) · 2021.04.16–2021.11.30
-        - **이종 신호 중첩 환경 전파식별 방법과 주파수 공유방법에 대한 평가 연구** · 한국전자통신연구원 (ETRI) · 2022.01.01–2022.12.31 / 2023.01.01–2023.12.31
-        - **개인화된 주행스타일 및 인지예측 기반 딥러닝 자율주행 기술 연구** · 한국연구재단 (NRF) · 2022.03.01–2025.02.29
-        - **DJI OcuSync 프로토콜 기반의 OFDM 드론 신호 복조 구현** · 엘아이지넥스원 (LIG) · 2024.03.01–현재
+        - **위성신호 수집 및 분석 테스트베드** · 엘아이지넥스원 (LIG) · 2025.07.01–현재
+        - **불완전 수신신호 환경에서의 신속 자동 다중표적 추적기술 연구** · 국방기술진흥연구소 · 2024.09.13–현재
         - **자율주행 자동 체화인지 및 제어 시스템을 위한 능동추론 기반의 인간형 기계학습 기술 개발** · 정보통신기획평가원 (IITP) · 2024.04.01–현재
+        - **DJI OcuSync 프로토콜 기반의 OFDM 드론 신호 복조 구현** · 엘아이지넥스원 (LIG) · 2024.03.01–현재
+        - **이종 신호 중첩 환경 전파식별 방법과 주파수 공유방법에 대한 평가 연구** · 한국전자통신연구원 (ETRI) · 2023.01.01–2023.12.31
 
         [추가 프로젝트 보기 →](additional-research/)
 
@@ -95,11 +95,24 @@ sections:
     design:
       columns: '1'
 
-  - block: resume-skills
+  - block: experience-capabilities
     id: capabilities
     content:
-      title: 기술 역량
-      username: me
+      title: 기술 스택
+      skills:
+        - name: Programming
+          tools: 'Python · MATLAB · C/C++'
+        - name: AI
+          tools: 'PyTorch · TensorFlow'
+        - name: SDR
+          tools: 'GNU Radio · USRP'
+        - name: FPGA
+          tools: 'Vivado · RFNoC · HLS · Verilog HDL'
+        - name: Environment
+          tools: 'Linux · Docker'
+      languages:
+        title: 외국어 역량
+        username: me
 
   - block: research-supporting
     id: supporting-records
@@ -110,14 +123,14 @@ sections:
           status: 등록
           number: 등록번호 10-2842830
           date: 2025.08.01
-        - title: 딥러닝 기반 저피탐 레이더 신호의 잡음 제거 및 파라미터 추출 방법, 이를 수행하는 장치 및 컴퓨터 프로그램
-          status: 출원
-          number: 출원번호(대한민국) 10-2024-0092816
-          date: 2024.07.15
         - title: 레이더를 통해 레이더 시스템의 간섭을 제거하는 OFDM 기반 드론 신호처리 장치 및 방법
           status: 출원
           number: 출원번호(대한민국) 10-2025-0191251
           date: 2025.12.05
+        - title: 딥러닝 기반 저피탐 레이더 신호의 잡음 제거 및 파라미터 추출 방법, 이를 수행하는 장치 및 컴퓨터 프로그램
+          status: 출원
+          number: 출원번호(대한민국) 10-2024-0092816
+          date: 2024.07.15
       software:
         - name: 파이썬 기반 Radar-Vision-Language(레이더-비전-언어) 구축
           registration: 등록번호 C-2025-005640
@@ -146,7 +159,7 @@ sections:
 
         상세 경력과 GPA·전공 이수 과목은 연구자 이력에서 확인할 수 있습니다.
 
-        [연구자 이력 보기 →](experience/) · [전체 연구 기록 보기 →](research/)
+        [연구자 이력 보기 →](experience/) · [연구 실적 보기 →](research/)
     design:
       columns: '1'
 ---
