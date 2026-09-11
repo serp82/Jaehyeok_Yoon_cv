@@ -18,8 +18,8 @@ technology_tags:
 summary: "이종 RF 신호가 공존·중첩되는 환경에서 전파 식별, 다중 라벨 인식, 주파수 공유와 OFDM 처리를 연결한 추가 연구 축입니다."
 image:
   filename: figures/electromagnetic_environment.png
-  alt_text: Electromagnetic environment for coexisting radar and communication signals
-  caption: "공존 전자파 환경에서의 신호 식별과 간섭 대응"
+  alt_text: "전자전 환경에서 다양한 intercepted signal을 수집하는 연구 배경 개념도"
+  caption: "전자전 환경에서 intercepted signal을 수집·분석하는 연구 배경"
 links: []
 tags:
   - signal identification
@@ -61,9 +61,9 @@ tags:
 
 DJI OcuSync 프로토콜 기반 OFDM 드론 신호의 복조 구현으로 연구 범위를 실제 신호처리 체인으로 연결합니다.
 
-![Coexisting electromagnetic environment](figures/electromagnetic_environment.png)
+![전자전 환경에서 intercepted signal을 수집하는 연구 배경](figures/electromagnetic_environment.png)
 
-[공존 전자파 환경 figure PDF](figures/electromagnetic_environment.pdf)
+[전자전 환경 연구 배경 figure PDF](figures/electromagnetic_environment.pdf)
 
 ## 관련 학회 발표
 
