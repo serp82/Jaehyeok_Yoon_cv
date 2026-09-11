@@ -10,7 +10,7 @@ type: page
 
 **주요 기술** · Spectrum Sharing · Multi-Label Classification · OFDM · RF Signal Identification
 
-[상세 연구 보기](../projects/coexisting-spectrum-signal-recognition/)
+<a class="cv-text-link" href="../projects/coexisting-spectrum-signal-recognition/">상세 연구 보기 <span aria-hidden="true">→</span></a>
 
 ## Radar-Camera / Skeleton Estimation
 
@@ -34,4 +34,4 @@ International Conference on ICT Convergence (ICTC), Jeju, Korea, 2021.10
 
 전파식별과 주파수 공유 평가, 이종신호 중첩 환경 분석, OFDM 드론 신호 복조 등 실제 연구과제와 연결된 통신 신호처리 경험입니다.
 
-[관련 수행 과제 보기](../rd-projects/)
+<a class="cv-text-link" href="../rd-projects/">관련 수행 과제 보기 <span aria-hidden="true">→</span></a>

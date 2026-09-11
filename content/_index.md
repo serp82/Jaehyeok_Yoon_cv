@@ -64,7 +64,8 @@ sections:
     content:
       title: 대표 연구
       projects:
-        - projects/unknown-open-set
+        - projects/dsae-maae
+        - projects/savor-open-set
         - projects/pandas
         - projects/rfnoc-fpga
 
@@ -76,10 +77,10 @@ sections:
         label: 전체 논문·학회 발표 보기
         url: research/
 
-  - block: markdown
+  - block: research-additional
     id: additional-research
     content:
-      title: 추가 프로젝트
+      title: 기타 연구
       text: |-
         대표 연구 외에 수행한 프로젝트를 공식 연구과제명으로 정리했습니다.
 
@@ -89,9 +90,9 @@ sections:
         - **DJI OcuSync 프로토콜 기반의 OFDM 드론 신호 복조 구현** · 엘아이지넥스원 (LIG) · 2024.03.01–현재
         - **이종 신호 중첩 환경 전파식별 방법과 주파수 공유방법에 대한 평가 연구** · 한국전자통신연구원 (ETRI) · 2023.01.01–2023.12.31
 
-        [추가 프로젝트 보기 →](additional-research/)
+        <a class="cv-text-link" href="additional-research/">추가 프로젝트 보기 <span aria-hidden="true">→</span></a>
 
-        [전체 수행 과제 보기 →](rd-projects/)
+        <a class="cv-text-link" href="rd-projects/">전체 수행 과제 보기 <span aria-hidden="true">→</span></a>
     design:
       columns: '1'
 
@@ -159,7 +160,8 @@ sections:
 
         상세 경력과 GPA·전공 이수 과목은 연구자 이력에서 확인할 수 있습니다.
 
-        [연구자 이력 보기 →](experience/) · [연구 실적 보기 →](research/)
+        <a class="cv-text-link" href="experience/">연구자 이력 보기 <span aria-hidden="true">→</span></a>
+        <a class="cv-text-link" href="research/">연구 실적 보기 <span aria-hidden="true">→</span></a>
     design:
       columns: '1'
 ---

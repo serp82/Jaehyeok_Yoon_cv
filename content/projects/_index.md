@@ -7,16 +7,17 @@ sections:
   - block: research-projects
     content:
       title: 대표 연구
-      text: 저 SNR 신호 검출·제원 추정에서 미확인 파형 탐지와 Open-Set Recognition, SDR/RFNoC/FPGA 검증으로 이어지는 연구 흐름입니다.
+      text: 저 SNR 신호 검출·제원 추정, 미확인 파형 탐지와 Open-Set Recognition, SDR/RFNoC/FPGA 검증으로 이어지는 대표 연구입니다.
       projects:
-        - projects/unknown-open-set
+        - projects/dsae-maae
+        - projects/savor-open-set
         - projects/pandas
         - projects/rfnoc-fpga
-  - block: markdown
+  - block: research-additional
     content:
-      title: 추가 프로젝트
+      title: 기타 연구
       text: |-
-        대표 연구 3개와 함께 다음 연구 경험도 수행했습니다.
+        대표 연구 외에 수행한 연구 경험입니다.
 
         ### 이종신호 중첩·주파수 공유 환경의 신호 인지
 
@@ -44,7 +45,7 @@ sections:
 
         전파식별과 주파수 공유 평가, 이종신호 중첩 환경 분석, OFDM 드론 신호 복조 등 실제 연구과제와 연결된 통신 신호처리 경험입니다.
 
-        [전체 수행 과제 보기 →](../rd-projects/)
+        <a class="cv-text-link" href="../rd-projects/">전체 수행 과제 보기 <span aria-hidden="true">→</span></a>
     design:
       columns: '1'
 ---

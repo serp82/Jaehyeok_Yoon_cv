@@ -1,3 +1,44 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+
+:root {
+  --cv-font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --cv-text-body: 1rem;
+  --cv-text-small: 0.9rem;
+  --cv-text-section: 1.75rem;
+  --cv-text-subsection: 1.15rem;
+  --cv-text-display: 3rem;
+  --hb-font-heading: var(--cv-font-family);
+  --hb-font-body: var(--cv-font-family);
+  --hb-font-code: var(--cv-font-family);
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: var(--cv-font-family) !important;
+}
+
+body {
+  font-size: var(--cv-text-body);
+  line-height: 1.65;
+}
+
+.prose {
+  font-family: var(--cv-font-family) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--cv-font-family) !important;
+  letter-spacing: 0;
+}
+
 /* Keep the portrait's top margin visible and preserve the intentional name line break. */
 .resume-biography .avatar {
   object-position: center top !important;
@@ -105,7 +146,7 @@
 .coursework-title {
   margin: 0;
   color: rgb(15 23 42);
-  font-size: 2rem;
+  font-size: var(--cv-text-section);
   font-weight: 700;
   line-height: 1.2;
 }
@@ -396,7 +437,7 @@
 .research-projects-header h2 {
   margin: 0;
   color: rgb(15 23 42);
-  font-size: 2rem;
+  font-size: var(--cv-text-section);
   line-height: 1.2;
   font-weight: 750;
 }
@@ -411,7 +452,7 @@
   max-width: 48rem;
   margin-top: 0.9rem;
   color: rgb(71 85 105);
-  font-size: 1.08rem;
+  font-size: var(--cv-text-body);
   line-height: 1.65;
 }
 
@@ -451,7 +492,7 @@
 .experience-capabilities h2 {
   margin: 0 0 1.25rem;
   color: rgb(15 23 42);
-  font-size: 2rem;
+  font-size: var(--cv-text-section);
   line-height: 1.2;
   font-weight: 750;
 }
@@ -684,12 +725,6 @@
   background: rgb(15 23 42);
 }
 
-.research-project-card--featured {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-}
-
 .research-project-media {
   display: block;
   min-height: 13rem;
@@ -745,7 +780,7 @@
 .research-project-content h3 {
   margin: 0.7rem 0 0;
   color: rgb(15 23 42);
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   line-height: 1.25;
 }
 
@@ -794,7 +829,7 @@
 .research-project-result {
   margin: 0;
   color: rgb(71 85 105);
-  font-size: 0.96rem;
+  font-size: var(--cv-text-small);
   line-height: 1.55;
 }
 
@@ -851,14 +886,7 @@
 }
 
 .research-project-link {
-  margin-top: 1.2rem;
-  color: rgb(13 148 136);
-  font-size: 0.9rem;
-  font-weight: 750;
-}
-
-.research-project-link:hover {
-  text-decoration: underline;
+  margin-top: 1.25rem;
 }
 
 .research-publications {
@@ -876,7 +904,7 @@
 .research-publications-header h2 {
   margin: 0;
   color: rgb(15 23 42);
-  font-size: 2rem;
+  font-size: var(--cv-text-section);
   line-height: 1.2;
   font-weight: 750;
 }
@@ -889,7 +917,7 @@
   max-width: 48rem;
   margin: 0.9rem 0 0;
   color: rgb(71 85 105);
-  font-size: 1.05rem;
+  font-size: var(--cv-text-body);
   line-height: 1.6;
 }
 
@@ -925,6 +953,7 @@
   margin-bottom: 1.1rem !important;
 }
 
+.cv-text-link,
 .research-publications-link {
   display: inline-flex;
   align-items: center;
@@ -933,8 +962,11 @@
   color: rgb(13 148 136);
   font-size: 0.95rem;
   font-weight: 750;
+  line-height: 1.4;
+  text-decoration: none;
 }
 
+.cv-text-link:hover,
 .research-publications-link:hover {
   text-decoration: underline;
 }
@@ -954,7 +986,7 @@
 .research-supporting-title {
   margin: 0 0 1.5rem;
   color: rgb(15 23 42);
-  font-size: 2rem;
+  font-size: var(--cv-text-section);
   line-height: 1.2;
   font-weight: 750;
 }
@@ -1107,11 +1139,8 @@
 }
 
 .project-detail-back {
-  display: inline-flex;
   margin-bottom: 2rem;
-  color: rgb(13 148 136);
-  font-size: 0.9rem;
-  font-weight: 700;
+  margin-top: 0;
 }
 
 .project-detail-header {
@@ -1128,7 +1157,7 @@
 .project-detail-header h1 {
   margin: 0;
   color: rgb(15 23 42);
-  font-size: 3.5rem;
+  font-size: var(--cv-text-display);
   line-height: 1.08;
   font-weight: 800;
 }
@@ -1140,7 +1169,7 @@
 .project-detail-english {
   margin: 1rem 0 0;
   color: rgb(51 65 85);
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   line-height: 1.45;
   font-weight: 650;
 }
@@ -1152,7 +1181,7 @@
 .project-detail-claim {
   margin: 1rem 0 0;
   color: rgb(71 85 105);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   line-height: 1.6;
 }
 
@@ -1252,6 +1281,8 @@
 .project-detail-content {
   max-width: 60rem !important;
   margin-inline: auto;
+  font-size: var(--cv-text-body);
+  line-height: 1.75;
 }
 
 .project-detail-content h2 {
@@ -1314,6 +1345,65 @@
   color: rgb(13 148 136);
 }
 
+/* Keep the secondary research list compact and aligned with the site's main hierarchy. */
+.research-additional {
+  width: min(calc(100% - 3rem), 80rem);
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-block: 0.5rem;
+}
+
+.research-additional-inner {
+  border-top: 1px solid rgb(203 213 225);
+  padding-top: 1.25rem;
+}
+
+.research-additional-inner h2 {
+  margin: 0 0 1.25rem;
+  color: rgb(15 23 42);
+  font-size: 1.5rem;
+  line-height: 1.25;
+  font-weight: 750;
+}
+
+.dark .research-additional-inner {
+  border-color: rgb(71 85 105);
+}
+
+.dark .research-additional-inner h2 {
+  color: rgb(241 245 249);
+}
+
+.research-additional-content {
+  max-width: none !important;
+  color: rgb(71 85 105);
+  font-size: var(--cv-text-small);
+  line-height: 1.65;
+}
+
+.dark .research-additional-content {
+  color: rgb(203 213 225);
+}
+
+.research-additional-content h3 {
+  margin: 1.45rem 0 0.35rem;
+  color: rgb(15 23 42);
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.dark .research-additional-content h3 {
+  color: rgb(241 245 249);
+}
+
+.research-additional-content p {
+  margin: 0.5rem 0 0;
+}
+
+.research-additional-content ul {
+  margin-top: 0.75rem;
+}
+
 @media (max-width: 1023px) {
   .research-flow {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1327,9 +1417,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .research-project-card--featured {
-    grid-column: 1 / -1;
-  }
 }
 
 @media (max-width: 767px) {
@@ -1353,7 +1440,8 @@
   .research-overview,
   .research-projects,
   .research-publications,
-  .research-supporting {
+  .research-supporting,
+  .research-additional {
     width: min(calc(100% - 2rem), 80rem);
   }
 
@@ -1363,10 +1451,6 @@
 
   .research-project-grid {
     grid-template-columns: 1fr;
-  }
-
-  .research-project-card--featured {
-    display: block;
   }
 
   .research-supporting-grid {

@@ -1,0 +1,13 @@
+{{- $content := .wcBlock.content -}}
+<section class="research-additional" aria-labelledby="research-additional-title">
+  <div class="research-additional-inner">
+    {{ with $content.title }}
+      <h2 id="research-additional-title">{{ . | markdownify | emojify }}</h2>
+    {{ end }}
+    {{ with $content.text }}
+      <div class="research-additional-content prose prose-slate dark:prose-invert">
+        {{ . | markdownify | emojify }}
+      </div>
+    {{ end }}
+  </div>
+</section>

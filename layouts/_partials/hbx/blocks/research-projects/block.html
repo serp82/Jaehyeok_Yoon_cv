@@ -11,7 +11,7 @@
       {{ with site.GetPage $path }}
         {{ $project := . }}
         {{ $featured := partial "functions/get_featured_image.html" $project }}
-        <article class="research-project-card{{ if eq $index 0 }} research-project-card--featured{{ end }}">
+        <article class="research-project-card">
           <a class="research-project-media" href="{{ $project.RelPermalink }}" aria-label="연구 상세 보기: {{ $project.Title }}">
             {{ with $featured }}
               <img src="{{ .RelPermalink }}" alt="{{ with $project.Params.image }}{{ .alt_text | default $project.Title }}{{ else }}{{ $project.Title }}{{ end }}" loading="{{ if eq $index 0 }}eager{{ else }}lazy{{ end }}">
@@ -32,7 +32,7 @@
                 {{ range . }}<li>{{ . }}</li>{{ end }}
               </ul>
             {{ end }}
-            <a class="research-project-link" href="{{ $project.RelPermalink }}">연구 상세 보기 <span aria-hidden="true">→</span></a>
+            <a class="cv-text-link research-project-link" href="{{ $project.RelPermalink }}">연구 상세 보기 <span aria-hidden="true">→</span></a>
           </div>
         </article>
       {{ end }}

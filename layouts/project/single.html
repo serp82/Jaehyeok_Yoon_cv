@@ -8,7 +8,7 @@
   {{ end }}
   <main class="project-detail-page">
     <div class="project-detail-shell">
-      <a class="project-detail-back" href="{{ "projects/" | relLangURL }}">← 대표 연구로 돌아가기</a>
+      <a class="cv-text-link project-detail-back" href="{{ "projects/" | relLangURL }}">← 대표 연구로 돌아가기</a>
       <header class="project-detail-header">
         {{ with .Params.project_number }}<p class="project-detail-kicker">PROJECT {{ . }}</p>{{ end }}
         <h1>{{ .Title }}</h1>
@@ -48,7 +48,7 @@
           {{ with $image_caption }}<figcaption>{{ . | markdownify | emojify }}</figcaption>{{ end }}
         </figure>
       {{ end }}
-      <article class="project-detail-content prose prose-slate lg:prose-xl dark:prose-invert" data-pagefind-body>
+      <article class="project-detail-content prose prose-slate dark:prose-invert" data-pagefind-body>
         <span data-pagefind-filter="type" style="display:none;">projects</span>
         {{ .Content }}
       </article>
