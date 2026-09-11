@@ -33,11 +33,15 @@ tags:
   - CWD
 ---
 
-## 연구 배경 및 문제 정의
+## 연구 배경과 필요성
 
 기존 레이다 파형 분류 연구는 학습 단계에서 모든 클래스를 알고 있다는 closed-set assumption을 주로 사용합니다. 그러나 실제 전자기 환경에서는 새로운 파형이나 변형된 파형이 언제든 등장할 수 있고, 군용 레이다 데이터는 보안과 데이터 부족 때문에 모든 파형의 label을 미리 확보하기 어렵습니다.
 
-따라서 단순히 LFM, Barker, Costas 중 하나를 고르는 것을 넘어, 입력 신호가 알고 있는 파형인지 처음 보는 파형인지 판단해야 합니다. 저 SNR에서는 unknown waveform의 특징도 잡음에 훼손되기 때문에 이 구분이 더 어려워집니다.
+이런 환경에서는 학습된 파형과 처음 보는 파형을 구분하는 기능이 필요합니다.
+
+## 문제 정의
+
+단순히 LFM, Barker, Costas 중 하나를 고르는 것을 넘어, 입력 신호가 알고 있는 파형인지 처음 보는 파형인지 판단해야 합니다. 저 SNR에서는 unknown waveform의 특징도 잡음에 훼손되기 때문에 이 구분이 더 어려워집니다.
 
 <div class="research-pipeline" aria-label="미지 파형 탐지 문제 흐름">
   <span>Known waveform 학습</span><b>→</b><span>Unknown 입력 유입</span><b>→</b><span>기존 class로 강제 분류</span><b>→</b><span>미지 파형 탐지 실패</span>
@@ -89,9 +93,7 @@ Unknown을 단순 confidence threshold로 판단하지 않고, known pattern으�
 
 Noisy CWD time-frequency input을 위한 DSAE representation과 known waveform memory를 사용하는 MAAE 구조를 설계했습니다. one-vs-rest와 multiple-vs-rest 프로토콜을 구성하고 AWGN, fading, measured wireless 환경에서 reconstruction discrepancy가 unknown detection score로 작동하는지 검증했습니다.
 
-Case 01이 신호를 안정적으로 검출하고 제원을 계산하는 연구였다면, 이 연구는 검출된 신호가 학습된 파형인지 처음 보는 파형인지 판단하는 단계입니다. 다음 연구에서는 reconstruction error만으로 구분하기 어려운 유사 파형을 semantic representation으로 다룹니다.
-
-<div class="case-study-transition"><strong>다음 단계</strong>Open-set 인식: reconstruction error를 넘어, 시간·주파수 패턴의 의미를 이용해 Known 분류와 Unknown 거부를 동시에 수행합니다.</div>
+이 연구는 clean reference와 unknown class label이 없는 조건에서 known waveform memory와 reconstruction discrepancy를 이용해 미지 파형을 탐지하는 독립적인 연구입니다.
 
 <div class="case-study-publication">
 

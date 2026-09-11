@@ -36,11 +36,15 @@ tags:
   - USRP/GNU Radio
 ---
 
-## 연구 배경 및 문제 정의
+## 연구 배경과 필요성
 
 레이다 신호 분석에서는 신호가 언제 도착했는지(ToA), 얼마나 지속되는지(PW), 어떤 간격으로 반복되는지(PRI), 어느 주파수 대역을 사용하는지(BW, Fc)를 정확하게 추정해야 합니다.
 
-하지만 저 SNR 환경에서는 신호보다 잡음의 영향이 커져 펄스의 시작과 끝이 불분명해집니다. 시간·주파수 영상에서도 레이다 신호와 잡음을 구분하기 어려워지고, 기존 Wigner-Hough Transform이나 Change Point Detection 기반 방법은 낮은 SNR에서 pulse edge를 안정적으로 추출하기 어렵습니다.
+저 SNR 환경에서는 신호보다 잡음의 영향이 커지므로 이러한 분석과 제원 추정이 실제 수신 환경에서 특히 중요합니다.
+
+## 문제 정의
+
+저 SNR 수신 신호에서는 펄스의 시작과 끝이 불분명해지고 시간·주파수 영상에서도 레이다 신호와 잡음을 구분하기 어렵습니다. 기존 Wigner-Hough Transform이나 Change Point Detection 기반 방법은 낮은 SNR에서 pulse edge를 안정적으로 추출하기 어렵습니다.
 
 <div class="research-pipeline" aria-label="저 SNR 레이다 신호 검출 문제 흐름">
   <span>Low-SNR 수신 신호</span><b>→</b><span>Pulse 위치 불명확</span><b>→</b><span>신호 경계 추출 실패</span><b>→</b><span>Parameter Estimation Error 증가</span>
@@ -103,9 +107,7 @@ tags:
 
 수신 신호를 분석 가능한 구간으로 줄이는 주파수 영역 pulse detector, STFT·UNet 기반 신호 복원, CCA 기반 edge extraction과 파라미터 계산 흐름을 설계했습니다. 시뮬레이션 데이터셋을 구성하고 USRP/GNU Radio test-bed에서 실제 수신 신호로 검증해 알고리즘이 실환경으로 이어질 수 있는지 확인했습니다.
 
-이 연구는 저 SNR 신호를 안정적으로 검출하고 제원을 추정하는 기반이 되었으며, 이후 학습되지 않은 파형을 거부하는 unknown detection 연구로 이어졌습니다.
-
-<div class="case-study-transition"><strong>다음 단계</strong>미확인 파형 탐지: 신호가 검출된 뒤, 학습되지 않은 파형을 어떻게 구분할 것인가?</div>
+이 연구는 저 SNR 신호를 안정적으로 검출하고 시간·주파수 제원을 추정하는 처리 체계를 설계하고 실제 수신 환경에서 검증한 연구입니다.
 
 <div class="case-study-publication">
 

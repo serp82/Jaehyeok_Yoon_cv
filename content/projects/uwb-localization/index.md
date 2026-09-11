@@ -6,17 +6,17 @@ english_title: "UWB Sensing and O-TDoA Localization"
 slug: "uwb-sensing-localization"
 order: 7
 project_number: "07"
-project_stage: "UWB NLOS 인지·위치 추정 · 2021–현재"
+project_stage: "CIR 기반 LOS/NLOS 구분·UWB 위치 측위 · 2021–현재"
 research_year: "2021–현재"
-hero_claim: "UWB 환경에서 NLOS로 인한 위치 오차를 줄이기 위한 신호 상태 인지와 야외 위치 추정 연구를 수행했습니다."
-research_question: "NLOS 환경에서 UWB 위치 추정 오차를 어떻게 식별하고 줄일 수 있는가?"
-result_highlight: "UWB NLOS detection · O-TDoA localization · outdoor intersection research"
+hero_claim: "CIR 기반 LOS/NLOS 채널 상태 구분과 O-TDoA 기반 야외 위치 측위를 서로 다른 연구로 수행했습니다."
+research_question: "CIR 기반 LOS/NLOS 구분과 O-TDoA 위치 측위를 각각 어떻게 설계하고 검증할 것인가?"
+result_highlight: "CIR 기반 LOS/NLOS 구분 · O-TDoA localization · outdoor intersection research"
 technology_tags:
   - UWB
   - NLOS Detection
   - O-TDoA
   - Localization
-summary: "UWB NLOS detection 연구와 자율주행 야외 교차로 O-TDoA 위치 추정 연구를 연결한 확장 연구입니다."
+summary: "CIR 기반 LOS/NLOS 구분 연구와 UWB O-TDoA 위치 측위 연구를 각각 정리한 두 개의 확장 연구입니다."
 image:
   filename: figures/los-nlos-feature-extraction.png
   alt_text: UWB LOS and NLOS feature extraction
@@ -29,59 +29,61 @@ tags:
   - localization
 ---
 
-## 문제 정의
+## 연구 배경과 필요성
 
-UWB 센싱에서는 벽·차량·건물 등으로 인해 직접 경로가 가려지는 NLOS 환경이 발생하고, 이때 거리 측정에 편향이 생겨 위치 추정 오차가 커질 수 있습니다.
+UWB 수신 신호의 CIR(Channel Impulse Response)에는 직접 경로와 다중경로의 차이가 나타나므로, LOS·NLOS 상태를 구분하면 거리 측정의 신뢰도를 판단하는 데 도움이 됩니다. 한편 UWB 위치 측위는 여러 기준점의 시간 차이와 기하 정보를 이용해 대상의 위치를 추정하는 별도의 연구 문제입니다.
 
-특히 자율주행 차량이 이동하는 야외 교차로에서는 신호 상태를 먼저 인지하고, 그 결과를 위치 추정에 반영하는 과정이 중요합니다.
+두 연구는 입력 특징, 목표, 평가 방법이 다릅니다. 따라서 이 페이지에서는 CIR 기반 LOS/NLOS 구분과 UWB 위치 측위를 서로 독립된 연구로 나누어 설명합니다.
 
-![LOS/NLOS 특징 추출](figures/los-nlos-feature-extraction.png)
+## 연구 1. CIR 기반 LOS/NLOS 구분
 
-*LOS/NLOS 환경을 구분하고 채널 상태 특징을 추출하는 과정*
+### 문제 정의
 
-## 제안 방법
+벽·차량·건물 등으로 직접 경로가 가려지는 NLOS 환경에서는 CIR의 형태가 달라지고 거리 측정에 편향이 생길 수 있습니다. 이 연구는 CIR 기반 특징으로 LOS와 NLOS 채널 상태를 구분하고, NLOS detection 성능을 비교하는 데 초점을 둡니다.
 
-**A. UWB 채널 상태 인지**
+![CIR 기반 LOS/NLOS 특징 추출](figures/los-nlos-feature-extraction.png)
 
-UWB 환경에서 NLOS detection 방법을 비교해 신호 상태와 위치 추정 오차의 관계를 분석합니다.
+*CIR에서 LOS/NLOS 채널 상태를 구분하기 위한 특징 추출 과정*
 
-**B. UWB 위치 추정 및 멀티센서 확장**
+### 연구 방법과 검증
 
-<div class="research-pipeline" aria-label="UWB 센싱 및 위치 추정 흐름">
-  <span>UWB 수신 신호</span><b>→</b><span>NLOS 상태 인지</span><b>→</b><span>측정 신뢰도 판단</span><b>→</b><span>O-TDoA 기반 위치 추정</span><b>→</b><span>야외 교차로 적용</span>
+- CIR 기반 특징을 활용해 UWB 채널의 LOS/NLOS 상태를 구분합니다.
+- **검증 연구:** *Performance Comparison of NLOS Detection Methods in UWB* · ICTC · 제주 · 2021.10
+
+## 연구 2. UWB 위치 측위
+
+### 문제 정의
+
+자율주행 차량이 이동하는 야외 교차로에서는 여러 기준점의 측정값을 이용해 위치를 안정적으로 추정해야 합니다. 이 연구는 NLOS 상태 분류와 별개로, O-TDoA(Time Difference of Arrival) 기반 측정값을 이용한 위치 추정과 실제 적용 환경을 다룹니다.
+
+### 연구 방법과 검증
+
+<div class="research-pipeline" aria-label="UWB 위치 측위 흐름">
+  <span>UWB 기준점·태그 신호</span><b>→</b><span>시간 차이 측정</span><b>→</b><span>O-TDoA 위치 추정</span><b>→</b><span>야외 교차로 적용</span>
 </div>
 
-- 시간 차이 기반 측정값을 활용하는 O-TDoA localization 연구로 위치 추정 문제를 확장합니다.
-- NLOS 인지와 야외 자율주행 환경의 위치 추정을 하나의 센싱·측위 흐름으로 연결합니다.
-
-## 실제 검증
-
-- **NLOS detection:** *Performance Comparison of NLOS Detection Methods in UWB* · ICTC · 제주 · 2021.10
-- **Localization:** *UWB O-TDoA Localization for Autonomous Vehicles in Outdoor Intersections* 연구
-- **Application context:** 야외 교차로에서 자율주행 차량의 UWB 기반 위치 추정
-
-신호 상태 인지 연구와 야외 교차로 위치 추정 연구를 통해 UWB 센싱의 환경 의존적인 오차 문제를 단계적으로 다뤘습니다.
+- 시간 차이 기반 측정값을 활용해 O-TDoA 위치를 추정합니다.
+- **검증 연구:** *UWB O-TDoA Localization for Autonomous Vehicles in Outdoor Intersections*
+- **적용 환경:** 야외 교차로에서 자율주행 차량의 UWB 기반 위치 측위
 
 ![실외 자율주행 위치 추정 실험](figures/real-world-localization-map.png)
 
-*실외 자율주행 환경에서의 실제 위치 추정 실험*
+*실외 자율주행 환경에서의 UWB 위치 측위 실험*
 
 ## 주요 결과
 
-<div class="research-validation" aria-label="UWB 연구 결과">
-  <span>NLOS detection</span><span>O-TDoA localization</span><span>Outdoor intersection</span>
+### CIR 기반 LOS/NLOS 구분
+
+<div class="research-validation" aria-label="CIR 기반 LOS/NLOS 구분 결과">
+  <span>LOS/NLOS 구분</span><span>CIR 특징 추출</span><span>NLOS detection</span>
+</div>
+
+### UWB 위치 측위
+
+<div class="research-validation" aria-label="UWB 위치 측위 결과">
+  <span>O-TDoA localization</span><span>Outdoor intersection</span><span>Position estimation</span>
 </div>
 
 ![위치 추정 결과 분포](figures/position-estimation-result.png)
 
-*O-TDoA 위치 추정 결과*
-
-UWB 수신 환경의 NLOS 상태를 비교·인지하는 연구에서 출발해, 자율주행 야외 교차로의 O-TDoA 위치 추정으로 연구 범위를 확장했습니다.
-
-**확장 연구 · 멀티센서 학습**
-
-UWB 측위 연구와 구분되는 확장 연구로, 레이더와 카메라 등 멀티센서 정보를 결합하는 학습 구조를 검토했습니다.
-
-![멀티센서 학습 확장 구조](figures/multisensor-learning-framework.png)
-
-*레이더·멀티센서 정보를 결합하는 확장 연구 구조*
+*O-TDoA 기반 위치 추정 결과*

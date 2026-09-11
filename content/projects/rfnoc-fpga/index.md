@@ -35,11 +35,15 @@ tags:
   - OTA validation
 ---
 
-## 연구 배경 및 문제 정의
+## 연구 배경과 필요성
 
 딥러닝 기반 레이다 신호처리 연구는 대부분 GPU나 CPU 환경에서 성능을 검증합니다. 하지만 실제 RF 수신기에서는 데이터가 연속적인 I/Q stream으로 입력되고, 실시간 데이터 이동, fixed-point computation, FPGA memory, packet framing, latency와 FPGA resource를 함께 고려해야 합니다.
 
-특히 레이다 처리에서는 detector가 선택한 구간이 후단 CNN 입력 자체를 결정합니다. 따라서 CNN 정확도만 FPGA에서 구현하는 것으로는 전체 시스템을 검증할 수 없고, 실제 OTA 수신부터 검출·특징 생성·분류까지 전체 처리 체인을 연결해야 합니다.
+실제 수신 시스템에서 알고리즘을 사용하려면 소프트웨어 성능뿐 아니라 하드웨어 자원과 실시간 처리 가능성까지 함께 검증해야 합니다.
+
+## 문제 정의
+
+레이다 처리에서는 detector가 선택한 구간이 후단 CNN 입력 자체를 결정합니다. 따라서 CNN 정확도만 FPGA에서 구현하는 것으로는 전체 시스템을 검증할 수 없고, 실제 OTA 수신부터 검출·특징 생성·분류까지 전체 처리 체인을 연결해야 합니다.
 
 <div class="research-pipeline" aria-label="RFNoC FPGA 구현 문제 흐름">
   <span>Software algorithm</span><b>→</b><span>Continuous I/Q stream</span><b>→</b><span>Fixed-point·latency·resource 제약</span><b>→</b><span>End-to-End hardware validation 필요</span>
@@ -100,9 +104,9 @@ USRP 송·수신기와 OTA channel을 포함한 실제 수신 체인에서 detec
 
 Software reference를 기준으로 fixed-point STFT, RFNoC pulse detector, feature generation과 HLS CNN classifier를 연결했습니다. USRP OTA 데이터를 직접 수집하고 15종 waveform, 8개 SNR 조건, 3,600개 records에서 detection interval과 classifier·end-to-end 결과를 비교했습니다.
 
-이 연구는 단순히 CNN을 FPGA에 포팅한 작업이 아니라, 저 SNR 레이다 신호가 실제 수신기에서 검출되고 분류되는 전체 데이터 경로를 검증한 연구입니다. Case 01의 검출·제원 추정, Case 02의 unknown detection, Case 03의 open-set 인식으로 확장된 알고리즘 연구를 실제 SDR/FPGA 시스템 적용 가능성으로 연결했습니다.
+이 연구는 단순히 CNN을 FPGA에 포팅한 작업이 아니라, 저 SNR 레이다 신호가 실제 수신기에서 검출되고 분류되는 전체 데이터 경로를 검증한 독립적인 SDR/FPGA 구현 연구입니다.
 
-<div class="case-study-contribution"><strong>연구 흐름의 의미</strong>저 SNR 레이다 신호처리 문제를 알고리즘 설계부터 실제 SDR/FPGA 검증까지 단계적으로 확장한 연구의 마지막 구현 단계입니다.</div>
+<div class="case-study-contribution"><strong>연구의 의미</strong>저 SNR 레이다 신호처리 알고리즘을 실제 OTA 수신과 RFNoC/FPGA 스트리밍 체인으로 구현하고 종단간 일치성을 검증했습니다.</div>
 
 <div class="case-study-publication">
 

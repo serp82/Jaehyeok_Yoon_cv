@@ -33,9 +33,11 @@ tags:
   - radar signal processing
 ---
 
-## 연구 배경 및 문제 정의
+## 연구 배경과 필요성
 
-Case 02에서는 reconstruction error를 이용해 unknown waveform을 탐지했습니다. 하지만 실제 레이다 파형은 frequency sweep, hopping, phase coding과 같은 구조적 특성을 부분적으로 공유하기 때문에, unknown waveform이라도 known waveform과 비슷하면 autoencoder가 비교적 잘 복원할 수 있습니다.
+실제 레이다 파형은 frequency sweep, hopping, phase coding과 같은 구조적 특성을 부분적으로 공유합니다. 따라서 unknown waveform이라도 known waveform과 비슷하면 reconstruction error만으로는 안정적으로 구분하기 어렵습니다.
+
+## 문제 정의
 
 실제 시스템에서는 다음 두 가지를 동시에 수행해야 합니다.
 
@@ -94,9 +96,7 @@ Known과 Unknown을 별도 문제로 나누지 않고 semantic representation �
 
 레이더 시간·주파수 표현과 semantic attribute text를 구성하고, VLM/CLIP embedding space에 정렬하는 학습 흐름을 설계했습니다. TDU와 IVU를 이용한 Stage 2 unknown-aware learning을 구성하고 Single-Unknown, Two-Unknown 및 채널 변화 조건에서 평가했습니다.
 
-Case 02가 known waveform memory와 reconstruction discrepancy로 unknown을 탐지했다면, 이 연구는 파형의 구조적 의미를 직접 표현 공간에 넣어 Known 분류와 Unknown 거부를 동시에 수행합니다. 이 표현은 이후 실제 수신 시스템에 올릴 알고리즘을 경량화하고 구현하는 단계로 이어집니다.
-
-<div class="case-study-transition"><strong>다음 단계</strong>실제 FPGA 스트리밍 구현: Open-set 인식으로 확장된 레이다 신호처리 알고리즘을 수신 시스템 제약 안에서 검증합니다.</div>
+이 연구는 파형의 구조적 의미를 직접 표현 공간에 넣어 Known 분류와 Unknown 거부를 동시에 수행하는 독립적인 Open-set Recognition 연구입니다.
 
 <div class="case-study-publication">
 
