@@ -14,10 +14,11 @@ groups:
       - projects/rfnoc-fpga
   extended:
     title: 확장 연구
-    text: 레이더 신호처리에서 멀티센서 인지와 공존 신호 처리 분야로 확장된 연구입니다.
+    text: 레이더 신호처리에서 멀티센서 인지·UWB 센싱·공존 신호 처리 분야로 확장된 연구입니다.
     projects:
       - projects/radar-camera-skeleton
       - projects/coexisting-spectrum
+      - projects/uwb-localization
   all:
     title: 연구 실적
     text: 저 SNR 신호 검출·제원 추정부터 미지 파형 탐지, Vision-Language 인식, FPGA 구현, 멀티센서 인지와 공존 신호 처리까지의 연구를 정리했습니다.
@@ -28,3 +29,4 @@ groups:
       - projects/rfnoc-fpga
       - projects/radar-camera-skeleton
       - projects/coexisting-spectrum
+      - projects/uwb-localization
