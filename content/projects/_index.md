@@ -11,20 +11,16 @@ sections:
       text: 레이다·통신 신호를 실제 전자전 및 무선 환경에서 수집·분석하고, 신호처리·딥러닝·SDR/FPGA 기술로 연결합니다.
       image:
         filename: electromagnetic_environment.png
-        alt_text: "전자전 환경에서 intercepted signal을 수집하는 전체 연구 배경"
-        caption: "전체 연구 배경: 전자전 환경에서 intercepted signal을 수집·분석하는 상황"
+        alt_text: "전체 연구 배경을 설명하는 전자전 환경 intercepted signal 수집 개념도"
+        caption: "전체 연구 배경을 설명한 개념도: 전자전 환경에서 intercepted signal을 수집·분석하는 상황"
   - block: research-projects
+    id: core-research-projects
     content:
-      title: 연구 실적
-      text: 저 SNR 신호 검출·제원 추정부터 미지 파형 탐지, Vision-Language 인식, FPGA 구현, 공존 신호 처리와 UWB 측위까지의 연구를 정리했습니다.
-      projects:
-        - projects/pandas
-        - projects/dsae-maae
-        - projects/savor-open-set
-        - projects/rfnoc-fpga
-        - projects/ofdm-interference
-        - projects/coexisting-spectrum
-        - projects/uwb-localization
+      shared_group: core
+  - block: research-projects
+    id: extended-research-projects
+    content:
+      shared_group: extended
   - block: research-additional
     content:
       title: 기타 연구

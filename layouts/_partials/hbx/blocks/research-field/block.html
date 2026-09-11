@@ -1,0 +1,32 @@
+{{- $content := .wcBlock.content -}}
+{{- $research := site.Data.cv.research -}}
+<section class="research-field" aria-labelledby="research-field-title">
+  <div class="research-field-inner">
+    {{ with $content.title }}
+      <h2 id="research-field-title" class="research-section-title">{{ . | markdownify | emojify }}</h2>
+    {{ end }}
+    {{ if $content.shared_research }}
+      <div class="research-field-content">
+        <p><strong>전공분야: {{ $research.discipline }}</strong></p>
+        <p>{{ $research.intro }}</p>
+        {{ range $research.field_groups }}
+          {{ with index $research.groups . }}
+            <h3>{{ .title }}</h3>
+            <p>{{ .text }}</p>
+            <ul>
+              {{ range .projects }}
+                {{ with site.GetPage . }}
+                  <li><strong><a href="{{ .RelPermalink }}">{{ .Title }}</a></strong>: {{ .Params.summary }}</li>
+                {{ end }}
+              {{ end }}
+            </ul>
+          {{ end }}
+        {{ end }}
+      </div>
+    {{ else }}
+      {{ with $content.text }}
+        <div class="research-field-content">{{ . | markdownify | emojify }}</div>
+      {{ end }}
+    {{ end }}
+  </div>
+</section>

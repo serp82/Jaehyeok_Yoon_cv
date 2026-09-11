@@ -16,6 +16,8 @@
         {{ with .Params.hero_claim }}<p class="project-detail-claim">{{ . }}</p>{{ end }}
         <div class="project-detail-meta">
           {{ with .Params.research_year }}<span>{{ . }}</span>{{ end }}
+          {{ with .Params.project_role }}<span class="project-detail-meta-text">역할 · {{ . }}</span>{{ end }}
+          {{ with .Params.result_highlight }}<span class="project-detail-meta-text project-detail-meta-text--result">대표 성과 · {{ . }}</span>{{ end }}
           {{ with .Params.publication_refs }}
             {{ range . }}
               {{ with site.GetPage . }}

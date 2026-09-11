@@ -744,6 +744,10 @@ h6 {
   gap: 1.5rem;
 }
 
+.research-project-grid--featured {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .research-project-card {
   min-width: 0;
   overflow: hidden;
@@ -810,7 +814,7 @@ h6 {
 }
 
 .research-project-content h3 {
-  margin: 0.7rem 0 0;
+  margin: 0;
   color: rgb(15 23 42);
   font-size: 1.25rem;
   line-height: 1.25;
@@ -1231,7 +1235,19 @@ h6 {
   font-size: 0.9rem;
 }
 
+.project-detail-meta-text {
+  color: rgb(51 65 85);
+}
+
+.project-detail-meta-text--result {
+  font-weight: 650;
+}
+
 .dark .project-detail-meta {
+  color: rgb(203 213 225);
+}
+
+.dark .project-detail-meta-text {
   color: rgb(203 213 225);
 }
 
@@ -1319,6 +1335,105 @@ h6 {
 
 .project-detail-content h2 {
   margin-top: 3.5rem;
+}
+
+.project-detail-content h2:first-child {
+  margin-top: 0;
+}
+
+.case-study-figure {
+  margin: 2rem 0 2.5rem;
+}
+
+.case-study-figure-media {
+  overflow: hidden;
+  border: 1px solid rgb(203 213 225);
+  border-radius: 0.35rem;
+  background: rgb(248 250 252);
+  padding: 0.5rem;
+}
+
+.dark .case-study-figure-media {
+  border-color: rgb(71 85 105);
+  background: rgb(30 41 59);
+}
+
+.case-study-figure-media img {
+  display: block;
+  width: 100%;
+  max-height: 38rem;
+  object-fit: contain;
+}
+
+.case-study-figure figcaption {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  border-left: 2px solid rgb(13 148 136);
+  padding-left: 0.85rem;
+  color: rgb(71 85 105);
+  font-size: var(--cv-text-small);
+  line-height: 1.55;
+}
+
+.dark .case-study-figure figcaption {
+  color: rgb(203 213 225);
+}
+
+.case-study-figure-type {
+  color: rgb(13 148 136);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.case-study-figure-caption {
+  color: rgb(15 23 42);
+  font-weight: 700;
+}
+
+.dark .case-study-figure-caption {
+  color: rgb(241 245 249);
+}
+
+.case-study-figure-note {
+  color: rgb(146 64 14);
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.dark .case-study-figure-note {
+  color: rgb(253 230 138);
+}
+
+.case-study-transition,
+.case-study-contribution {
+  margin: 2rem 0;
+  border-left: 3px solid rgb(13 148 136);
+  background: rgb(240 253 250);
+  padding: 1rem 1.25rem;
+  color: rgb(15 23 42);
+}
+
+.case-study-transition strong,
+.case-study-contribution strong {
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.dark .case-study-transition,
+.dark .case-study-contribution {
+  background: rgb(19 78 74 / 0.35);
+  color: rgb(226 232 240);
+}
+
+.case-study-publication {
+  margin-top: 3rem;
+  border-top: 1px solid rgb(203 213 225);
+  padding-top: 1.5rem;
+}
+
+.dark .case-study-publication {
+  border-color: rgb(71 85 105);
 }
 
 .research-timeline {
@@ -1525,5 +1640,270 @@ h6 {
 
   .research-metric-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Shared frame for major CV sections. Keep the page rhythm and rules consistent. */
+.coursework-section,
+.experience-capabilities,
+.research-field,
+.research-highlights-grid,
+.research-overview,
+.research-projects,
+.research-publications,
+.research-supporting,
+.research-tasks,
+.research-additional {
+  box-sizing: border-box;
+  width: min(calc(100% - 3rem), 80rem);
+  max-width: 80rem;
+  margin: 0 auto;
+  border-top: 1px solid rgb(226 232 240);
+  padding-block: 2.5rem;
+}
+
+.dark .coursework-section,
+.dark .experience-capabilities,
+.dark .research-field,
+.dark .research-highlights-grid,
+.dark .research-overview,
+.dark .research-projects,
+.dark .research-publications,
+.dark .research-supporting,
+.dark .research-tasks,
+.dark .research-additional {
+  border-color: rgb(71 85 105);
+}
+
+.coursework-inner,
+.research-overview-inner,
+.research-publications-header,
+.research-supporting-inner,
+.research-additional-inner {
+  border-top: 0;
+  border-bottom: 0;
+  padding-top: 0;
+}
+
+.research-publications-header,
+.research-supporting-inner,
+.research-additional-inner {
+  padding-bottom: 0;
+}
+
+.research-field-inner {
+  width: 100%;
+}
+
+.research-field-content {
+  max-width: 60rem;
+  margin-top: 1.25rem;
+  color: rgb(71 85 105);
+  font-size: var(--cv-text-body);
+  line-height: 1.7;
+}
+
+.dark .research-field-content {
+  color: rgb(203 213 225);
+}
+
+.research-field-content p,
+.research-tasks-content p {
+  margin: 0 0 1.25rem;
+}
+
+.research-field-content h3,
+.research-tasks-content h3 {
+  margin: 2rem 0 0.75rem;
+  color: rgb(15 23 42);
+  font-size: var(--cv-text-subsection);
+  line-height: 1.35;
+  font-weight: 750;
+}
+
+.dark .research-field-content h3,
+.dark .research-tasks-content h3 {
+  color: rgb(241 245 249);
+}
+
+.research-field-content ul,
+.research-tasks-content ol {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.research-field-content li,
+.research-tasks-content li {
+  padding-left: 0.25rem;
+}
+
+.research-tasks-content {
+  max-width: 60rem;
+  margin-top: 1.25rem;
+  color: rgb(71 85 105);
+  font-size: var(--cv-text-body);
+  line-height: 1.7;
+}
+
+.dark .research-tasks-content {
+  color: rgb(203 213 225);
+}
+
+.research-highlights-column > .flex.flex-col.items-center.max-w-prose {
+  width: 100%;
+  max-width: none;
+  align-items: flex-start;
+  gap: 0;
+  padding: 0;
+}
+
+.research-highlights-column > .flex.flex-col.items-center.max-w-prose > .mb-6 {
+  margin: 0 0 1.5rem;
+  font-size: var(--cv-text-section);
+  line-height: 1.2;
+  font-weight: 750;
+  text-align: left;
+}
+
+.research-highlights-column > .flex.flex-col.items-center.px-6 {
+  align-items: stretch;
+  padding: 0;
+}
+
+.research-highlights-column > .flex.flex-col.items-center.px-6 > .max-w-3xl {
+  margin-top: 0;
+}
+
+.coursework-title,
+.experience-capabilities h2,
+.research-section-title,
+.research-overview-title,
+.research-projects-header h2,
+.research-publications-header h2,
+.research-supporting-title,
+.research-additional-inner h2 {
+  font-size: var(--cv-text-section);
+  line-height: 1.2;
+  font-weight: 750;
+}
+
+@media (max-width: 767px) {
+  .coursework-section,
+  .experience-capabilities,
+  .research-field,
+  .research-highlights-grid,
+  .research-overview,
+  .research-projects,
+  .research-publications,
+  .research-supporting,
+  .research-tasks,
+  .research-additional {
+    width: min(calc(100% - 2rem), 80rem);
+    padding-block: 2rem;
+  }
+}
+
+/* Keep the research-results citations consistent with the home publication list. */
+.research-highlights-column > .research-publications {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border-top: 0;
+  padding-block: 0;
+}
+
+.research-highlights-column > .research-publications .research-publications-header {
+  margin-bottom: 1.5rem;
+  border-top: 0;
+  padding-top: 0;
+}
+
+.research-highlights-column > .research-publications .research-publications-list {
+  gap: 1.5rem;
+}
+
+.research-highlights-column .pub-list-item.view-citation {
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+
+/* Give supporting records the same reading size as the main CV sections. */
+.research-supporting-group li {
+  font-size: var(--cv-text-body);
+  line-height: 1.65;
+}
+
+.research-record-meta {
+  font-size: var(--cv-text-small);
+  line-height: 1.5;
+}
+
+/* Use a wide, structured row for long project titles and metadata. */
+.research-tasks {
+  width: min(calc(100% - 3rem), 96rem);
+  max-width: 96rem;
+}
+
+.research-tasks-content {
+  max-width: none;
+}
+
+.research-tasks-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding-left: 1.6rem;
+}
+
+.research-task-item {
+  display: grid;
+  grid-template-columns: minmax(30rem, 2.5fr) minmax(12rem, 1fr) minmax(12rem, 1fr) minmax(13rem, 1.15fr);
+  gap: 0.75rem 1rem;
+  align-items: baseline;
+  padding: 0.75rem 0 0.75rem 0.25rem;
+  border-bottom: 1px solid rgb(226 232 240);
+}
+
+.research-task-title {
+  min-width: 0;
+  color: rgb(15 23 42);
+  font-weight: 650;
+}
+
+.research-task-meta {
+  min-width: 0;
+  color: rgb(71 85 105);
+  font-size: var(--cv-text-small);
+  line-height: 1.5;
+}
+
+.dark .research-task-item {
+  border-color: rgb(71 85 105);
+}
+
+.dark .research-task-title {
+  color: rgb(226 232 240);
+}
+
+.dark .research-task-meta {
+  color: rgb(203 213 225);
+}
+
+@media (max-width: 1100px) {
+  .research-task-item {
+    grid-template-columns: minmax(20rem, 2fr) minmax(11rem, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .research-tasks {
+    width: min(calc(100% - 2rem), 96rem);
+  }
+
+  .research-task-item {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
   }
 }

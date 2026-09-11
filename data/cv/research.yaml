@@ -1,0 +1,32 @@
+discipline: 레이더 신호처리
+intro: 저 SNR·비협조 수신 환경에서 레이더 신호를 검출·복원하고 주요 제원을 추정합니다. 학습되지 않은 파형과 공존 신호를 인식하는 AI 기반 방법을 설계하고, SDR·USRP·RFNoC·FPGA 구현을 통해 실제 수신 환경의 적용 가능성을 검증합니다.
+field_groups:
+  - core
+  - extended
+groups:
+  core:
+    title: 핵심 연구
+    text: 레이더 신호처리를 중심으로 한 핵심 연구 흐름입니다.
+    projects:
+      - projects/pandas
+      - projects/dsae-maae
+      - projects/savor-open-set
+      - projects/rfnoc-fpga
+  extended:
+    title: 확장 연구
+    text: 레이더 신호처리에서 통신·주파수 공유·센싱 분야로 확장된 연구입니다.
+    projects:
+      - projects/ofdm-interference
+      - projects/coexisting-spectrum
+      - projects/uwb-localization
+  all:
+    title: 연구 실적
+    text: 저 SNR 신호 검출·제원 추정부터 미지 파형 탐지, Vision-Language 인식, FPGA 구현, 공존 신호 처리와 UWB 측위까지의 연구를 정리했습니다.
+    projects:
+      - projects/pandas
+      - projects/dsae-maae
+      - projects/savor-open-set
+      - projects/rfnoc-fpga
+      - projects/ofdm-interference
+      - projects/coexisting-spectrum
+      - projects/uwb-localization

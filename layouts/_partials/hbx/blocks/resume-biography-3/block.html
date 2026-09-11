@@ -261,24 +261,22 @@
             {{ $aff_name = strings.TrimSpace $aff_name }}
             {{ $aff_url = strings.TrimSpace $aff_url }}
             {{ if $aff_name }}
-              <p class="text-lg text-gray-700 dark:text-gray-300">
-                {{ if $aff_url }}
-                  {{ $link := $aff_url }}
-                  {{ $scheme := (urls.Parse $link).Scheme }}
-                  {{ $target := "" }}
-                  {{ if not $scheme }}
-                    {{ if not (hasPrefix $link "#") }}
-                      {{ $link = $link | relLangURL }}
-                    {{ end }}
-                    {{ if eq (path.Ext $link) ".pdf" }}{{ $target = "target=\"_blank\" rel=\"noopener\"" }}{{ end }}
-                  {{ else if in (slice "http" "https") $scheme }}
-                    {{ $target = "target=\"_blank\" rel=\"noopener\"" }}
-                  {{ end }}
-                  <a href="{{ $link | safeURL }}" {{ $target | safeHTMLAttr }} class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{{ $aff_name }}</a>
-                {{ else }}
-                  {{ $aff_name }}
-                {{ end }}
-              </p>
+              <p class="text-lg text-gray-700 dark:text-gray-300 whitespace-pre-line">{{- if $aff_url -}}
+                {{- $link := $aff_url -}}
+                {{- $scheme := (urls.Parse $link).Scheme -}}
+                {{- $target := "" -}}
+                {{- if not $scheme -}}
+                  {{- if not (hasPrefix $link "#") -}}
+                    {{- $link = $link | relLangURL -}}
+                  {{- end -}}
+                  {{- if eq (path.Ext $link) ".pdf" -}}{{- $target = "target=\"_blank\" rel=\"noopener\"" -}}{{- end -}}
+                {{- else if in (slice "http" "https") $scheme -}}
+                  {{- $target = "target=\"_blank\" rel=\"noopener\"" -}}
+                {{- end -}}
+                <a href="{{ $link | safeURL }}" {{ $target | safeHTMLAttr }} class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{{ $aff_name }}</a>
+              {{- else -}}
+                {{- $aff_name -}}
+              {{- end -}}</p>
             {{ end }}
           {{ end }}
         </div>

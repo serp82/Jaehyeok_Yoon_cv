@@ -13,14 +13,17 @@ name:
 postnominals: []
 status:
   icon: ''
-role: 저 SNR 레이다 신호처리 · Open-Set Recognition · SDR/FPGA
+role: 저 SNR 레이더 신호처리 · Open-Set Recognition · SDR/FPGA
 bio: |
-  저 SNR·비협조 수신 환경에서 약한 레이다 신호를 검출하고 제원을 추정하며,
-  학습되지 않은 파형을 탐지·거부하는 AI 기반 신호처리 알고리즘을 연구합니다.
-  개발한 알고리즘을 USRP/RFNoC/FPGA 기반 실환경 시스템으로 구현하고 검증합니다.
+  저 SNR·비협조 수신 환경에서 약한 레이더 신호를 검출하고 주요 제원을 추정하며,
+  학습되지 않은 파형을 탐지·거부하는 AI 기반 신호처리 방법을 연구합니다.
+  시간–주파수 분석과 딥러닝·Vision-Language Model을 결합하고,
+  USRP 기반 OTA 실험과 RFNoC/FPGA 구현을 통해 실제 환경에서 검증해 왔습니다.
 
 affiliations:
-  - name: '한양대학교 전자공학과 지능통신시스템연구실 (지도교수: 남해운)'
+  - name: |-
+      한양대학교 전자공학과 지능통신시스템연구실
+      (지도교수: 남해운)
     url: ''
   - name: 한양대학교 공학기술연구소
     url: ''
@@ -48,7 +51,9 @@ education:
     institution: 한양대학교 대학원 전자공학과
     start: 2021-03-01
     end: ''
-    summary: '지능통신시스템연구실 (지도교수: 남해운) · 석박사통합과정 12기'
+    summary: |-
+      지능통신시스템연구실\
+      (지도교수: 남해운) · 석박사통합과정 12기
   - degree: 학사 (B.S.)
     institution: 한양대학교 ERICA캠퍼스 전자공학과
     start: 2016-03-01
