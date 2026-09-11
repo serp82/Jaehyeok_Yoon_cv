@@ -14,30 +14,6 @@
         <h1>{{ .Title }}</h1>
         {{ with .Params.english_title }}<p class="project-detail-english">{{ . }}</p>{{ end }}
         {{ with .Params.hero_claim }}<p class="project-detail-claim">{{ . }}</p>{{ end }}
-        <div class="project-detail-meta">
-          {{ with .Params.research_year }}<span>{{ . }}</span>{{ end }}
-          {{ with .Params.project_role }}<span class="project-detail-meta-text">역할 · {{ . }}</span>{{ end }}
-          {{ with .Params.result_highlight }}<span class="project-detail-meta-text project-detail-meta-text--result">대표 성과 · {{ . }}</span>{{ end }}
-          {{ with .Params.publication_refs }}
-            {{ range . }}
-              {{ with site.GetPage . }}
-                {{ $status := .Params.publication_status | default "" }}
-                {{ $category := .Params.publication_category | default "Publication" }}
-                {{ $status_class := "neutral" }}
-                {{ if or (eq $status "게재") (eq $status "게재 확정") (eq $status "Published") (eq $status "Accepted") }}
-                  {{ $status_class = "published" }}
-                {{ else if or (eq $status "Under Revision") (eq $status "Under Review") }}
-                  {{ $status_class = "revision" }}
-                {{ end }}
-                {{ with $status }}<span class="project-status project-status--{{ $status_class }}">{{ $category }} · {{ . }}</span>{{ end }}
-              {{ end }}
-            {{ end }}
-          {{ else with .Params.project_statuses }}
-            {{ range . }}
-              <span class="project-status project-status--{{ .class | default "neutral" }}">{{ .label }}</span>
-            {{ end }}
-          {{ end }}
-        </div>
         {{ with .Params.technology_tags }}
           <ul class="project-detail-tags" aria-label="기술 태그">
             {{ range . }}<li>{{ . }}</li>{{ end }}
@@ -52,7 +28,8 @@
       {{ end }}
       <article class="project-detail-content prose prose-slate dark:prose-invert" data-pagefind-body>
         <span data-pagefind-filter="type" style="display:none;">projects</span>
-        {{ .Content }}
+        {{/* Some project Markdown is rendered with raw strong markers by the current content pipeline. */}}
+        {{ .Content | replaceRE "\\*\\*" "" | safeHTML }}
       </article>
     </div>
   </main>

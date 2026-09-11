@@ -37,10 +37,6 @@ RGB-D 카메라는 관절 위치와 자세를 직접 추정할 수 있지만 가
 
 카메라는 사람의 자세와 관절 위치를 잘 보여주지만 가림과 조명 변화에 취약하고, 레이다는 시야와 조명에 강하지만 포인트 클라우드가 희소합니다. 두 센서의 정보를 같은 좌표계에서 정렬하면 카메라의 자세 정보와 레이다의 공간 정보를 함께 활용할 수 있습니다.
 
-![RGB-D 카메라와 레이다 포인트 클라우드를 결합한 스켈레톤 추정 구조](figures-radar-camera-skeleton.jpeg)
-
-*RGB-D 카메라에서 추정한 스켈레톤과 레이다 포인트 클라우드를 매핑하는 처리 흐름*
-
 ## 제안 방법
 
 <div class="research-pipeline" aria-label="Radar-Camera 스켈레톤 추정 흐름">
@@ -62,5 +58,9 @@ RGB-D 카메라는 관절 위치와 자세를 직접 추정할 수 있지만 가
 <div class="research-validation" aria-label="Radar-Camera 연구 결과">
   <span>스켈레톤 추정</span><span>포인트 매핑</span><span>멀티센서 모션 인지</span>
 </div>
+
+![Radar-Camera 기반 스켈레톤 추정 결과](radar-camera-skeleton-result.png)
+
+*실제 동작, 정답 스켈레톤, 예측 스켈레톤을 비교한 결과*
 
 카메라 기반 자세 정보와 레이다 기반 공간 정보를 결합하는 멀티센서 연구를 통해, 단일 센서의 가림·희소성 문제를 보완하는 인체 모션 인지 구조를 검토했습니다.

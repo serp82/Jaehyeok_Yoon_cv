@@ -48,6 +48,45 @@ h6 {
   white-space: pre-line;
 }
 
+.resume-biography-quick-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.resume-biography-quick-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  min-height: 2.5rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid rgb(153 246 228);
+  border-radius: 0.6rem;
+  color: rgb(15 118 110);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.35;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.resume-biography-quick-links a:hover {
+  background: rgb(240 253 250);
+  text-decoration: none;
+}
+
+.dark .resume-biography-quick-links a {
+  border-color: rgb(45 212 191 / 0.55);
+  color: rgb(153 246 228);
+}
+
+.dark .resume-biography-quick-links a:hover {
+  background: rgb(19 78 74 / 0.5);
+}
+
 /* Use the same compact status treatment for conference and patent records. */
 .cv-badge {
   display: inline-flex;
@@ -1842,8 +1881,8 @@ h6 {
 
 /* Use a wide, structured row for long project titles and metadata. */
 .research-tasks {
-  width: min(calc(100% - 3rem), 96rem);
-  max-width: 96rem;
+  width: min(calc(100% - 3rem), 80rem);
+  max-width: 80rem;
 }
 
 .research-tasks-content {
@@ -1854,7 +1893,8 @@ h6 {
   display: grid;
   gap: 0;
   margin: 0;
-  padding-left: 1.6rem;
+  padding-left: 0;
+  list-style: none;
 }
 
 .research-task-item {
@@ -1862,7 +1902,7 @@ h6 {
   grid-template-columns: minmax(30rem, 2.5fr) minmax(12rem, 1fr) minmax(12rem, 1fr) minmax(13rem, 1.15fr);
   gap: 0.75rem 1rem;
   align-items: baseline;
-  padding: 0.75rem 0 0.75rem 0.25rem;
+  padding: 0.75rem 0;
   border-bottom: 1px solid rgb(226 232 240);
 }
 
@@ -1899,7 +1939,7 @@ h6 {
 
 @media (max-width: 767px) {
   .research-tasks {
-    width: min(calc(100% - 2rem), 96rem);
+    width: min(calc(100% - 2rem), 80rem);
   }
 
   .research-task-item {
@@ -1910,7 +1950,7 @@ h6 {
 
 /* Fit the research overview into the open space below the homepage introduction. */
 .resume-biography-overview {
-  margin-top: 2.25rem;
+  margin-top: -2rem;
 }
 
 .resume-biography-overview .research-overview {
@@ -1922,9 +1962,9 @@ h6 {
 }
 
 .resume-biography-overview .research-overview-inner {
-  border-top: 1px solid rgb(203 213 225);
+  border: 0;
   border-bottom: 0;
-  padding-block: 1.35rem 0;
+  padding: 0;
 }
 
 .dark .resume-biography-overview .research-overview-inner {
@@ -1942,11 +1982,16 @@ h6 {
 }
 
 .resume-biography-overview .research-overview-figure {
-  margin-top: 1rem;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .resume-biography-overview .research-overview-figure img {
-  max-height: 9rem;
+  width: 100%;
+  height: auto;
+  max-height: none;
   object-fit: contain;
 }
 
@@ -1993,10 +2038,202 @@ h6 {
 
 @media (max-width: 767px) {
   .resume-biography-overview {
-    margin-top: 1.5rem;
+    margin-top: -1.5rem;
   }
 
   .resume-biography-overview .research-flow {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Homepage profile layout: identity left, details right, research full width below. */
+.resume-biography-profile-grid {
+  display: grid;
+  grid-template-columns: minmax(14rem, 0.36fr) minmax(0, 1fr);
+  gap: 2rem 3rem;
+  align-items: start;
+}
+
+.resume-biography-identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  text-align: center;
+}
+
+.resume-biography-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding-top: 1.25rem;
+  gap: 1rem;
+}
+
+.resume-biography-details > .flex.flex-wrap.justify-center {
+  justify-content: flex-start;
+}
+
+.resume-biography-details .resume-biography-quick-links {
+  max-width: 32rem;
+  margin-top: 0;
+}
+
+.resume-biography-research {
+  box-sizing: border-box;
+  width: min(calc(100% - 3rem), 80rem);
+  max-width: 80rem;
+  margin-top: 1.5rem;
+  margin-inline: auto;
+  border-top: 1px solid rgb(226 232 240);
+  padding-block: 1.25rem;
+}
+
+.dark .resume-biography-research {
+  border-color: rgb(71 85 105);
+}
+
+.resume-biography-research .resume-biography-overview {
+  margin-top: 0.75rem;
+}
+
+.resume-biography-intro-body {
+  margin-top: 0.9rem;
+}
+
+.resume-biography-intro-body p:last-child {
+  margin-bottom: 0;
+}
+
+.resume-biography-research .prose,
+.resume-biography-research .bio-text {
+  width: 100%;
+  max-width: none;
+}
+
+.resume-biography-research .research-overview {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.resume-biography-research .research-overview-figure {
+  width: 100%;
+}
+
+.resume-biography-research .research-overview-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  max-width: none;
+  image-rendering: auto;
+}
+
+.resume-biography-research .research-overview-mission {
+  max-width: none;
+  margin: 1rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .resume-biography-profile-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .resume-biography-details {
+    align-items: center;
+    padding-top: 0;
+    text-align: center;
+  }
+
+  .resume-biography-details > .flex.flex-wrap.justify-center {
+    justify-content: center;
+  }
+
+    .resume-biography-research {
+      width: min(calc(100% - 2rem), 80rem);
+      margin-top: 1.25rem;
+      padding-block: 1rem;
+    }
+}
+
+/* Researcher history: place career and degrees side by side on wider screens. */
+#section-resume-experience .mx-auto.w-full.max-w-4xl {
+  max-width: 80rem;
+}
+
+#section-resume-experience .mx-auto.w-full.max-w-4xl > .flex.flex-col.gap-16 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+#section-resume-experience .mx-auto.w-full.max-w-4xl > .flex.flex-col.gap-16 > .w-full {
+  min-width: 0;
+}
+
+#section-resume-experience .mx-auto.w-full.max-w-4xl > .flex.flex-col.gap-16 > .w-full > h2 {
+  margin-bottom: 1.5rem;
+}
+
+/* Keep the career list concise: role, organization, and period are sufficient here. */
+#section-resume-experience .mx-auto.w-full.max-w-4xl > .flex.flex-col.gap-16 > .w-full:first-child .prose {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  #section-resume-experience .mx-auto.w-full.max-w-4xl > .flex.flex-col.gap-16 {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+/* Keep the UWB LOS/NLOS example figures compact and comparable. */
+.research-image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.research-image-grid figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgb(226 232 240);
+  border-radius: 0.75rem;
+  background: rgb(248 250 252);
+}
+
+.research-image-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.research-image-grid figcaption {
+  padding: 0.5rem 0.65rem;
+  color: rgb(71 85 105);
+  font-size: 0.8rem;
+  line-height: 1.35;
+  text-align: center;
+}
+
+.dark .research-image-grid figure {
+  border-color: rgb(71 85 105);
+  background: rgb(15 23 42);
+}
+
+.dark .research-image-grid figcaption {
+  color: rgb(203 213 225);
+}
+
+@media (max-width: 767px) {
+  .research-image-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

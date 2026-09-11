@@ -1,5 +1,5 @@
 {{- $content := .wcBlock.content -}}
-<section class="research-overview{{ if not $content.stages }} research-overview--image-only{{ end }}" aria-labelledby="research-overview-title">
+<section class="research-overview{{ if not $content.stages }} research-overview--image-only{{ end }}"{{ with $content.title }} aria-labelledby="research-overview-title"{{ else }} aria-label="주요 연구 개요"{{ end }}>
   <div class="research-overview-inner">
     {{ with $content.title }}
       <h2 id="research-overview-title" class="research-overview-title">{{ . | markdownify | emojify }}</h2>
@@ -11,23 +11,25 @@
       {{ $image_params := . }}
       {{ with resources.Get (path.Join "media" .filename) }}
         <figure class="research-overview-figure">
-          <img src="{{ .RelPermalink }}" alt="{{ $image_params.alt_text | default "연구 흐름: 저 SNR 레이다 신호 입력부터 시스템 구현까지의 5단계 연구 과정" }}" loading="lazy">
+          <img src="{{ .RelPermalink }}" alt="{{ $image_params.alt_text | default "연구 흐름: 저 SNR 레이다 신호 입력부터 시스템 구현까지의 5단계 연구 과정" }}" width="{{ .Width }}" height="{{ .Height }}" loading="eager" fetchpriority="high" decoding="sync">
           {{ with $image_params.caption }}<figcaption>{{ . | markdownify | emojify }}</figcaption>{{ end }}
         </figure>
       {{ end }}
     {{ end }}
-    <div class="research-flow research-flow--fallback">
-      {{ range $index, $stage := $content.stages }}
-        {{ if gt $index 0 }}
-          <span class="research-flow-arrow" aria-hidden="true">→</span>
+    {{ with $content.stages }}
+      <div class="research-flow research-flow--fallback">
+        {{ range $index, $stage := . }}
+          {{ if gt $index 0 }}
+            <span class="research-flow-arrow" aria-hidden="true">→</span>
+          {{ end }}
+          <div class="research-flow-stage">
+            {{ with $stage.eyebrow }}<span class="research-flow-eyebrow">{{ . }}</span>{{ end }}
+            <h3>{{ $stage.title }}</h3>
+            {{ with $stage.detail }}<p>{{ . }}</p>{{ end }}
+          </div>
         {{ end }}
-        <div class="research-flow-stage">
-          {{ with $stage.eyebrow }}<span class="research-flow-eyebrow">{{ . }}</span>{{ end }}
-          <h3>{{ $stage.title }}</h3>
-          {{ with $stage.detail }}<p>{{ . }}</p>{{ end }}
-        </div>
-      {{ end }}
-    </div>
+      </div>
+    {{ end }}
     {{ with $content.mission }}
       <p class="research-overview-mission">{{ . | markdownify | emojify }}</p>
     {{ end }}
