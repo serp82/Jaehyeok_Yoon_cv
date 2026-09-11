@@ -14,19 +14,13 @@ result_highlight: "신호 분리·인지 · 실시간 처리 · 자동 평가"
 technology_tags:
   - Spectrum Sharing
   - Multi-Label Classification
-  - OFDM
   - RF Signal Identification
 summary: "이종 RF 신호가 공존·중첩되는 환경에서 신호 분리·인지와 실시간 평가를 연결한 시스템 연구입니다."
-image:
-  filename: figures/radar-communication-separation.png
-  alt_text: Radar and communication signal separation in a coexisting spectrum
-  caption: "공존 주파수 환경에서 레이더·통신 신호를 분리하고 인지하는 핵심 구조"
 links: []
 tags:
   - signal identification
   - spectrum sharing
   - multi-label recognition
-  - OFDM
 ---
 
 ## 문제 정의
@@ -50,16 +44,14 @@ tags:
 - **Fading-based identification:** 페이딩 조건이 전파 식별과 주파수 공유 판단에 미치는 영향을 평가합니다.
 - **Overlapped-signal recognition:** 이종 신호가 중첩되는 환경에서 원하는 신호와 간섭 신호를 구분합니다.
 - **LPI multi-label recognition:** 중첩된 LPI 레이더 신호 인지를 위해 ResNeXt 기반 다중 라벨 분류를 적용합니다.
-- **OFDM signal processing:** DJI OcuSync 프로토콜 기반 OFDM 드론 신호 복조 연구로 실제 수신 처리 체인과 연결합니다.
 
 ## 실제 검증
 
 - **2021:** 페이딩 기반의 전파식별 방법과 주파수 공유 방법에 대한 평가 연구
 - **2022–2023:** 이종 신호 중첩 환경 전파식별 방법과 주파수 공유방법에 대한 평가 연구
 - **2023:** LPI 레이다 중첩 신호 인지를 위한 ResNeXt 기반 다중 라벨 분류 학회 발표
-- **2024–현재:** DJI OcuSync 프로토콜 기반의 OFDM 드론 신호 복조 구현
 
-학회 발표와 ETRI·LIG 연구과제를 통해 공존 신호 분석에서 다중 라벨 인식과 실제 OFDM 수신 처리로 연구 범위를 확장했습니다.
+학회 발표와 ETRI 연구과제를 통해 공존 신호 분석에서 다중 라벨 인식과 실시간 평가 시스템으로 연구 범위를 확장했습니다.
 
 ![실시간 송수신 및 자동 평가 시스템](figures/realtime-evaluation-system.png)
 
@@ -75,10 +67,8 @@ tags:
 
 *신호 인지 결과를 확인하는 웹 기반 실시간 평가 화면*
 
-이 연구 축은 단일 파형 분류를 넘어, 중첩·공존 환경에서 신호를 식별하고 필요한 간섭 대응과 수신 처리를 연결하는 실시간 신호 인지 시스템으로 확장되었습니다.
+이 연구 축은 단일 파형 분류를 넘어, 중첩·공존 환경에서 신호를 식별하고 자동 평가까지 연결하는 실시간 신호 인지 시스템으로 확장되었습니다.
 
 **관련 학회 발표** · LPI 레이다 중첩 신호 인지를 위한 ResNeXt 기반 다중 라벨 분류 · 한국통신학회 하계종합학술발표회 · 제주 · 2023.06
 
-**관련 수행 과제** · DJI OcuSync 프로토콜 기반의 OFDM 드론 신호 복조 구현 · 엘아이지넥스원 (LIG) · 2024.03–현재
-
-[전체 수행 과제 보기](../../rd-projects/)
+[수행 과제 전체 보기](../../research/#research-tasks)

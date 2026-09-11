@@ -7,11 +7,6 @@ design:
   spacing: '5rem'
 
 sections:
-  - block: research-field
-    id: research-field
-    content:
-      title: 연구 분야
-      shared_research: true
   - block: research-highlights
     id: research-publications
     content:
