@@ -25,7 +25,7 @@ summary: "저 SNR 환경에서 펄스 검출과 시간·주파수 구조 복원�
 image:
   filename: figures/preview.png
   alt_text: "저 SNR 레이다 신호 검출과 제원 추정 연구 개요"
-  caption: "저 SNR 레이다 신호 검출·제원 추정 연구의 전체 개요도"
+  caption: "※ 본 이미지는 연구의 전체 흐름을 이해하기 쉽게 설명하기 위해 AI로 제작한 개념도이며, 실제 실험 결과 이미지는 아닙니다."
 links: []
 tags:
   - pulse detection
@@ -282,4 +282,3 @@ Frequency-domain parameter인 BW와 Fc는 STFT에서 radar가 점유하는 frequ
 Jaehyeok Yoon, Siho Lee, Woojin Yun, and Haewoon Nam, “[High-Accuracy Radar Parameter Estimation Under Low SNR Environments](../../publications/lpi-radar-parameter-estimation/),” *IEEE Access*, vol. 13, pp. 171170–171184, 2025.
 
 </div>
-

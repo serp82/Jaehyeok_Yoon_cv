@@ -23,7 +23,7 @@ summary: "DSAE로 잡음을 억제하고 MAAE의 known waveform memory 기반 �
 image:
   filename: figures/overview.png
   alt_text: "비지도 학습 기반 미지 레이더 파형 탐지 연구 개요"
-  caption: "저 SNR 환경에서 known과 unknown 레이다 파형을 구분하는 DSAE–MAAE 처리 흐름"
+  caption: "※ 본 이미지는 연구의 전체 흐름을 이해하기 쉽게 설명하기 위해 AI로 제작한 개념도이며, 실제 실험 결과 이미지는 아닙니다."
 links: []
 tags:
   - unknown waveform detection

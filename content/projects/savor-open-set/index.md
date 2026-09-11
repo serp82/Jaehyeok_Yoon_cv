@@ -23,7 +23,7 @@ summary: "레이더 시간·주파수 표현과 semantic attribute를 VLM/CLIP e
 image:
   filename: figures/preview_v3.png
   alt_text: "Vision-Language 기반 open-set 레이다 파형 인식 연구 개요"
-  caption: "시간·주파수 특성과 의미 정보를 연결한 VLM 기반 open-set 인식 전체 구조"
+  caption: "※ 본 이미지는 연구의 전체 흐름을 이해하기 쉽게 설명하기 위해 AI로 제작한 개념도이며, 실제 실험 결과 이미지는 아닙니다."
 links: []
 tags:
   - VLM
@@ -201,14 +201,6 @@ Closed-set accuracy도 높은 수준을 유지해 unknown rejection 향상이 kn
 {{< case-figure src="figures/single_unknown_auc_oscr.png" alt="Single-Unknown 조건의 AUC-OSCR 성능 비교" type="Result" caption="그림 6. Single-Unknown 조건에서 SAVOR와 baseline CLIP, TCN, DSAE-MAAE의 AUC-OSCR을 SNR별로 비교한 결과." description="대부분의 SNR에서 known classification과 unknown rejection을 함께 고려한 SAVOR의 성능을 비교한다." >}}
 
 {{< case-figure src="figures/known-unknown-performance.png" alt="Known waveform classification 성능 비교" type="Result" caption="그림 7. Known waveform classification 성능을 비교해 open-set rejection 성능 향상과 known class recognition 유지 여부를 함께 확인한 결과." description="unknown rejection을 강화하면서 known waveform classification 성능이 유지되는지를 보여준다." >}}
-
-## Ablation — 각 구성 요소가 필요한 이유
-
-비교 항목은 Full SAVOR, TDU only, IVU only, Stage 1 only, class-name CLIP으로 구성해 각 구성 요소의 역할을 확인합니다. Stage 1은 semantic attribute alignment만으로도 class-name prompt보다 known representation과 open-set separability를 개선하는 기준을 제공합니다.
-
-TDU는 text side에서 unknown semantic direction을 추가해 open-set regularization을 강화하고, IVU는 image space의 inter-class boundary를 조정해 ambiguous region의 separation을 개선합니다. IVU만 사용했을 때 일부 known accuracy가 감소할 수 있으므로 각 component가 모든 metric을 개별적으로 항상 향상시킨다고 해석하지 않습니다.
-
-Full SAVOR는 TDU와 IVU의 complementary effect를 결합해 known classification과 unknown rejection 사이의 균형을 가장 잘 맞추는 구성을 확인하기 위한 모델입니다.
 
 ## 연구 2와의 연결 및 연구의 한계
 

@@ -2237,3 +2237,20 @@ h6 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Tighten only the transitions between adjacent research sections. */
+#core-research-projects {
+  padding-bottom: 1rem !important;
+}
+
+#extended-research-projects {
+  padding-top: 1rem !important;
+}
+
+#research-field {
+  padding-bottom: 1rem !important;
+}
+
+#research-publications {
+  padding-top: 1rem !important;
+}
