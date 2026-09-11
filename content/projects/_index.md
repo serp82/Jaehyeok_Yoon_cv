@@ -4,6 +4,15 @@ date: 2026-09-11
 type: landing
 
 sections:
+  - block: research-overview
+    id: research-background
+    content:
+      title: 연구 배경
+      text: 레이다·통신 신호를 실제 전자전 및 무선 환경에서 수집·분석하고, 신호처리·딥러닝·SDR/FPGA 기술로 연결합니다.
+      image:
+        filename: electromagnetic_environment.png
+        alt_text: "전자전 환경에서 intercepted signal을 수집하는 전체 연구 배경"
+        caption: "전체 연구 배경: 전자전 환경에서 intercepted signal을 수집·분석하는 상황"
   - block: research-projects
     content:
       title: 연구 실적

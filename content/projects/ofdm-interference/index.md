@@ -17,10 +17,6 @@ technology_tags:
   - Interference Removal
   - Signal Demodulation
 summary: "실제 연구과제에서 OFDM 드론 신호 복조와 레이다 간섭 제거를 연결한 수신 신호처리 연구입니다."
-image:
-  filename: figures/electromagnetic_environment.png
-  alt_text: "전자전 환경에서 intercepted signal을 수집하는 연구 배경 개념도"
-  caption: "전자전 환경에서 수집된 통신·레이다 신호를 분석하는 연구 배경"
 links: []
 tags:
   - OFDM
@@ -32,10 +28,6 @@ tags:
 ## 문제 정의
 
 전자전·주파수 공존 환경에서는 레이다 신호와 통신 신호가 같은 대역에서 중첩될 수 있습니다. 이때 통신 신호의 구조를 보존하면서 레이다 간섭을 분리하고, OFDM 수신·복조 단계까지 연결하는 수신 체인이 필요합니다.
-
-![전자전 환경에서 intercepted signal을 수집하는 연구 배경](figures/electromagnetic_environment.png)
-
-[전자전 환경 연구 배경 figure PDF](figures/electromagnetic_environment.pdf)
 
 ## 제안 방법
 

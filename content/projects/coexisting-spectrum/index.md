@@ -17,10 +17,6 @@ technology_tags:
   - OFDM
   - RF Signal Identification
 summary: "이종 RF 신호가 공존·중첩되는 환경에서 전파 식별, 다중 라벨 인식, 주파수 공유와 OFDM 처리를 연결한 연구 축입니다."
-image:
-  filename: figures/electromagnetic_environment.png
-  alt_text: "전자전 환경에서 intercepted signal을 수집하는 연구 배경 개념도"
-  caption: "전자전 환경에서 intercepted signal을 수집·분석하는 연구 배경"
 links: []
 tags:
   - signal identification
@@ -32,10 +28,6 @@ tags:
 ## 문제 정의
 
 전자전과 주파수 공유 환경에서는 여러 RF 신호가 같은 대역에서 공존하거나 중첩됩니다. 관측된 신호에서 원하는 신호를 식별하고, 간섭과 공존 조건을 고려해 다음 신호처리 단계로 연결하는 것이 핵심 문제입니다.
-
-![전자전 환경에서 intercepted signal을 수집하는 연구 배경](figures/electromagnetic_environment.png)
-
-[전자전 환경 연구 배경 figure PDF](figures/electromagnetic_environment.pdf)
 
 ## 제안 방법
 

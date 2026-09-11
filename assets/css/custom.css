@@ -1487,6 +1487,10 @@ h6 {
     display: none;
   }
 
+  .research-overview--image-only .research-overview-figure {
+    display: block;
+  }
+
   .research-flow {
     grid-template-columns: 1fr;
   }

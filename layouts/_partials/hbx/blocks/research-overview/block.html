@@ -1,5 +1,5 @@
 {{- $content := .wcBlock.content -}}
-<section class="research-overview" aria-labelledby="research-overview-title">
+<section class="research-overview{{ if not $content.stages }} research-overview--image-only{{ end }}" aria-labelledby="research-overview-title">
   <div class="research-overview-inner">
     {{ with $content.title }}
       <h2 id="research-overview-title" class="research-overview-title">{{ . | markdownify | emojify }}</h2>
