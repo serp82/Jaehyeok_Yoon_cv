@@ -375,6 +375,13 @@
         </div>
         {{ end }}
 
+        {{ $overview_raw := index $content "research_overview" }}
+        {{ if and $overview_raw (reflect.IsMap $overview_raw) }}
+          <div class="resume-biography-overview">
+            {{ partial "hbx/blocks/research-overview/block.html" (dict "wcPage" $page "wcBlock" (dict "content" $overview_raw) "wcIdentifier" "home-research-overview") }}
+          </div>
+        {{ end }}
+
         {{/* CV Download Button */}}
         {{ $button_raw := index $content "button" }}
         {{ if and $button_raw (reflect.IsMap $button_raw) }}

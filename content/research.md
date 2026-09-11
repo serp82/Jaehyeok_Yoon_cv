@@ -7,6 +7,14 @@ design:
   spacing: '5rem'
 
 sections:
+  - block: research-field
+    id: research-field
+    content:
+      title: 연구 분야
+      text: |-
+        **전공분야: 레이더 신호처리**
+
+        저 SNR·비협조 수신 환경에서 레이더 신호를 검출·복원하고 주요 제원을 추정합니다. 학습되지 않은 파형과 공존 신호를 인식하는 AI 기반 방법을 설계하고, SDR·USRP·RFNoC·FPGA 구현을 통해 실제 수신 환경의 적용 가능성을 검증합니다.
   - block: research-highlights
     id: research-publications
     content:
