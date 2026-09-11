@@ -95,7 +95,7 @@ sections:
   - block: resume-experience
     id: experience
     content:
-      title: Experience & Education
+      title: 연구자 이력
       username: me
     design:
       date_format: '2006년 1월'
@@ -214,7 +214,7 @@ sections:
     content:
       title: Full CV / Additional Information
       text: |-
-        [Research records](research/) · [Experience & Education](experience/) · [All R&D projects](rd-projects/)
+        [Research records](research/) · [연구자 이력](experience/) · [All R&D projects](rd-projects/)
     design:
       columns: '1'
 ---

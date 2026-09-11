@@ -1,0 +1,21 @@
+{{- $content := .wcBlock.content -}}
+<section class="coursework-section" aria-labelledby="coursework-title">
+  <div class="coursework-inner">
+    {{ with $content.title }}
+      <h2 id="coursework-title" class="coursework-title">{{ . | markdownify | emojify }}</h2>
+    {{ end }}
+    <div class="coursework-grid">
+      {{ range $content.programs }}
+        <article class="coursework-program">
+          <header class="coursework-program-header">
+            <h3>{{ .title }}</h3>
+            {{ with .gpa }}<p class="coursework-gpa">{{ . }}</p>{{ end }}
+          </header>
+          <ul class="coursework-list">
+            {{ range .courses }}<li>{{ . }}</li>{{ end }}
+          </ul>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+</section>

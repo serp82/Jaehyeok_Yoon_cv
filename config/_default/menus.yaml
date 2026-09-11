@@ -10,7 +10,7 @@ main:
   - name: 연구실적
     url: research/
     weight: 15
-  - name: 경험
+  - name: 연구자 이력
     url: experience/
     weight: 20
   - name: 프로젝트
