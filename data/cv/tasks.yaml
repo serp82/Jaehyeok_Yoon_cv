@@ -1,0 +1,31 @@
+items:
+  - title: 위성신호 수집 및 분석 테스트베드
+    period: 2025.07.01–현재
+    organization: 엘아이지넥스원 (LIG)
+  - title: 불완전 수신신호 환경에서의 신속 자동 다중표적 추적기술 연구
+    period: 2024.09.13–현재
+    organization: 국방기술진흥연구소
+  - title: 자율주행 자동 체화인지 및 제어 시스템을 위한 능동추론 기반의 인간형 기계학습 기술 개발
+    period: 2024.04.01–현재
+    organization: 정보통신기획평가원 (IITP)
+  - title: DJI OcuSync 프로토콜 기반의 OFDM 드론 신호 복조 구현
+    period: 2024.03.01–2025.09.25
+    organization: 엘아이지넥스원 (LIG)
+  - title: 이종 신호 중첩 환경 전파식별 방법과 주파수 공유방법에 대한 평가 연구
+    period: 2023.01.01–2023.12.31
+    organization: 한국전자통신연구원 (ETRI)
+  - title: 머신러닝 기반 미약신호 검출 및 제원 추정 모델 연구
+    period: 2022.05.01–2024.04.30
+    organization: 엘아이지넥스원 (LIG)
+  - title: 개인화된 주행스타일 및 인지예측 기반 딥러닝 자율주행 기술 연구
+    period: 2022.03.01–2025.02.29
+    organization: 한국연구재단 (NRF)
+  - title: 이종 신호 중첩 환경 전파식별 방법과 주파수 공유방법에 대한 평가 연구
+    period: 2022.01.01–2022.12.31
+    organization: 한국전자통신연구원 (ETRI)
+  - title: 페이딩 기반의 전파식별 방법과 주파수 공유 방법에 대한 평가 연구
+    period: 2021.04.16–2021.11.30
+    organization: 한국전자통신연구원 (ETRI)
+  - title: GPS 비의존적 군집 무인기용 고정밀 자율 위치 측위 기술 연구
+    period: 2019.11.29–2021.12.31
+    organization: 한국연구재단 (NRF)

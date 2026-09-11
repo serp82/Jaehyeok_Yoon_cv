@@ -1,4 +1,14 @@
 {{- $content := .wcBlock.content -}}
+{{- $patents := $content.patents -}}
+{{- $software := $content.software -}}
+{{- $awards := $content.awards -}}
+{{- if $content.shared_records -}}
+  {{- with site.Data.cv.supporting -}}
+    {{- $patents = .patents -}}
+    {{- $software = .software -}}
+    {{- $awards = .awards -}}
+  {{- end -}}
+{{- end -}}
 <section class="research-supporting" aria-labelledby="research-supporting-title">
   <div class="research-supporting-inner">
     {{ with $content.title }}
@@ -9,7 +19,7 @@
         <section class="research-supporting-group">
           <h3>특허</h3>
           <ul>
-            {{ range $content.patents }}
+            {{ range $patents }}
               <li>
                 <strong>{{ .title }}</strong>
                 <span class="research-record-meta">{{ .number }} · {{ .date }}</span>
@@ -20,7 +30,7 @@
         <section class="research-supporting-group">
           <h3>소프트웨어 등록</h3>
           <ul>
-            {{ range $content.software }}
+            {{ range $software }}
               <li><strong>{{ .name }}</strong><span class="research-record-meta">{{ .registration }}</span></li>
             {{ end }}
           </ul>
@@ -29,7 +39,7 @@
       <section class="research-supporting-group">
         <h3>수상 실적</h3>
         <ul>
-          {{ range $content.awards }}
+          {{ range $awards }}
             <li><strong>{{ .name }}</strong><span class="research-record-meta">{{ .awarder }} · {{ .date }}</span></li>
           {{ end }}
         </ul>

@@ -2,6 +2,7 @@
 {{- $publications := where site.RegularPages "Section" "publications" -}}
 {{- $sci := where $publications "Params.publication_category" "SCI" -}}
 {{- $kci := where $publications "Params.publication_category" "KCI" -}}
+{{- $exclude_titles := $content.exclude_titles | default (slice) -}}
 {{- $sci = sort $sci "Date" "desc" -}}
 {{- $kci = sort $kci "Date" "desc" -}}
 
@@ -19,13 +20,17 @@
     <section class="research-publications-group" aria-labelledby="research-publications-sci-title">
       <h3 id="research-publications-sci-title">SCI</h3>
       {{ range $sci }}
-        {{ partial "views/citation.html" (dict "item" .) }}
+        {{ if not (in $exclude_titles .Title) }}
+          {{ partial "views/citation.html" (dict "item" .) }}
+        {{ end }}
       {{ end }}
     </section>
     <section class="research-publications-group" aria-labelledby="research-publications-kci-title">
       <h3 id="research-publications-kci-title">KCI</h3>
       {{ range $kci }}
-        {{ partial "views/citation.html" (dict "item" .) }}
+        {{ if not (in $exclude_titles .Title) }}
+          {{ partial "views/citation.html" (dict "item" .) }}
+        {{ end }}
       {{ end }}
     </section>
   </div>

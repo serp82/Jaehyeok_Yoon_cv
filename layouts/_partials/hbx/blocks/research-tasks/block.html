@@ -1,0 +1,29 @@
+{{- $content := .wcBlock.content -}}
+{{- $tasks := $content.tasks -}}
+{{- if $content.shared_tasks -}}
+  {{- with site.Data.cv.tasks -}}
+    {{- $tasks = .items -}}
+  {{- end -}}
+{{- end -}}
+<section class="research-tasks" aria-labelledby="research-tasks-title">
+  <div class="research-tasks-inner">
+    {{ with $content.title }}
+      <h2 id="research-tasks-title" class="research-section-title">{{ . | markdownify | emojify }}</h2>
+    {{ end }}
+    {{ with $tasks }}
+      <div class="research-tasks-content">
+        <ol class="research-tasks-list">
+          {{ range . }}
+            <li class="research-task-item">
+              <strong class="research-task-title">{{ .title }}</strong>
+              <span class="research-task-meta">{{ .period }}</span>
+              <span class="research-task-meta">{{ .organization }}</span>
+            </li>
+          {{ end }}
+        </ol>
+      </div>
+    {{ else with $content.text }}
+      <div class="research-tasks-content">{{ . | markdownify | emojify }}</div>
+    {{ end }}
+  </div>
+</section>

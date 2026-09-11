@@ -84,13 +84,13 @@
   {{ end }}
 {{ end }}
 
-<div class="resume-biography py-8 px-4 sm:py-12 md:py-16 lg:py-24 xl:py-32 relative overflow-hidden">
+<div class="resume-biography py-4 px-4 sm:py-6 md:py-8 lg:py-10 xl:py-12 relative overflow-hidden">
   {{/* Add subtle top gradient for navbar transition */}}
   <div class="max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
+    <div class="resume-biography-profile-grid">
       
-      {{/* Left Column: Flexible span */}}
-      <div class="md:col-span-4 flex flex-col items-center text-center space-y-6 md:space-y-8">
+      {{/* Identity: portrait and name only */}}
+      <div class="resume-biography-identity">
         
         {{/* Banner Image */}}
         {{ $img := "" }}
@@ -226,6 +226,12 @@
             <p class="text-lg text-gray-600 dark:text-gray-400">({{ . }})</p>
           {{ end }}
           
+        </div>
+
+      </div>
+
+      {{/* Profile details: role, affiliations, social links, and quick links */}}
+      <div class="resume-biography-details">
           {{ $role_text := "" }}
           {{ with $profile.role }}
             {{ if eq (printf "%T" .) "string" }}
@@ -261,28 +267,24 @@
             {{ $aff_name = strings.TrimSpace $aff_name }}
             {{ $aff_url = strings.TrimSpace $aff_url }}
             {{ if $aff_name }}
-              <p class="text-lg text-gray-700 dark:text-gray-300">
-                {{ if $aff_url }}
-                  {{ $link := $aff_url }}
-                  {{ $scheme := (urls.Parse $link).Scheme }}
-                  {{ $target := "" }}
-                  {{ if not $scheme }}
-                    {{ if not (hasPrefix $link "#") }}
-                      {{ $link = $link | relLangURL }}
-                    {{ end }}
-                    {{ if eq (path.Ext $link) ".pdf" }}{{ $target = "target=\"_blank\" rel=\"noopener\"" }}{{ end }}
-                  {{ else if in (slice "http" "https") $scheme }}
-                    {{ $target = "target=\"_blank\" rel=\"noopener\"" }}
-                  {{ end }}
-                  <a href="{{ $link | safeURL }}" {{ $target | safeHTMLAttr }} class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{{ $aff_name }}</a>
-                {{ else }}
-                  {{ $aff_name }}
-                {{ end }}
-              </p>
+              <p class="text-lg text-gray-700 dark:text-gray-300 whitespace-pre-line">{{- if $aff_url -}}
+                {{- $link := $aff_url -}}
+                {{- $scheme := (urls.Parse $link).Scheme -}}
+                {{- $target := "" -}}
+                {{- if not $scheme -}}
+                  {{- if not (hasPrefix $link "#") -}}
+                    {{- $link = $link | relLangURL -}}
+                  {{- end -}}
+                  {{- if eq (path.Ext $link) ".pdf" -}}{{- $target = "target=\"_blank\" rel=\"noopener\"" -}}{{- end -}}
+                {{- else if in (slice "http" "https") $scheme -}}
+                  {{- $target = "target=\"_blank\" rel=\"noopener\"" -}}
+                {{- end -}}
+                <a href="{{ $link | safeURL }}" {{ $target | safeHTMLAttr }} class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">{{ $aff_name }}</a>
+              {{- else -}}
+                {{- $aff_name -}}
+              {{- end -}}</p>
             {{ end }}
           {{ end }}
-        </div>
-
         {{/* Social Icons */}}
         {{ $links_raw := $profile.links }}
         {{ $links := slice }}
@@ -337,10 +339,30 @@
           {{ end }}
         </div>
         {{ end }}
-      </div>
 
-      {{/* Right Column: Flexible span */}}
-      <div class="md:col-span-8">
+        {{ $quick_links_raw := index $content "quick_links" }}
+        {{ if reflect.IsSlice $quick_links_raw }}
+          <nav class="resume-biography-quick-links" aria-label="홈 바로가기">
+            {{ range $quick_links_raw }}
+              {{ $label_raw := index . "label" }}
+              {{ $url_raw := index . "url" }}
+              {{ if and $label_raw $url_raw }}
+                {{ $label := strings.TrimSpace (printf "%v" $label_raw) }}
+                {{ $url := strings.TrimSpace (printf "%v" $url_raw) }}
+                {{ if and $label $url }}
+                  <a href="{{ $url | relLangURL }}">
+                    {{ $label }} <span aria-hidden="true">→</span>
+                  </a>
+                {{ end }}
+              {{ end }}
+            {{ end }}
+          </nav>
+        {{ end }}
+      </div>
+    </div>
+
+    {{/* Research introduction and overview use the full content width below the profile row. */}}
+    <div class="resume-biography-research">
         
         {{/* Bio Section */}}
         {{ $bio_content := "" }}
@@ -352,29 +374,31 @@
           {{ with $profile.bio }}{{ $bio_content = printf "%v" . | emojify | $page.RenderString }}{{ end }}
         {{ end }}
         {{ with $bio_content }}
-        <div class="mb-12">
-          <div class="flex items-center gap-4 mb-8">
-            <div class="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/50 rounded-full flex items-center justify-center">
-              {{ partial "functions/get_icon" (dict "name" "identification" "attributes" "class='w-6 h-6 text-primary-600 dark:text-primary-400'") }}
-            </div>
-            {{ $i18n_about := i18n "about_me" }}
-            {{ $about_default := cond (eq $i18n_about "about_me") "Professional Summary" $i18n_about }}
-            {{ $about_heading := $about_default }}
-            {{ $about_heading_raw := index $headings "about" }}
-            {{ if eq (printf "%T" $about_heading_raw) "string" }}
-              {{ $about_heading_raw = strings.TrimSpace $about_heading_raw }}
-              {{ if ne $about_heading_raw "" }}
-                {{ $about_heading = $about_heading_raw }}
-              {{ end }}
+        <div class="resume-biography-intro">
+          {{ $i18n_about := i18n "about_me" }}
+          {{ $about_default := cond (eq $i18n_about "about_me") "Professional Summary" $i18n_about }}
+          {{ $about_heading := $about_default }}
+          {{ $about_heading_raw := index $headings "about" }}
+          {{ if eq (printf "%T" $about_heading_raw) "string" }}
+            {{ $about_heading_raw = strings.TrimSpace $about_heading_raw }}
+            {{ if ne $about_heading_raw "" }}
+              {{ $about_heading = $about_heading_raw }}
             {{ end }}
-            <h2 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white tracking-tight">{{ $about_heading }}</h2>
-          </div>
-          <div class="prose prose-lg dark:prose-invert text-gray-800 dark:text-gray-200 text-base sm:text-lg leading-relaxed">
+          {{ end }}
+          <h2 class="research-overview-title">{{ $about_heading }}</h2>
+          <div class="resume-biography-intro-body prose prose-lg dark:prose-invert text-gray-800 dark:text-gray-200 text-base sm:text-lg leading-relaxed">
             <div class="bio-text" {{ if $bio_style }}{{ (printf "style=\"%s\"" $bio_style) | safeHTMLAttr }}{{ end }}>
               {{ . }}
             </div>
           </div>
         </div>
+        {{ end }}
+
+        {{ $overview_raw := index $content "research_overview" }}
+        {{ if and $overview_raw (reflect.IsMap $overview_raw) }}
+          <div class="resume-biography-overview">
+            {{ partial "hbx/blocks/research-overview/block.html" (dict "wcPage" $page "wcBlock" (dict "content" $overview_raw) "wcIdentifier" "home-research-overview") }}
+          </div>
         {{ end }}
 
         {{/* CV Download Button */}}
@@ -523,7 +547,6 @@
           </div>
         </div>
         {{ end }}
-      </div>
     </div>
   </div>
 </div>

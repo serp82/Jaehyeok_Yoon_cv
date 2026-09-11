@@ -1,37 +1,38 @@
 {{- $content := .wcBlock.content -}}
-<section class="research-projects" aria-labelledby="research-projects-title">
+{{- $sectionID := .wcIdentifier | default "research-projects" -}}
+{{- $title := $content.title -}}
+{{- $text := $content.text -}}
+{{- $projects := $content.projects -}}
+{{- with $content.shared_group -}}
+  {{- with index site.Data.cv.research.groups . -}}
+    {{- $title = .title -}}
+    {{- $text = .text -}}
+    {{- $projects = .projects -}}
+  {{- end -}}
+{{- end -}}
+<section class="research-projects" aria-labelledby="{{ $sectionID }}-title">
   <div class="research-projects-header">
-    {{ with $content.title }}
-      <h2 id="research-projects-title">{{ . | markdownify | emojify }}</h2>
+    {{ with $title }}
+      <h2 id="{{ $sectionID }}-title">{{ . | markdownify | emojify }}</h2>
     {{ end }}
-    {{ with $content.text }}<p>{{ . | markdownify | emojify }}</p>{{ end }}
+    {{ with $text }}<p>{{ . | markdownify | emojify }}</p>{{ end }}
   </div>
-  <div class="research-project-grid">
-    {{ range $index, $path := $content.projects }}
+  <div class="research-project-grid{{ if $content.show_images }} research-project-grid--featured{{ end }}">
+    {{ range $index, $path := $projects }}
       {{ with site.GetPage $path }}
         {{ $project := . }}
         {{ $featured := partial "functions/get_featured_image.html" $project }}
-        <article class="research-project-card{{ if not $featured }} research-project-card--text-only{{ end }}">
-          {{ with $featured }}
-          <a class="research-project-media" href="{{ $project.RelPermalink }}" aria-label="연구 상세 보기: {{ $project.Title }}">
+        <article class="research-project-card{{ if $content.show_images }} research-project-card--featured{{ end }}">
+          {{ if $content.show_images }}
+            {{ with $featured }}
+            <a class="research-project-media" href="{{ $project.RelPermalink }}" aria-label="연구 상세 보기: {{ $project.Title }}">
               <img src="{{ .RelPermalink }}" alt="{{ with $project.Params.image }}{{ .alt_text | default $project.Title }}{{ else }}{{ $project.Title }}{{ end }}" loading="{{ if eq $index 0 }}eager{{ else }}lazy{{ end }}">
-          </a>
+            </a>
+            {{ end }}
           {{ end }}
           <div class="research-project-content">
-            <div class="research-project-meta">
-              {{ with $project.Params.project_number }}<span class="research-project-number">{{ . }}</span>{{ end }}
-              {{ with $project.Params.project_stage }}<span>{{ . }}</span>{{ end }}
-            </div>
             <h3><a href="{{ $project.RelPermalink }}">{{ $project.Title }}</a></h3>
             {{ with $project.Params.summary }}<p class="research-project-summary">{{ . }}</p>{{ end }}
-            {{ with $project.Params.result_highlight }}
-              <p class="research-project-result"><strong>핵심 내용</strong>{{ . }}</p>
-            {{ end }}
-            {{ with $project.Params.technology_tags }}
-              <ul class="research-project-tags" aria-label="기술 태그">
-                {{ range . }}<li>{{ . }}</li>{{ end }}
-              </ul>
-            {{ end }}
             <a class="cv-text-link research-project-link" href="{{ $project.RelPermalink }}">연구 상세 보기 <span aria-hidden="true">→</span></a>
           </div>
         </article>

@@ -1,0 +1,26 @@
+patents:
+  - title: 사람의 동작에 대한 정확한 인체 모션 감지를 위한 RGB-D 카메라 데이터와 레이더 포인트 클라우드를 활용한 스켈레톤 추출 기술
+    number: 등록번호 10-2842830
+    date: 2025.08.01
+  - title: 레이더를 통해 레이더 시스템의 간섭을 제거하는 OFDM 기반 드론 신호처리 장치 및 방법
+    number: 출원번호(대한민국) 10-2025-0191251
+    date: 2025.12.05
+  - title: 딥러닝 기반 저피탐 레이더 신호의 잡음 제거 및 파라미터 추출 방법, 이를 수행하는 장치 및 컴퓨터 프로그램
+    number: 출원번호(대한민국) 10-2024-0092816
+    date: 2024.07.15
+software:
+  - name: 파이썬 기반 Radar-Vision-Language(레이더-비전-언어) 구축
+    registration: 등록번호 C-2025-005640
+awards:
+  - name: ICNGC 2025 Best Paper Award
+    awarder: ICNGC
+    date: 2025.12.19
+  - name: 한국통신학회 국내논문지 우수논문상
+    awarder: 한국통신학회
+    date: 2025.11.20
+  - name: 제 4회 ERICA 해동창업경진대회 (대상)
+    awarder: 한양대학교
+    date: 2024.12.04
+  - name: 2023 4D 이미징 레이다 시스템 부트캠프 (우수상)
+    awarder: 한국전자파학회
+    date: 2023.08.24

@@ -121,9 +121,9 @@ Reconstruction-based detection은 known waveform pattern에서 벗어난 입력�
 
 이와 병행한 별도의 시스템 구현 연구에서는 대표적인 **STFT detector–CNN classifier** 체인을 RFNoC/FPGA에 구현하여, OTA 환경에서 레이다 처리 알고리즘의 하드웨어 적용 가능성을 검증했습니다.
 
-## 관련 연구 기록
+## 관련 논문 및 학회 발표
 
-- [Unsupervised Unknown Radar Waveform Detection](../../publications/unknown-radar-waveform-detection/) · *IEEE Transactions on Aerospace and Electronic Systems*
-- [SAVOR: Semantic Attribute-Guided Vision-Language Framework for Open-Set Radar Waveform Recognition](../../publications/semantic-attribute-guided-open-set-radar/) · *IEEE Transactions on Aerospace and Electronic Systems*
-- Joint Recognition of LPI Radar Signals Using a VLM with TFD-Text Alignment · ICNGC, 2025 · Best Paper Award
-- 지도 학습 기반 CLIP을 활용한 레이다 신호 스펙트로그램 식별 · 한국통신학회 동계종합학술발표회, 2026
+- Jaehyeok Yoon and Haewoon Nam, “[Unsupervised Unknown Radar Waveform Detection](../../publications/unknown-radar-waveform-detection/),” *IEEE Transactions on Aerospace and Electronic Systems*, vol. 61, no. 6, pp. 19316–19328, 2025. [DOI](https://doi.org/10.1109/TAES.2025.3618820)
+- Jaehyeok Yoon and Haewoon Nam, “[SAVOR: Semantic Attribute-Guided Vision-Language Framework for Open-Set Radar Waveform Recognition](../../publications/semantic-attribute-guided-open-set-radar/),” *IEEE Transactions on Aerospace and Electronic Systems*, under revision.
+- Jaehyeok Yoon, Haewoon Nam, and Jaerock Kwon (2025.12). “Joint Recognition of LPI Radar Signals Using a VLM with TFD-Text Alignment.” ICNGC, Da Nang, Vietnam. Best Paper Award.
+- 윤재혁, 남해운 (2026.02.04). “지도 학습 기반 CLIP을 활용한 레이다 신호 스펙트로그램 식별.” 2026년도 한국통신학회 동계종합학술발표회, 용평.

@@ -1,23 +1,30 @@
-{{ $content := .wcBlock.content }}
-<div class='max-w-prose research-records-block'>
-  {{ with $content.title }}
-    <h2 class='mb-6 text-3xl font-bold'>{{ . }}</h2>
-  {{ end }}
-  <div class='prose max-w-none'>
-    {{ with $content.summary }}<p><strong>{{ . }}</strong></p>{{ end }}
-    <ul class='research-record-list'>
-      {{ range $content.items }}
-        <li>
-          <span class='research-record-authors'>{{ .authors }}</span>, “{{ .title }},” {{ .venue }}, {{ .date }}
-          {{ with .badge }}
-            {{ if eq .class "award" }}
-              <span class='ml-1'>{{ partial "components/award_badge.html" (dict "award" (dict "name" .label) "variant" "inline") }}</span>
-            {{ else }}
-              <span class='ml-1 inline-flex items-center rounded-md px-2 py-0.5 text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200'>{{ .label }}</span>
-            {{ end }}
-          {{ end }}
-        </li>
-      {{ end }}
-    </ul>
+{{- $content := .wcBlock.content -}}
+<section class="research-publications research-conferences" aria-labelledby="research-conferences-title">
+  <div class="research-publications-header">
+    {{ with $content.title }}
+      <h2 id="research-conferences-title">{{ . | markdownify | emojify }}</h2>
+    {{ end }}
   </div>
-</div>
+  <div class="research-publications-list">
+    <div class="research-publications-group">
+    {{ range $content.items }}
+      {{ $date := printf "%v" .date }}
+      <div class="pub-list-item view-citation research-conference-item" style="margin-bottom: 1rem">
+        <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
+        <span class="article-metadata li-cite-author">{{ .authors }}</span>
+        {{ if ge (len $date) 4 }}({{ substr $date 0 4 }}). {{ end }}
+        <span class="underline">{{ .title }}</span>.
+        {{ .venue }}.
+        <span class="ml-2 inline-flex items-center rounded-md bg-primary-100 px-2 py-0.5 text-xs font-semibold text-primary-800 dark:bg-primary-900/40 dark:text-primary-200">학회 발표</span>
+        {{ with .badge }}
+          {{ if eq .class "award" }}
+            <span class="ml-1">{{ partial "components/award_badge.html" (dict "award" (dict "name" .label) "variant" "inline") }}</span>
+          {{ else }}
+            <span class="ml-1 inline-flex items-center rounded-md px-2 py-0.5 text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-200">{{ .label }}</span>
+          {{ end }}
+        {{ end }}
+      </div>
+    {{ end }}
+    </div>
+  </div>
+</section>
