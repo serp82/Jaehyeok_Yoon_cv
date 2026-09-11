@@ -86,15 +86,13 @@ sections:
     content:
       title: 기타 연구
       text: |-
-        대표 연구 외에 수행한 프로젝트를 공식 연구과제명으로 정리했습니다.
-
         - **위성신호 수집 및 분석 테스트베드** · 엘아이지넥스원 (LIG) · 2025.07.01–현재
         - **불완전 수신신호 환경에서의 신속 자동 다중표적 추적기술 연구** · 국방기술진흥연구소 · 2024.09.13–현재
         - **자율주행 자동 체화인지 및 제어 시스템을 위한 능동추론 기반의 인간형 기계학습 기술 개발** · 정보통신기획평가원 (IITP) · 2024.04.01–현재
         - **DJI OcuSync 프로토콜 기반의 OFDM 드론 신호 복조 구현** · 엘아이지넥스원 (LIG) · 2024.03.01–현재
         - **이종 신호 중첩 환경 전파식별 방법과 주파수 공유방법에 대한 평가 연구** · 한국전자통신연구원 (ETRI) · 2023.01.01–2023.12.31
 
-        <a class="cv-text-link" href="additional-research/">추가 프로젝트 보기 <span aria-hidden="true">→</span></a>
+        <a class="cv-text-link" href="additional-research/">기타 연구 상세 보기 <span aria-hidden="true">→</span></a>
 
         <a class="cv-text-link" href="rd-projects/">전체 수행 과제 보기 <span aria-hidden="true">→</span></a>
     design:
@@ -168,8 +166,6 @@ sections:
         **한양대학교 대학원 전자공학과** · 석·박사통합과정
 
         **한양대학교 ERICA캠퍼스 전자공학과** · 학사
-
-        상세 경력과 GPA·전공 이수 과목은 연구자 이력에서 확인할 수 있습니다.
 
         <a class="cv-text-link" href="experience/">연구자 이력 보기 <span aria-hidden="true">→</span></a>
         <a class="cv-text-link" href="research/">연구 실적 보기 <span aria-hidden="true">→</span></a>

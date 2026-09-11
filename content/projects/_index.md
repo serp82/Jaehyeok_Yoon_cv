@@ -17,8 +17,6 @@ sections:
     content:
       title: 기타 연구
       text: |-
-        대표 연구 외에 수행한 연구 경험입니다.
-
         ### 이종신호 중첩·주파수 공유 환경의 신호 인지
 
         여러 RF 신호가 동일 spectrum에서 공존하거나 중첩되는 환경에서 신호 식별, multi-label recognition, spectrum sharing, OFDM signal processing을 연구했습니다.
@@ -39,7 +37,7 @@ sections:
 
         ### Autonomous Driving / AI Research
 
-        개인화된 주행스타일 및 인지예측 기반 딥러닝 자율주행 연구와 자율주행 연구실 파견 경험을 포함합니다.
+        개인화된 주행스타일 및 인지예측 기반 딥러닝 자율주행 연구와 자율주행 연구실 파견.
 
         ### 기타 통신 신호 처리
 

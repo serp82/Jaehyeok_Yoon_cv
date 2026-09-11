@@ -1,5 +1,5 @@
 ---
-title: "추가 프로젝트"
+title: "기타 연구"
 date: 2026-09-11
 type: page
 ---
@@ -28,7 +28,7 @@ International Conference on ICT Convergence (ICTC), Jeju, Korea, 2021.10
 
 ## Autonomous Driving / AI Research
 
-개인화된 주행스타일 및 인지예측 기반 딥러닝 자율주행 연구와 자율주행 연구실 파견 경험을 포함합니다.
+개인화된 주행스타일 및 인지예측 기반 딥러닝 자율주행 연구와 자율주행 연구실 파견.
 
 ## 기타 통신 신호 처리
 

@@ -121,15 +121,9 @@ Reconstruction-based detection은 known waveform pattern에서 벗어난 입력�
 
 이와 병행한 별도의 시스템 구현 연구에서는 대표적인 **STFT detector–CNN classifier** 체인을 RFNoC/FPGA에 구현하여, OTA 환경에서 레이다 처리 알고리즘의 하드웨어 적용 가능성을 검증했습니다.
 
-향후에는 Open-Set Recognition 모델의 경량화와 실시간 구현으로 확장할 수 있습니다.
-
 ## 관련 연구 기록
 
 - [Unsupervised Unknown Radar Waveform Detection](../../publications/unknown-radar-waveform-detection/) · *IEEE Transactions on Aerospace and Electronic Systems*
 - [SAVOR: Semantic Attribute-Guided Vision-Language Framework for Open-Set Radar Waveform Recognition](../../publications/semantic-attribute-guided-open-set-radar/) · *IEEE Transactions on Aerospace and Electronic Systems*
 - Joint Recognition of LPI Radar Signals Using a VLM with TFD-Text Alignment · ICNGC, 2025 · Best Paper Award
 - 지도 학습 기반 CLIP을 활용한 레이다 신호 스펙트로그램 식별 · 한국통신학회 동계종합학술발표회, 2026
-
-## 연구 확장
-
-미확인 파형을 단순히 거부하는 단계에서, 파형의 의미 속성을 이용해 known / unknown 경계를 학습하는 단계로 확장했습니다. 다음 단계는 이 표현 학습 모델을 경량화하고 실시간 처리 환경에 맞추는 것입니다.
