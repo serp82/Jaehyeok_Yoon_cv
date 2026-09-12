@@ -132,7 +132,10 @@ jobs:
         HUGO_BLOX_LICENSE: ${{ secrets.HUGO_BLOX_LICENSE }}
       run: |
         echo "Hugo Cache Dir: $(hugo config | grep cachedir)"
-        hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+        # Use the site's configured custom domain as the canonical build base URL.
+        # configure-pages otherwise supplies the old project-path URL, which breaks
+        # asset paths when the site is served from jaehyeokyoon.xyz.
+        hugo --minify
 
     - name: Generate Pagefind search index (if applicable)
       run: |
