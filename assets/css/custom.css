@@ -4211,7 +4211,7 @@ h6 {
 
 @media (max-width: 767px) {
   .resume-biography-avatar-name {
-    gap: 0.14rem;
+    gap: 0.35rem;
     justify-content: center;
   }
 
@@ -4222,6 +4222,7 @@ h6 {
 
   .resume-biography-avatar-name > .space-y-3 {
     padding-top: 0;
+    transform: translateY(0);
   }
 
   .resume-biography-avatar-name h1 {
