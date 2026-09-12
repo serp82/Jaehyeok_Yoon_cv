@@ -164,6 +164,7 @@
           </div>
         {{ end }}
 
+        <div class="resume-biography-avatar-name">
         {{/* Avatar */}}
         {{ $status_icon := "" }}
         {{ $show_status := true }}
@@ -195,7 +196,7 @@
         </div>
         {{ end }}
 
-        {{/* Name and Role - Centered */}}
+        {{/* Name and Role - Right of portrait */}}
         <div class="space-y-3">
           {{/* Extract pronunciation for ruby annotation */}}
           {{ $name_pronunciation := "" }}
@@ -227,19 +228,29 @@
           {{ end }}
           
         </div>
+        </div>
 
       </div>
 
       {{/* Profile details: role, affiliations, social links, and quick links */}}
       <div class="resume-biography-details">
-          {{ $role_text := "" }}
+          {{ $role_lines := slice }}
           {{ with $profile.role }}
-            {{ if eq (printf "%T" .) "string" }}
-              {{ $role_text = . }}
+            {{ if reflect.IsSlice . }}
+              {{ $role_lines = . }}
+            {{ else if eq (printf "%T" .) "string" }}
+              {{ $role_lines = split . "\n" }}
             {{ end }}
           {{ end }}
-          {{ with $role_text }}
-            <p class="text-2xl font-semibold text-primary-600 dark:text-primary-400">{{ . | markdownify | emojify }}</p>
+          {{ if gt (len $role_lines) 0 }}
+            <div class="resume-biography-role-list">
+              {{ range $role_lines }}
+                {{ $role_line := strings.TrimSpace (printf "%v" .) }}
+                {{ if $role_line }}
+                  <p class="resume-biography-role-line text-base sm:text-lg font-bold text-primary-600 dark:text-primary-400">{{ $role_line | markdownify | emojify }}</p>
+                {{ end }}
+              {{ end }}
+            </div>
           {{ end }}
           
           {{ $affiliations_raw := $profile.affiliations }}
@@ -319,6 +330,16 @@
           {{ if $linkUrl }}
             {{ $scheme := (urls.Parse $linkUrl).Scheme }}
             {{ $target := "" }}
+            {{ $is_contact := in (slice "mailto" "tel") $scheme }}
+            {{ $copy_value := "" }}
+            {{ $copy_hint := "" }}
+            {{ if $is_contact }}
+              {{ $copy_value = replaceRE "^(mailto:|tel:)" "" $linkUrl }}
+              {{ $copy_hint = $copy_value }}
+              {{ if eq $scheme "tel" }}
+                {{ $copy_hint = replaceRE "^\\+82(10)([0-9]{4})([0-9]{4})$" "0$1-$2-$3" $copy_value }}
+              {{ end }}
+            {{ end }}
             {{ if not $scheme }}
               {{ if not (hasPrefix $linkUrl "#") }}
                 {{ $linkUrl = $linkUrl | relLangURL }}
@@ -328,11 +349,11 @@
               {{ $target = "target=\"_blank\" rel=\"noopener\"" }}
             {{ end }}
             <a href="{{ $linkUrl | safeURL }}" {{ $target | safeHTMLAttr }} 
-               aria-label="{{ $iconName }}"
-               {{ if $linkLabel }} title="{{ $linkLabel }}"{{ end }}
+               aria-label="{{ if $is_contact }}{{ if $linkLabel }}{{ $linkLabel }}{{ else }}Contact{{ end }} 복사{{ else }}{{ $iconName }}{{ end }}"
+               {{ if $is_contact }}data-copy-value="{{ $copy_value }}" data-copy-hint="{{ $copy_hint }} · 클릭하여 복사" data-copy-status="idle"{{ else if $linkLabel }}title="{{ $linkLabel }}"{{ end }}
                class="w-12 h-12 flex items-center justify-center rounded-full bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 
                       shadow-md hover:shadow-xl hover:scale-110 hover:-translate-y-1 
-                      transition-all duration-300 border border-gray-200 dark:border-gray-700">
+                      transition-all duration-300 border border-gray-200 dark:border-gray-700{{ if $is_contact }} contact-copy-link{{ end }}">
               {{ partial "functions/get_icon" (dict "name" $iconName "attributes" "class=\"w-6 h-6\"")  }}
             </a>
           {{ end }}
@@ -550,3 +571,52 @@
     </div>
   </div>
 </div>
+
+<script>
+  (() => {
+    const copyLinks = document.querySelectorAll('.contact-copy-link[data-copy-value]');
+    if (!copyLinks.length) return;
+
+    const fallbackCopy = (value) => {
+      const textArea = document.createElement('textarea');
+      textArea.value = value;
+      textArea.setAttribute('readonly', '');
+      textArea.style.position = 'fixed';
+      textArea.style.opacity = '0';
+      document.body.appendChild(textArea);
+      textArea.select();
+      const copied = document.execCommand('copy');
+      textArea.remove();
+      if (!copied) throw new Error('copy failed');
+    };
+
+    copyLinks.forEach((link) => {
+      link.addEventListener('click', async (event) => {
+        event.preventDefault();
+        const value = link.dataset.copyValue || '';
+        if (!value) return;
+
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(value);
+          } else {
+            fallbackCopy(value);
+          }
+          link.dataset.copyStatus = 'copied';
+          link.dataset.copyHint = '복사됨';
+          window.setTimeout(() => {
+            link.dataset.copyStatus = 'idle';
+            link.dataset.copyHint = `${value} · 클릭하여 복사`;
+          }, 1600);
+        } catch (error) {
+          link.dataset.copyStatus = 'error';
+          link.dataset.copyHint = '복사하지 못했습니다';
+          window.setTimeout(() => {
+            link.dataset.copyStatus = 'idle';
+            link.dataset.copyHint = `${value} · 클릭하여 복사`;
+          }, 1600);
+        }
+      });
+    });
+  })();
+</script>

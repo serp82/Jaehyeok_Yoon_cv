@@ -19,11 +19,14 @@ technology_tags:
   - Unknown Detection
 publication_refs:
   - /publications/unknown-radar-waveform-detection/
-summary: "DSAE로 잡음을 억제하고 MAAE의 known waveform memory 기반 복원 오차로 학습되지 않은 레이다 파형을 탐지한 연구입니다."
+summary: "저 SNR 환경에서 잡음을 억제하고 기지 파형의 메모리 기반 복원 오차를 이용해 미지 레이더 파형을 탐지한 연구입니다."
 image:
   filename: figures/overview.png
   alt_text: "비지도 학습 기반 미지 레이더 파형 탐지 연구 개요"
   caption: "※ 본 이미지는 연구의 전체 흐름을 이해하기 쉽게 설명하기 위해 AI로 제작한 개념도이며, 실제 실험 결과 이미지는 아닙니다."
+preview:
+  filename: figures/denoising-result-comparison.png
+  alt_text: "여러 레이더 파형의 복원 결과 비교"
 links: []
 tags:
   - unknown waveform detection
@@ -105,15 +108,76 @@ DSAE와 MAAE는 하나의 black-box classifier가 아니라 서로 다른 목적
 
 DSAE가 “신호를 보기 쉽게 만드는 단계”라면, MAAE는 “그 신호가 기존에 알고 있던 구조인지 판단하는 단계”입니다. 두 단계를 하나로 합치면 unknown까지 잘 복원하는 표현이 형성되어 known과 unknown의 error gap이 줄어들 수 있으므로, 각 단계의 학습 목적을 분리했습니다.
 
+{{< case-figure src="figures/denoising-result-comparison.png" alt="파형별 representation과 시간·주파수 복원 결과 비교" type="Experiment" caption="그림 4. 여러 waveform의 representation과 시간·주파수 복원 결과를 비교해 known structure가 유지되는지 확인한 결과." description="파형 종류가 달라도 복원 단계에서 비교 가능한 구조 표현을 유지하는지를 보여준다." >}}
+
 ## Latent size와 memory size가 중요한 이유
 
 DSAE의 latent vector가 너무 크면 signal뿐 아니라 noise까지 함께 reconstruct할 수 있습니다. 반대로 너무 작으면 waveform의 중요한 구조까지 사라져 known waveform도 제대로 복원하기 어렵습니다. 따라서 latent size는 신호 구조 보존과 noise reconstruction 억제 사이의 균형을 결정합니다.
 
 MAAE의 memory도 같은 trade-off를 가집니다. memory가 너무 작으면 known waveform의 다양한 구조를 저장하지 못하지만, 너무 크면 unknown waveform까지 유사한 memory pattern으로 reconstruct해 known과 unknown의 separation이 감소할 수 있습니다. 논문에서는 전체 SNR 범위를 고려한 balanced configuration으로 latent size e = 4, memory size N = 30을 사용했습니다.
 
-이 값들은 단순한 network tuning 값이 아니라, signal structure preservation과 noise·unknown reconstruction suppression 사이의 균형을 결정하는 핵심 설계 변수입니다.
+## 실험 파형 및 파라미터 구성
 
-## 실제 검증
+<div class="experiment-config">
+  <p class="experiment-config-lead">총 13 waveform types를 구성하고, 각 SNR·waveform type 조합마다 1,000개를 생성했습니다. CWD 기반 256×256 time-frequency image를 입력으로 사용해 SNR 0~−16 dB에서 AWGN, Rayleigh fading, USRP OTA 조건을 검증했습니다.</p>
+  <div class="experiment-config-table-wrap" tabindex="0">
+    <table class="experiment-config-table">
+      <caption>연구 2 시뮬레이션 파형 구성</caption>
+      <thead>
+        <tr>
+          <th scope="col">파형군</th>
+          <th scope="col">사용 파형</th>
+          <th scope="col">주요 생성 파라미터</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>FM</td>
+          <td>LFM</td>
+          <td><code>fc</code>, <code>BW</code>, signal length</td>
+        </tr>
+        <tr>
+          <td>Nonlinear FM</td>
+          <td>NLFM</td>
+          <td><code>fc</code>, <code>BW</code>, signal length · <code>Sinusoidal / Taylor</code></td>
+        </tr>
+        <tr>
+          <td>Phase Code</td>
+          <td>Barker</td>
+          <td><code>fc</code> · code length · samples/carrier cycle</td>
+        </tr>
+        <tr>
+          <td>Frequency Hopping</td>
+          <td>Costas</td>
+          <td>hop 수 · minimum frequency · signal length</td>
+        </tr>
+        <tr>
+          <td>Polyphase</td>
+          <td>Frank, P1–P4</td>
+          <td><code>fc</code> · samples/carrier cycle · frequency step/sub-code 수</td>
+        </tr>
+        <tr>
+          <td>Polytime</td>
+          <td>T1–T4</td>
+          <td><code>fc</code> · <code>BW</code> · segment 수 · signal length</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <details class="experiment-config-symbols">
+    <summary>파라미터 기호 보기</summary>
+    <p><code>fc</code>: carrier frequency · <code>BW</code>: bandwidth · <code>N</code>: number of time-domain samples · <code>Lc</code>: code length · <code>Ncc</code>: samples per carrier cycle · <code>Nhop</code>: number of hops · <code>fmin</code>: minimum frequency · <code>M</code>: discrete frequency steps · <code>Ns</code>: number of subcodes · <code>Ng</code>: number of segments</p>
+  </details>
+  <div class="experiment-config-summary" aria-label="연구 2 실험 요약">
+    <span class="experiment-config-chip">13 Waveform Types</span>
+    <span class="experiment-config-chip">1,000 / waveform / SNR</span>
+    <span class="experiment-config-chip">SNR 0~−16 dB</span>
+    <span class="experiment-config-chip">AWGN / Rayleigh / OTA</span>
+    <span class="experiment-config-chip">CWD 256×256</span>
+  </div>
+</div>
+
+## Experiments(시뮬레이션)
 
 ### Known / Unknown protocol
 
@@ -121,31 +185,25 @@ MAAE의 memory도 같은 trade-off를 가집니다. memory가 너무 작으면 k
 
 One-vs-rest protocol에서는 waveform 한 종류를 training에서 제외하고 test 단계에서 이를 unknown으로 두어 탐지 성능을 평가했습니다. 또한 two-unknown setting을 이용해 여러 종류의 unseen waveform이 동시에 등장하는 조건에서도 known과 unknown의 separation이 유지되는지 확인했습니다. 이 페이지의 최종 metric은 class를 맞히는 classification accuracy가 아니라 known / unknown separability를 평가하는 AUC입니다.
 
-### Channel robustness
+### 시뮬레이션 채널 조건
 
-평가 환경은 AWGN simulation, Rayleigh fading, GNU Radio와 USRP 기반 measured wireless condition을 포함합니다. Rayleigh 조건에서는 multipath와 Doppler를 추가해 AWGN보다 복잡한 propagation 환경에서도 reconstruction-error separation이 유지되는지 확인했습니다.
+시뮬레이션 채널은 AWGN과 Rayleigh fading으로 구성했습니다. Rayleigh 조건에서는 multipath와 Doppler를 추가해 AWGN보다 복잡한 propagation 환경에서도 reconstruction-error separation이 유지되는지 확인했습니다.
 
-USRP 실험에서는 waveform을 실제 OTA로 송수신하고 DC removal과 signal segmentation을 거친 뒤 CWD → DSAE → MAAE 전체 chain으로 unknown detection을 수행했습니다. 주요 설정은 sampling rate 500 kHz, waveform bandwidth 50 kHz, 약 1,000-sample waveform length입니다.
-
-{{< case-figure src="figures/denoising-result-comparison.png" alt="파형별 representation과 시간·주파수 복원 결과 비교" type="Experiment" caption="그림 4. 여러 waveform의 representation과 시간·주파수 복원 결과를 비교해 known structure가 유지되는지 확인한 결과." description="파형 종류가 달라도 복원 단계에서 비교 가능한 구조 표현을 유지하는지를 보여준다." >}}
-
-## 주요 성과
-
-<div class="research-metric-grid">
-  <div class="research-metric"><strong class="research-metric-value">AUC &gt; 0.77</strong><span class="research-metric-label">5-waveform case, SNR ≥ −12 dB</span></div>
-  <div class="research-metric"><strong class="research-metric-value">AUC &gt; 0.78</strong><span class="research-metric-label">9-waveform case, SNR ≥ −10 dB</span></div>
-  <div class="research-metric"><strong class="research-metric-value">3.04 ms</strong><span class="research-metric-label">DSAE + MAAE inference latency, RTX 3090</span></div>
-</div>
+### Unknown detection 결과
 
 5-waveform case에서는 SNR −12 dB 이상에서 AUC 0.77 이상을 유지했고, 9-waveform case에서는 SNR −10 dB 이상에서 AUC 0.78 이상을 유지했습니다. 저 SNR 영역에서 TDL 및 TCN 기반 comparison method보다 높은 unknown waveform detection 성능을 보였습니다.
 
-multiple-unknown 조건에서도 기존 방법 대비 separation을 유지했으며, Rayleigh fading과 실제 USRP 무선 환경에서도 known과 unknown을 구분하는 흐름이 동작했습니다. 다만 실제 측정 환경에서는 극저 SNR에서 AWGN simulation과 성능 차이가 나타났고, 약 −8 dB 이상에서 simulated AWGN과 유사한 수준으로 회복되는 경향을 확인했습니다.
+multiple-unknown 조건에서도 simulation에서 known과 unknown의 separation이 유지되는지 확인했습니다.
 
-{{< case-figure src="figures/unknown-detection-performance.png" alt="5개 레이다 파형 조건에서 known과 unknown을 구분하는 AUC 성능" type="Result" caption="그림 5. 5-waveform case에서 제안 방법과 비교 방법의 unknown waveform detection AUC를 SNR별로 비교한 결과." description="제안 방법은 저 SNR 구간에서 비교 방법보다 높은 known / unknown separability를 보인다." >}}
+<div class="case-study-result-grid case-study-result-grid--two" aria-label="5-waveform과 9-waveform simulation unknown detection results">
 
-{{< case-figure src="figures/one_vs_rest_auc_9_waveforms.png" alt="9개 레이다 파형 조건에서 known과 unknown을 구분하는 AUC 성능" type="Result" caption="그림 6. 9-waveform case의 one-vs-rest unknown detection AUC 결과." description="waveform 수가 늘어난 조건에서도 SNR이 높아질수록 known과 unknown의 분리가 안정적으로 유지된다." >}}
+{{< case-figure src="figures/result-auc-5-waveforms.png" alt="5개 레이다 파형 조건의 unknown detection AUC" type="Result" caption="5-waveform unknown detection AUC" description="5개 파형 조건에서 제안 방법과 비교 방법의 AUC를 SNR별로 비교합니다." >}}
 
-## Reconstruction error 결과
+{{< case-figure src="figures/result-auc-9-waveforms.png" alt="9개 레이다 파형 조건의 unknown detection AUC" type="Result" caption="9-waveform unknown detection AUC" description="파형 수를 9개로 확장한 조건에서도 unknown separability를 비교합니다." >}}
+
+</div>
+
+### Reconstruction error
 
 Known waveform은 MAAE memory가 해당 구조를 학습했기 때문에 input과 reconstruction 사이의 error가 작습니다. 반대로 Unknown waveform은 정확히 대응되는 memory pattern이 없어 reconstruction discrepancy가 상대적으로 크게 발생합니다.
 
@@ -153,11 +211,25 @@ Known waveform은 MAAE memory가 해당 구조를 학습했기 때문에 input�
 
 {{< case-figure src="figures/reconstruction_error_minus_8_db.png" alt="SNR −8 dB에서 known과 unknown waveform의 reconstruction error 분포" type="Result" caption="그림 7. SNR −8 dB 조건에서 known과 unknown waveform의 reconstruction error 분포를 비교한 결과." description="Known은 낮은 error 구간에, Unknown은 상대적으로 높은 error 구간에 분포해 threshold 기반 탐지가 가능해진다." >}}
 
-## 연구의 한계와 다음 연구
+## Measurements(실측)
+
+시뮬레이션 결과와 별도로 GNU Radio와 USRP 기반 OTA 환경에서 waveform을 실제로 송수신하고, DC removal과 signal segmentation을 거친 뒤 CWD → DSAE → MAAE 전체 chain으로 unknown detection을 수행했습니다. 주요 설정은 sampling rate 500 kHz, waveform bandwidth 50 kHz, 약 1,000-sample waveform length입니다.
+
+실제 무선 결과는 AWGN·Rayleigh simulation과 함께 Real-world curve로 제시했습니다. 측정 환경에서는 극저 SNR에서 simulation과 성능 차이가 나타날 수 있지만, SNR이 높아질수록 known과 unknown을 구분하는 흐름이 회복되는지를 확인할 수 있습니다.
+
+<div class="case-study-result-grid case-study-result-grid--two" aria-label="실환경 OTA channel robustness results">
+
+{{< case-figure src="figures/result-channel-5-waveforms.png" alt="5개 레이다 파형의 AWGN Rayleigh Real-world AUC 비교" type="Result" caption="5-waveform · AWGN / Rayleigh / Real-world" description="시뮬레이션 채널과 실제 무선 조건에서 unknown detection AUC를 비교합니다." >}}
+
+{{< case-figure src="figures/result-channel-9-waveforms.png" alt="9개 레이다 파형의 AWGN Rayleigh Real-world AUC 비교" type="Result" caption="9-waveform · AWGN / Rayleigh / Real-world" description="파형 수가 증가한 조건에서도 실환경 unknown separability가 유지되는지를 확인합니다." >}}
+
+</div>
+
+## 연구의 한계
 
 Reconstruction-based unknown detection은 서로 시간·주파수 구조가 매우 비슷한 waveform에서 한계를 가질 수 있습니다. 특히 P1–P4처럼 구조적으로 유사한 waveform family에서는 unknown waveform도 known memory pattern을 부분적으로 이용해 reconstruct될 수 있어 error distribution이 겹치고 탐지 난도가 증가합니다.
 
-다만 reconstruction error만으로 구조적으로 유사한 파형을 구분하는 데에는 한계가 있었습니다. 이 문제는 이후 연구에서 파형의 구조와 스펙트럼 의미 정보를 함께 활용하는 semantic attribute 기반 radar waveform recognition으로 확장했습니다.
+다만 reconstruction error만으로 구조적으로 유사한 파형을 구분하는 데에는 한계가 있습니다. 따라서 이 방법의 결과는 waveform 구조가 충분히 다르고 known memory가 unknown을 안정적으로 재구성하지 못하는 조건에서의 unknown detection 성능으로 해석해야 합니다.
 
 ## 결론
 
@@ -169,8 +241,10 @@ Reconstruction-based unknown detection은 서로 시간·주파수 구조가 매
 
 <div class="case-study-publication">
 
-## Publication
+## 관련 성과
 
 Jaehyeok Yoon and Haewoon Nam, “[Unsupervised Unknown Radar Waveform Detection](../../publications/unknown-radar-waveform-detection/),” *IEEE Transactions on Aerospace and Electronic Systems*, vol. 61, no. 6, pp. 19316–19328, 2025. [DOI](https://doi.org/10.1109/TAES.2025.3618820)
+
+윤재혁, 윤우진, 김형윤, 남해운 (2022). “오토엔코더 기반 미확인 저피탐 레이더 파형 탐지 기술.” 한국통신학회 동계종합학술발표회, 평창 알펜시아 리조트.
 
 </div>

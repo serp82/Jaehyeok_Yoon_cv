@@ -21,11 +21,14 @@ technology_tags:
   - USRP / GNU Radio
 publication_refs:
   - /publications/lpi-radar-parameter-estimation/
-summary: "저 SNR 환경에서 펄스 검출과 시간·주파수 구조 복원을 결합해 레이다 신호의 주요 제원을 추정한 연구입니다."
+summary: "저 SNR 환경에서 펄스를 검출하고 시간·주파수 구조를 복원해 레이더 신호의 주요 제원을 추정한 연구입니다."
 image:
   filename: figures/preview.png
   alt_text: "저 SNR 레이다 신호 검출과 제원 추정 연구 개요"
   caption: "※ 본 이미지는 연구의 전체 흐름을 이해하기 쉽게 설명하기 위해 AI로 제작한 개념도이며, 실제 실험 결과 이미지는 아닙니다."
+preview:
+  filename: figures/radar-parameters-concept.png
+  alt_text: "시간 영역과 주파수 영역에서 추정하는 레이다 파라미터"
 links: []
 tags:
   - pulse detection
@@ -140,14 +143,6 @@ UNet은 noisy STFT image를 입력으로 받아 clean reference STFT를 target�
 
 UNet의 output은 ToA나 PW 같은 parameter 값이 아니라 denoised time-frequency representation입니다. 최종 parameter는 이 복원 결과에 대해 후단 signal processing을 적용해 계산합니다.
 
-## UNet Optimization과 Denoising Ablation
-
-Parameter estimation accuracy는 단순 denoising loss만으로 결정되지 않습니다. Noise를 너무 많이 제거하면 pulse edge나 frequency boundary까지 손실될 수 있고, 반대로 noise가 많이 남으면 CCA에서 false component가 증가합니다.
-
-따라서 denoising network는 최종 parameter RMSE까지 고려해 configuration을 조정했습니다. Base number of filters, encoder block 수, filter size를 주요 factor로 확인했고, 논문 기준 최적 구성은 Nf = 8, Ne = 5, Sf = 7입니다. 이 설정은 메인 모델 구조를 과도하게 설명하기보다, denoising quality와 parameter estimation 사이의 균형을 찾기 위한 engineering decision으로 이해할 수 있습니다.
-
-UNet을 제거한 Proposed without denoising 비교에서는 특히 −16 dB에서 −10 dB 정도의 저 SNR 영역에서 parameter RMSE가 커지는 경향이 나타납니다. 이는 UNet이 단순히 모델을 추가한 것이 아니라, edge extraction 전에 time-frequency structure를 복원하는 필수 중간 단계임을 보여줍니다.
-
 ## CCA-Based Edge Detection
 
 UNet output을 그대로 parameter 계산에 사용하지 않는 이유는 denoising 후에도 일부 scattered noise component가 남을 수 있기 때문입니다. Radar pulse structure는 noise에 비해 time-frequency domain에서 더 연속적인 component를 형성하는 경향이 있으므로, 복원 결과에서 연결 구조를 추가로 확인해야 합니다.
@@ -168,8 +163,6 @@ Frequency hopping이나 Costas처럼 구조가 불연속적으로 보일 수 있
 | Frequency | BW | upper frequency edge − lower frequency edge |
 | Frequency | Fc | upper·lower frequency edge의 중심 |
 
-Time-domain parameter인 ToA, PW, PRI는 pulse의 시작·종료 edge와 인접 pulse 사이의 시간 간격에 직접 의존합니다. Frequency-domain parameter인 BW와 Fc는 pulse가 점유하는 frequency-axis boundary에 의존하므로 frequency resolution과 residual noise의 영향을 더 많이 받습니다.
-
 {{< case-figure src="figures/edge_based_parameter_estimation.png" alt="복원된 레이다 구조에서 펄스 경계와 파라미터를 계산하는 과정" type="Method" caption="그림 4. 복원된 time-frequency structure에서 pulse의 시간·주파수 경계를 추출하고 ToA, PW, PRI, BW, Fc를 계산하는 과정." description="edge label과 frequency structure를 이용해 물리 parameter를 직접 계산하는 후단 signal-processing 흐름을 보여준다." >}}
 
 ## 핵심 아이디어
@@ -179,7 +172,66 @@ Time-domain parameter인 ToA, PW, PRI는 pulse의 시작·종료 edge와 인접 
 3. 딥러닝은 구조 복원에 집중시켰습니다. UNet이 ToA나 PW를 직접 예측하게 하지 않고, noise에 묻힌 STFT structure를 clean reference에 가깝게 복원하도록 사용했습니다.
 4. 최종 parameter는 signal processing으로 계산했습니다. CCA와 edge-based computation으로 복원된 radar structure의 물리적 경계를 추출하고 이를 ToA, PW, PRI, BW, Fc로 변환했습니다.
 
-## 실제 검증 — Simulation
+## 실험 파형 및 파라미터 구성
+
+<div class="experiment-config">
+  <p class="experiment-config-lead">500 kHz sampling의 pulse train을 기반으로 17개 intrapulse-modulation(IPM) waveform을 구성했습니다. 각 파형을 여러 생성 조건에서 변화시키고 SNR −20~10 dB 범위에서 pulse boundary와 주요 parameter 추정 성능을 평가했습니다.</p>
+  <div class="experiment-config-table-wrap" tabindex="0">
+    <table class="experiment-config-table">
+      <caption>연구 1 시뮬레이션 파형 구성</caption>
+      <thead>
+        <tr>
+          <th scope="col">파형군</th>
+          <th scope="col">사용 파형</th>
+          <th scope="col">주요 생성 파라미터</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>FM</td>
+          <td>LFM</td>
+          <td><code>B: fs/10–fs/8</code> · <code>Sweep: Up / Down / Triangle</code></td>
+        </tr>
+        <tr>
+          <td>FM</td>
+          <td>NLFM</td>
+          <td><code>B: fs/10–fs/8</code> · <code>Pattern: Sine / 2nd / 3rd</code></td>
+        </tr>
+        <tr>
+          <td>FSK</td>
+          <td>FSK2, FSK4</td>
+          <td><code>M: 2 / 4</code> · <code>fmin: fs/32–fs/25</code></td>
+        </tr>
+        <tr>
+          <td>Frequency Hopping</td>
+          <td>Costas (COS6, COS10)</td>
+          <td><code>M: 6 / 10</code> · <code>fmin: fs/32–fs/25</code></td>
+        </tr>
+        <tr>
+          <td>Phase Code</td>
+          <td>Barker</td>
+          <td><code>Code length: 7 / 11 / 13</code></td>
+        </tr>
+        <tr>
+          <td>Polyphase</td>
+          <td>Frank, P1–P4</td>
+          <td><code>Ncpp</code>, code size, compression ratio 등 파형별 변화</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="experiment-config-note">모든 파형의 carrier frequency는 <code>fc: fs/6–2fs/5</code> 범위에서 생성했습니다. P1–P4의 세부 조합은 파형군 수준으로 압축해 표시했으며, 원 논문의 Table 1을 기준으로 구성했습니다.</p>
+  <div class="experiment-config-target"><strong>추정 대상</strong><span><code>ToA · PW · PRI · Bandwidth · Carrier Frequency</code></span></div>
+  <div class="experiment-config-summary" aria-label="연구 1 실험 요약">
+    <span class="experiment-config-chip">17 waveform types</span>
+    <span class="experiment-config-chip">fs 500 kHz</span>
+    <span class="experiment-config-chip">PW 1–10 ms</span>
+    <span class="experiment-config-chip">Duty cycle 20%</span>
+    <span class="experiment-config-chip">SNR −20~10 dB</span>
+  </div>
+</div>
+
+## Experiments(시뮬레이션)
 
 Simulation은 17종 intrapulse-modulation waveform, pulse width 1–10 ms, SNR −20–10 dB 조건으로 구성했습니다. Waveform·SNR별 100개 pulse train을 사용해 총 52,700 samples를 구성했고, train·validation·test split은 8:1:1로 유지했습니다.
 
@@ -193,23 +245,27 @@ FPD의 첫 번째 역할은 time slot을 Pulse와 Noise로 구분하는 것입�
 
 대표 결과는 AUC 0.912 at −18 dB, AUC 0.964 at −15 dB입니다. 이 수치는 최종 ToA, PW, PRI의 정확도가 아니라 후속 parameter estimation에 필요한 pulse 구간을 얼마나 안정적으로 찾는지를 보여주는 detection metric입니다.
 
-{{< case-figure src="figures/pulse_detection_auc.png" alt="SNR에 따른 frequency-domain pulse detection AUC 비교" type="Result" caption="그림 5. SNR 변화에 따른 pulse detection AUC 비교. FPD는 저 SNR에서도 후속 parameter estimation에 필요한 pulse-containing slot을 안정적으로 선별한다." description="AUC는 parameter RMSE가 아니라 Pulse와 Noise slot을 threshold 전반에서 분리하는 detection metric이다." >}}
+{{< case-figure src="figures/pulse_detection_auc.png" alt="SNR에 따른 frequency-domain pulse detection AUC 비교" type="Result" layout="wide" caption="그림 5. SNR 변화에 따른 pulse detection AUC 비교. FPD는 저 SNR에서도 후속 parameter estimation에 필요한 pulse-containing slot을 안정적으로 선별한다." description="AUC는 parameter RMSE가 아니라 Pulse와 Noise slot을 threshold 전반에서 분리하는 detection metric이다." >}}
 
-## 기존 방법과의 비교
+### 파라미터 추정 결과
 
-비교 대상은 WHT-based method, CPD-based method, DAT-Net, Proposed without denoising, Proposed full method로 구성했습니다. WHT와 CPD는 전통적인 signal-processing 기반 estimator와의 비교이고, DAT-Net은 learning-based direct estimation approach와의 비교입니다. Proposed without denoising은 UNet denoising stage의 기여를 확인하는 ablation입니다.
+시뮬레이션에서 다섯 parameter의 추정 결과를 각각 확인했습니다. ToA, PW, PRI, BW, Fc는 모두 SNR이 높아질수록 오차가 감소하며, 제안 방법은 비교 방법과 denoising ablation보다 저 SNR에서 안정적인 경향을 보입니다.
 
-저 SNR 영역에서 proposed full method는 ToA, PW, PRI와 frequency-domain parameter에 대해 더 낮은 RMSE를 유지했습니다. 특히 ToA와 PRI에서 proposed method가 약 −10 dB에서 높은 estimation reliability에 도달한 반면 CPD는 유사 수준에 약 −7 dB에서 도달해 약 3 dB의 SNR advantage가 나타났습니다.
+<div class="case-study-result-grid case-study-result-grid--five" aria-label="시뮬레이션 기반 ToA, PW, PRI, BW, Fc parameter estimation results">
 
-이때 약 3 dB 개선은 FPD AUC와 같은 detection metric이 아니라, 기존 parameter estimation method와 비교한 저 SNR parameter RMSE 성능의 차이를 의미합니다. Detection은 AUC, parameter estimation은 RMSE로 역할을 분리해 해석해야 합니다.
+{{< case-figure src="figures/result-toa.jpg" alt="저 SNR 조건에서 ToA를 추정한 시뮬레이션 결과" type="Result" caption="ToA 추정 결과" description="제안 방법과 비교 방법의 ToA RMSE를 비교합니다." >}}
 
-## Denoising Ablation의 의미
+{{< case-figure src="figures/result-pw.jpg" alt="저 SNR 조건에서 PW를 추정한 시뮬레이션 결과" type="Result" caption="PW 추정 결과" description="제안 방법과 비교 방법의 PW RMSE를 비교합니다." >}}
 
-UNet을 제거한 Proposed without denoising은 특히 −16 dB에서 −10 dB 정도의 저 SNR 영역에서 RMSE가 커지는 경향을 보입니다. 이 비교는 단순히 network를 하나 더 추가해서 성능이 좋아졌다는 의미가 아니라, edge extraction 전에 time-frequency structure를 복원하는 과정이 실제 parameter estimation에 직접 기여한다는 것을 보여줍니다.
+{{< case-figure src="figures/result-pri.jpg" alt="저 SNR 조건에서 PRI를 추정한 시뮬레이션 결과" type="Result" caption="PRI 추정 결과" description="제안 방법과 비교 방법의 PRI RMSE를 비교합니다." >}}
 
-Full pipeline은 denoised STFT에서 radar component를 더 안정적으로 연결하고, CCA가 false component를 제거할 수 있는 구조를 제공합니다. 결과적으로 UNet denoising은 최종 parameter를 직접 예측하는 모델이 아니라, 이후 물리적 edge computation이 가능하도록 중간 representation을 정리하는 단계입니다.
+{{< case-figure src="figures/result-bw.jpg" alt="저 SNR 조건에서 BW를 추정한 시뮬레이션 결과" type="Result" caption="BW 추정 결과" description="제안 방법과 비교 방법의 BW RMSE를 비교합니다." >}}
 
-## 실제 검증 — USRP / GNU Radio Test-Bed
+{{< case-figure src="figures/result-fc.jpg" alt="저 SNR 조건에서 Fc를 추정한 시뮬레이션 결과" type="Result" caption="Fc 추정 결과" description="제안 방법과 비교 방법의 Fc RMSE를 비교합니다." >}}
+
+</div>
+
+## Measurements(실측)
 
 Simulation 이후 GNU Radio와 USRP-2920 두 대로 TX/RX test-bed를 구성해 실제 무선 수신 환경을 평가했습니다. Center frequency는 910 MHz, sampling rate는 500 kHz이며, 기존 설정에 따라 송신 waveform을 OTA로 전달한 뒤 수신 I/Q에 동일한 detection, denoising, edge extraction, parameter computation chain을 적용했습니다.
 
@@ -221,51 +277,29 @@ Simulation 이후 GNU Radio와 USRP-2920 두 대로 TX/RX test-bed를 구성해 
 
 {{< case-figure src="figures/usrp-testbed-photo.png" alt="GNU Radio와 두 대의 USRP-2920으로 구성한 저 SNR 송수신 실험 장비" type="Experiment" caption="그림 6. GNU Radio와 두 대의 USRP-2920을 이용해 구성한 저 SNR radar pulse-train OTA test-bed." description="시뮬레이션을 넘어 실제 wireless channel과 receiver hardware 영향이 포함된 환경에서 전체 처리 체인을 검증한 구성이다." >}}
 
-## Simulation과 Test-Bed의 차이
+### 실측 결과
 
-Measured environment에서는 simulation보다 낮은 SNR에서 performance degradation이 더 크게 나타납니다. Ideal AWGN simulation과 달리 실제 channel에는 fading과 interference가 포함되고, receiver에서는 oscillator mismatch, DC component, hardware impairment가 추가되기 때문입니다.
+실환경 OTA에서는 시뮬레이션과 같은 처리 체인을 적용한 뒤, 각 parameter의 Simulation/Test-bed RMSE를 비교했습니다. 무선 채널과 수신기 hardware 영향으로 test-bed 오차가 더 크게 나타날 수 있지만, SNR이 높아질수록 다섯 parameter 모두 안정적으로 감소하는 경향을 확인할 수 있습니다.
 
-Pulse detection reliability는 test-bed의 극저 SNR에서 simulation보다 감소하지만 SNR이 높아지면서 안정적으로 회복됩니다. ToA, PW, PRI의 RMSE도 test-bed에서 simulation보다 높게 나타날 수 있지만 SNR 증가에 따라 비슷한 감소 trend를 보입니다.
+<div class="case-study-result-grid case-study-result-grid--five" aria-label="Simulation과 실환경 Test-bed의 parameter estimation results">
 
-BW와 Fc는 전체 pulse duration의 frequency structure를 사용하기 때문에 극저 SNR에서 noise 영향에 더 민감합니다. Frequency resolution을 높이면 BW와 Fc estimation error를 줄일 수 있지만 computational complexity가 증가하므로 Resolution과 Complexity 사이의 trade-off도 함께 고려해야 합니다.
+{{< case-figure src="figures/testbed-result-toa.jpg" alt="ToA simulation과 test-bed RMSE 비교" type="Result" caption="ToA · Simulation / Test-bed" description="실환경 무선 수신에서 ToA RMSE가 SNR에 따라 감소하는 경향을 비교합니다." >}}
 
-## 주요 성과
+{{< case-figure src="figures/testbed-result-pw.jpg" alt="PW simulation과 test-bed RMSE 비교" type="Result" caption="PW · Simulation / Test-bed" description="실환경 무선 수신에서 PW RMSE가 SNR에 따라 감소하는 경향을 비교합니다." >}}
 
-<div class="research-metric-grid">
-  <div class="research-metric"><strong class="research-metric-value">약 3 dB</strong><span class="research-metric-label">기존 parameter estimation method 대비 저 SNR 성능 개선</span></div>
-  <div class="research-metric"><strong class="research-metric-value">0.912</strong><span class="research-metric-label">Pulse detection AUC at −18 dB</span></div>
-  <div class="research-metric"><strong class="research-metric-value">0.964</strong><span class="research-metric-label">Pulse detection AUC at −15 dB</span></div>
+{{< case-figure src="figures/testbed-result-pri.jpg" alt="PRI simulation과 test-bed RMSE 비교" type="Result" caption="PRI · Simulation / Test-bed" description="실환경 무선 수신에서 PRI RMSE가 SNR에 따라 감소하는 경향을 비교합니다." >}}
+
+{{< case-figure src="figures/testbed-result-bw.jpg" alt="BW simulation과 test-bed RMSE 비교" type="Result" caption="BW · Simulation / Test-bed" description="실환경 무선 수신에서 BW RMSE가 SNR에 따라 감소하는 경향을 비교합니다." >}}
+
+{{< case-figure src="figures/testbed-result-fc.jpg" alt="Fc simulation과 test-bed RMSE 비교" type="Result" caption="Fc · Simulation / Test-bed" description="실환경 무선 수신에서 Fc RMSE가 SNR에 따라 감소하는 경향을 비교합니다." >}}
+
 </div>
-
-−8 dB 조건에서 ToA RMSE는 8 μs, PW RMSE는 16 μs, PRI RMSE는 6 μs였습니다. 저 SNR 영역에서 WHT, CPD, DAT-Net 대비 더 낮은 parameter estimation error를 유지했고, denoising을 제거한 ablation보다 full pipeline이 안정적인 RMSE를 보였습니다.
-
-AUC는 pulse presence detection을 평가하고 RMSE는 parameter estimation을 평가한다는 점을 분리해 해석했습니다. 또한 USRP/GNU Radio OTA 환경에서도 simulation과 동일한 detection–denoising–edge extraction–parameter computation chain이 동작하는지 확인했습니다.
-
-{{< case-figure src="figures/representative-estimation-result.jpg" alt="저 SNR 조건에서 레이다 파라미터를 추정한 대표 결과 그래프" type="Result" caption="그림 7. SNR 변화에 따른 pulse detection 및 주요 radar parameter estimation 성능 비교. 저 SNR에서 proposed method의 estimation error 감소 효과를 보여준다." description="WHT, CPD, DAT-Net, denoising ablation과 proposed method의 parameter estimation error를 비교한다." >}}
-
-## 시간 영역과 주파수 영역 결과의 의미
-
-Time-domain parameter인 ToA, PW, PRI는 pulse의 시작·종료 edge와 인접 pulse 사이의 시간 간격에 직접 의존합니다. 따라서 coarse pulse detection 이후 실제 interval localization이 얼마나 정확한지가 핵심입니다.
-
-Frequency-domain parameter인 BW와 Fc는 STFT에서 radar가 점유하는 frequency boundary에 의존합니다. 이 값들은 frequency resolution과 residual noise의 영향을 더 많이 받으므로, 시간 영역 parameter와 같은 방식으로 계산하지 않고 복원된 frequency edge에서 별도로 계산했습니다.
-
-## 연구의 핵심 해석
-
-본 연구의 성능 개선은 하나의 복잡한 network가 모든 parameter를 end-to-end regression했기 때문이 아니라 Early Pulse Detection, Time-Frequency Denoising, Connected-Structure Extraction, Physical Edge Computation을 결합했기 때문입니다.
-
-각 단계에 Signal Processing, Deep Learning, Image / Structure Analysis를 배치해 저 SNR에서 발생하는 서로 다른 문제를 분리했습니다. Frequency-domain detection은 볼 구간을 줄이고, UNet은 구조를 복원하며, CCA와 edge algorithm은 해석 가능한 경계를 만들고, 마지막 계산 단계는 그 경계를 실제 radar parameter로 변환합니다.
-
-## 연구 1에서 연구 2로의 연결
-
-본 연구에서는 저 SNR 수신 신호에서 pulse를 검출하고 물리 parameter를 추정하는 문제를 해결했습니다. 하지만 실제 수신 환경에서는 parameter를 추정할 대상 waveform 자체가 학습 또는 사전 정의되지 않은 새로운 신호일 수도 있습니다.
-
-다음 연구에서는 이 문제를 학습하지 않은 waveform을 어떻게 탐지할 것인가라는 unknown radar waveform detection 문제로 확장했습니다. 연구 2는 clean reference와 unknown label이 없는 조건에서 reconstruction error를 이용해 Known과 Unknown을 구분하는 방향으로 이어집니다.
 
 ## 연구의 한계
 
 본 연구는 simulation과 controlled USRP/GNU Radio test-bed를 이용해 저 SNR parameter estimation을 검증했습니다. 실제 measured environment에서는 extremely low SNR에서 fading, interference, hardware impairment로 인해 simulation 대비 performance degradation이 나타날 수 있습니다.
 
-또한 2D STFT와 UNet processing은 전통적인 lightweight estimator보다 연산량이 증가할 수 있습니다. 향후에는 더 다양한 실제 radar data, simulation-to-measurement domain gap 감소, lightweight denoising, embedded 또는 FPGA implementation으로 확장할 수 있습니다. 연구 4의 RFNoC implementation이 이 연구의 UNet·CCA 전체 algorithm을 FPGA에 구현했다는 의미는 아닙니다.
+또한 2D STFT와 UNet processing은 전통적인 lightweight estimator보다 연산량이 증가할 수 있습니다. 향후에는 더 다양한 실제 radar data, simulation-to-measurement domain gap 감소, lightweight denoising, embedded implementation으로 확장할 수 있습니다.
 
 ## 결론
 
@@ -277,8 +311,12 @@ Frequency-domain parameter인 BW와 Fc는 STFT에서 radar가 점유하는 frequ
 
 <div class="case-study-publication">
 
-## Publication
+## 관련 성과
 
 Jaehyeok Yoon, Siho Lee, Woojin Yun, and Haewoon Nam, “[High-Accuracy Radar Parameter Estimation Under Low SNR Environments](../../publications/lpi-radar-parameter-estimation/),” *IEEE Access*, vol. 13, pp. 171170–171184, 2025.
+
+윤재혁, 정재연, 김규한, 이원진, 백지현, 서동호, 윤우진, 남해운 (2024). “[Carrier Frequency Estimation of Low SNR Radar Signal Based on Denoising Autoencoder and DBSCAN](../../publications/carrier-frequency-estimation/).” *The Journal of Korean Institute of Communications and Information Sciences*, 49(7), 923-926.
+
+딥러닝 기반 저피탐 레이더 신호의 잡음 제거 및 파라미터 추출 방법, 이를 수행하는 장치 및 컴퓨터 프로그램, 출원번호(대한민국) 10-2024-0092816 · 2024.07.15.
 
 </div>

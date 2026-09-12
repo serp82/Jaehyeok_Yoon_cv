@@ -2078,6 +2078,29 @@ h6 {
   }
 }
 
+/* Keep all core-research preview cards at one consistent landscape ratio. */
+.research-project-media,
+.research-project-media img {
+  aspect-ratio: 16 / 9;
+}
+
+.research-project-media {
+  min-height: 0;
+  background: rgb(248 250 252);
+}
+
+.research-project-media img {
+  min-height: 0;
+  object-fit: contain;
+}
+
+@media (max-width: 767px) {
+  .research-project-media,
+  .research-project-media img {
+    aspect-ratio: 16 / 9;
+  }
+}
+
 /* Homepage profile layout: identity left, details right, research full width below. */
 .resume-biography-profile-grid {
   display: grid;
@@ -3688,4 +3711,520 @@ h6 {
 
 #research-publications {
   padding-top: 1rem !important;
+}
+
+/* Match the compact spacing between the intro tab's supporting sections. */
+#selected-publications {
+  padding-bottom: 1rem !important;
+}
+
+#supporting-records {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+#capabilities {
+  padding-top: 1rem !important;
+}
+
+/* Let project hero artwork use the full content width without side letterboxing. */
+.project-detail-hero img {
+  max-height: none;
+}
+
+/* Keep result figures compact so adjacent results can be compared at a glance. */
+.case-study-figure--result {
+  display: inline-block;
+  box-sizing: border-box;
+  width: calc(50% - 1.25rem);
+  margin-right: 1rem;
+  vertical-align: top;
+}
+
+@media (max-width: 767px) {
+  .case-study-figure--result {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+/* Keep the detection-AUC figure on one full-width column. */
+.case-study-figure--wide {
+  display: block;
+  width: 100%;
+  margin-right: 0;
+}
+
+/* Present the five final parameter-estimation results in at most two desktop rows. */
+.case-study-result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem 1rem;
+  margin: 2rem 0 2.5rem;
+}
+
+.case-study-result-grid .case-study-figure,
+.case-study-result-grid .case-study-figure--result {
+  min-width: 0;
+  width: auto;
+  margin: 0;
+}
+
+.case-study-result-grid .case-study-figure-media img {
+  max-height: 16rem;
+}
+
+@media (max-width: 767px) {
+  .case-study-result-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .case-study-result-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Give multi-result sections an intentional width and keep the five-result rows centered. */
+.case-study-result-grid--two {
+  max-width: 68rem;
+  margin-inline: auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.case-study-result-grid--two .case-study-figure-media img {
+  max-height: 20rem;
+}
+
+.case-study-result-grid--five {
+  max-width: 72rem;
+  margin-inline: auto;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.case-study-result-grid--five .case-study-figure {
+  grid-column: span 2;
+}
+
+.case-study-result-grid--five .case-study-figure:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.case-study-result-grid--five .case-study-figure:nth-child(5) {
+  grid-column: 4 / span 2;
+}
+
+.case-study-result-grid--five .case-study-figure-media img {
+  max-height: 15rem;
+}
+
+/* Center five measured results as a 3-column by 2-row composition. */
+.case-study-result-grid--three-centered {
+  max-width: 74rem;
+  margin-inline: auto;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.case-study-result-grid--three-centered .case-study-figure {
+  grid-column: span 2;
+}
+
+.case-study-result-grid--three-centered .case-study-figure:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.case-study-result-grid--three-centered .case-study-figure:nth-child(5) {
+  grid-column: 4 / span 2;
+}
+
+.case-study-result-grid--three-centered .case-study-figure-media img {
+  max-height: 15rem;
+}
+
+.case-study-result-grid--dense {
+  max-width: 74rem;
+  margin-inline: auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.case-study-result-grid--dense .case-study-figure-media img {
+  max-height: 14rem;
+}
+
+@media (max-width: 767px) {
+  .case-study-result-grid--two,
+  .case-study-result-grid--dense {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .case-study-result-grid--five {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .case-study-result-grid--three-centered {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .case-study-result-grid--five .case-study-figure,
+  .case-study-result-grid--five .case-study-figure:nth-child(4),
+  .case-study-result-grid--five .case-study-figure:nth-child(5),
+  .case-study-result-grid--three-centered .case-study-figure,
+  .case-study-result-grid--three-centered .case-study-figure:nth-child(4),
+  .case-study-result-grid--three-centered .case-study-figure:nth-child(5) {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .case-study-result-grid--two,
+  .case-study-result-grid--dense,
+  .case-study-result-grid--five,
+  .case-study-result-grid--three-centered {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Keep the homepage researcher's three core capabilities as compact, independent lines. */
+.resume-biography-role-list {
+  display: grid;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.resume-biography-role-line {
+  margin: 0;
+  line-height: 1.35;
+  font-family: Georgia, "Times New Roman", serif !important;
+  letter-spacing: 0.01em;
+}
+
+/* Bring the portrait and name together while giving the name a polished academic hierarchy. */
+.resume-biography-identity .avatar-wrapper {
+  margin-bottom: 0.55rem !important;
+}
+
+.resume-biography-identity > .space-y-3 {
+  margin-top: 0 !important;
+}
+
+.resume-biography-identity h1 {
+  margin: 0 !important;
+  font-family: "Lora", "Source Serif 4", Georgia, var(--cv-font-family), serif !important;
+  font-size: clamp(2rem, 3.25vw, 3rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.015em;
+  line-height: 1.08 !important;
+}
+
+/* Contact icons copy their value on click and reveal the value on hover/focus. */
+.contact-copy-link {
+  position: relative;
+}
+
+.contact-copy-link::after {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 0.65rem);
+  left: 50%;
+  max-width: min(18rem, 80vw);
+  transform: translate(-50%, -0.2rem);
+  border: 1px solid rgb(203 213 225);
+  border-radius: 0.55rem;
+  background: rgb(15 23 42 / 0.96);
+  padding: 0.4rem 0.65rem;
+  color: white;
+  content: attr(data-copy-hint);
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.35;
+  opacity: 0;
+  pointer-events: none;
+  text-align: center;
+  transition: opacity 160ms ease, transform 160ms ease;
+  white-space: nowrap;
+}
+
+.contact-copy-link:hover::after,
+.contact-copy-link:focus-visible::after,
+.contact-copy-link[data-copy-status="copied"]::after,
+.contact-copy-link[data-copy-status="error"]::after {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+.dark .contact-copy-link::after {
+  border-color: rgb(71 85 105);
+}
+
+@media (max-width: 520px) {
+  .contact-copy-link::after {
+    white-space: normal;
+    width: max-content;
+  }
+}
+
+/* Compact, readable experiment-configuration tables used by the research pages. */
+.experiment-config {
+  margin: 2.5rem 0;
+  border: 1px solid rgb(226 232 240);
+  border-radius: 0.75rem;
+  background: rgb(248 250 252 / 0.72);
+  padding: 1.25rem;
+}
+
+.dark .experiment-config {
+  border-color: rgb(71 85 105);
+  background: rgb(15 23 42 / 0.55);
+}
+
+.experiment-config-lead,
+.experiment-config-note {
+  margin: 0 0 1rem;
+  color: rgb(71 85 105);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.dark .experiment-config-lead,
+.dark .experiment-config-note {
+  color: rgb(203 213 225);
+}
+
+.experiment-config-table-wrap {
+  overflow-x: auto;
+  border: 1px solid rgb(226 232 240);
+  border-radius: 0.6rem;
+  background: rgb(255 255 255 / 0.82);
+}
+
+.dark .experiment-config-table-wrap {
+  border-color: rgb(71 85 105);
+  background: rgb(15 23 42 / 0.72);
+}
+
+.experiment-config-table {
+  width: 100%;
+  min-width: 42rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.experiment-config-table caption {
+  padding: 0.9rem 1rem 0.65rem;
+  color: rgb(15 118 110);
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-align: left;
+}
+
+.dark .experiment-config-table caption {
+  color: rgb(153 246 228);
+}
+
+.experiment-config-table th,
+.experiment-config-table td {
+  border-bottom: 1px solid rgb(226 232 240);
+  padding: 0.75rem 0.9rem;
+  vertical-align: top;
+}
+
+.experiment-config-table th {
+  background: rgb(240 253 250);
+  color: rgb(15 118 110);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.experiment-config-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.experiment-config-table tbody tr:nth-child(even) td {
+  background: rgb(248 250 252 / 0.72);
+}
+
+.dark .experiment-config-table th {
+  background: rgb(19 78 74 / 0.48);
+  color: rgb(153 246 228);
+}
+
+.dark .experiment-config-table th,
+.dark .experiment-config-table td {
+  border-color: rgb(71 85 105);
+}
+
+.dark .experiment-config-table tbody tr:nth-child(even) td {
+  background: rgb(30 41 59 / 0.62);
+}
+
+.experiment-config-table code,
+.experiment-config-note code,
+.experiment-config-target code {
+  border-radius: 0.3rem;
+  background: rgb(226 232 240 / 0.72);
+  padding: 0.08rem 0.3rem;
+  color: rgb(15 23 42);
+  font-size: 0.88em;
+}
+
+.dark .experiment-config-table code,
+.dark .experiment-config-note code,
+.dark .experiment-config-target code {
+  background: rgb(51 65 85 / 0.8);
+  color: rgb(241 245 249);
+}
+
+.experiment-config-target {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem 0.75rem;
+  margin-top: 1rem;
+  border-left: 3px solid rgb(13 148 136);
+  background: rgb(240 253 250 / 0.8);
+  padding: 0.8rem 1rem;
+  color: rgb(15 23 42);
+  line-height: 1.55;
+}
+
+.experiment-config-target strong {
+  color: rgb(15 118 110);
+  font-size: 0.86rem;
+  white-space: nowrap;
+}
+
+.dark .experiment-config-target {
+  background: rgb(19 78 74 / 0.35);
+  color: rgb(226 232 240);
+}
+
+.dark .experiment-config-target strong {
+  color: rgb(153 246 228);
+}
+
+.experiment-config-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.experiment-config-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgb(153 246 228);
+  border-radius: 999px;
+  background: rgb(240 253 250);
+  padding: 0.32rem 0.65rem;
+  color: rgb(15 118 110);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.dark .experiment-config-chip {
+  border-color: rgb(45 212 191 / 0.55);
+  background: rgb(19 78 74 / 0.45);
+  color: rgb(153 246 228);
+}
+
+.experiment-config-symbols {
+  margin-top: 0.9rem;
+  color: rgb(71 85 105);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.experiment-config-symbols summary {
+  cursor: pointer;
+  color: rgb(15 118 110);
+  font-weight: 700;
+}
+
+.dark .experiment-config-symbols {
+  color: rgb(203 213 225);
+}
+
+.dark .experiment-config-symbols summary {
+  color: rgb(153 246 228);
+}
+
+@media (max-width: 767px) {
+  .experiment-config {
+    margin: 2rem 0;
+    padding: 0.9rem;
+  }
+
+  .experiment-config-table {
+    font-size: 0.88rem;
+  }
+
+  .experiment-config-table th,
+  .experiment-config-table td {
+    padding: 0.65rem 0.75rem;
+  }
+}
+
+/* Keep the homepage portrait and name together, with a compact name below the portrait. */
+.resume-biography-avatar-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.18rem;
+  width: 100%;
+}
+
+.resume-biography-avatar-name .avatar-wrapper {
+  flex: 0 0 auto;
+  width: clamp(9rem, 15vw, 14rem) !important;
+  height: clamp(9rem, 15vw, 14rem) !important;
+  margin-bottom: 0 !important;
+}
+
+.resume-biography-avatar-name .avatar-wrapper .avatar {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.resume-biography-avatar-name > .space-y-3 {
+  flex: 0 0 auto;
+  min-width: 0;
+  width: 100%;
+  margin-top: 0 !important;
+  padding-top: 0;
+  text-align: center;
+  transform: translateY(-0.28rem);
+}
+
+.resume-biography-avatar-name h1 {
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+}
+
+@media (max-width: 767px) {
+  .resume-biography-avatar-name {
+    gap: 0.14rem;
+    justify-content: center;
+  }
+
+  .resume-biography-avatar-name .avatar-wrapper {
+    width: min(38vw, 12rem) !important;
+    height: min(38vw, 12rem) !important;
+  }
+
+  .resume-biography-avatar-name > .space-y-3 {
+    padding-top: 0;
+  }
+
+  .resume-biography-avatar-name h1 {
+    font-size: clamp(1.25rem, 5vw, 1.6rem) !important;
+  }
 }

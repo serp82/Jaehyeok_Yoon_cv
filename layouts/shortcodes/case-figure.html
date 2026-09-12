@@ -1,14 +1,16 @@
 {{- $src := .Get "src" -}}
 {{- $image := .Page.Resources.GetMatch $src -}}
+{{- $type := .Get "type" -}}
+{{- $layout := .Get "layout" -}}
 {{- if not $image -}}
   {{- errorf "Case Study figure not found: %s in %s" $src .Page.File.Path -}}
 {{- end -}}
-<figure class="case-study-figure">
+<figure class="case-study-figure{{ if eq $type "Result" }} case-study-figure--result{{ end }}{{ if eq $layout "wide" }} case-study-figure--wide{{ end }}">
   <div class="case-study-figure-media">
     <img src="{{ $image.RelPermalink }}" alt="{{ .Get "alt" }}" loading="lazy">
   </div>
   <figcaption>
-    <span class="case-study-figure-type">{{ .Get "type" }}</span>
+    <span class="case-study-figure-type">{{ $type }}</span>
     <strong class="case-study-figure-caption">{{ .Get "caption" }}</strong>
     <span class="case-study-figure-description">{{ .Get "description" }}</span>
     {{ with .Get "note" }}<span class="case-study-figure-note">{{ . }}</span>{{ end }}

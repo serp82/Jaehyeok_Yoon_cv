@@ -22,11 +22,18 @@
       {{ with site.GetPage $path }}
         {{ $project := . }}
         {{ $featured := partial "functions/get_featured_image.html" $project }}
+        {{ $preview_alt := $project.Title }}
+        {{ with $project.Params.preview }}
+          {{ $preview_alt = .alt_text | default $project.Title }}
+          {{ with $project.Resources.GetMatch .filename }}
+            {{ $featured = . }}
+          {{ end }}
+        {{ end }}
         <article class="research-project-card{{ if $content.show_images }} research-project-card--featured{{ end }}">
           {{ if $content.show_images }}
             {{ with $featured }}
             <a class="research-project-media" href="{{ $project.RelPermalink }}" aria-label="연구 상세 보기: {{ $project.Title }}">
-              <img src="{{ .RelPermalink }}" alt="{{ with $project.Params.image }}{{ .alt_text | default $project.Title }}{{ else }}{{ $project.Title }}{{ end }}" loading="{{ if eq $index 0 }}eager{{ else }}lazy{{ end }}">
+              <img src="{{ .RelPermalink }}" alt="{{ $preview_alt }}" loading="{{ if eq $index 0 }}eager{{ else }}lazy{{ end }}">
             </a>
             {{ end }}
           {{ end }}

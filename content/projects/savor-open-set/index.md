@@ -19,11 +19,14 @@ technology_tags:
   - Open-Set Recognition
 publication_refs:
   - /publications/semantic-attribute-guided-open-set-radar/
-summary: "레이더 시간·주파수 표현과 semantic attribute를 VLM/CLIP embedding space에 정렬해 미지 파형을 거부한 연구입니다."
+summary: "레이더 시간·주파수 표현과 파형의 의미 속성을 정렬해 기지 파형을 분류하고 미지 파형을 식별하는 Open-set 인식 연구입니다."
 image:
-  filename: figures/preview_v3.png
+  filename: figures/preview.png
   alt_text: "Vision-Language 기반 open-set 레이다 파형 인식 연구 개요"
   caption: "※ 본 이미지는 연구의 전체 흐름을 이해하기 쉽게 설명하기 위해 AI로 제작한 개념도이며, 실제 실험 결과 이미지는 아닙니다."
+preview:
+  filename: figures/closed_set_vs_open_set.png
+  alt_text: "Closed-set 분류와 Open-set 레이다 인식의 차이"
 links: []
 tags:
   - VLM
@@ -43,7 +46,7 @@ Closed-set classifier는 unknown waveform이 입력되어도 이를 모르는 �
 
 ## 문제 정의
 
-연구 2에서는 reconstruction error를 이용해 학습하지 않은 waveform을 Known과 Unknown으로 구분하는 reconstruction-based unknown detection 문제를 다뤘습니다. 하지만 실제 open-set recognition에서는 unknown을 찾는 것만으로는 충분하지 않습니다. 시스템은 known waveform의 class를 정확하게 구분하는 동시에, 학습하지 않은 waveform은 unknown으로 거부해야 합니다.
+Reconstruction-based unknown detection은 reconstruction error를 이용해 학습하지 않은 waveform을 구분할 수 있지만, open-set recognition에서는 unknown rejection과 known waveform classification을 동시에 만족해야 합니다. 따라서 시스템은 known waveform의 class를 정확하게 구분하면서도 학습하지 않은 waveform은 known으로 오분류하지 않고 unknown으로 거부해야 합니다.
 
 Radar waveform은 LFM sweep, nonlinear sweep, hopping pattern, phase-coded structure처럼 서로 공유하는 structural primitive를 가질 수 있습니다. 따라서 unknown waveform이 known waveform과 일부 구조를 공유하면 reconstruction error나 단순 feature distance만으로는 경계가 모호해질 수 있습니다.
 
@@ -71,15 +74,19 @@ Vision-language model은 image representation과 text representation을 공통 e
 
 이 연구는 CLIP을 레이다에 그대로 적용해 zero-shot recognition을 수행한 것이 아닙니다. pretrained CLIP embedding을 radar semantic attribute와 open-set learning에 맞게 구성하고, Stage 1과 Stage 2의 학습 전략으로 known classification과 unknown rejection이 함께 가능한 표현 공간을 설계했습니다.
 
-## Semantic Attribute Construction
+## 제안 방법
 
-### Known-Class Attribute Text
+{{< case-figure src="figures/01_open-set-vlm-overview.png" alt="SAVOR 기반 open-set 레이다 파형 인식 전체 구조" type="Method" caption="그림 2. Radar time-frequency representation과 semantic attribute를 결합한 SAVOR open-set 레이다 파형 인식 전체 구조." description="레이더 시간·주파수 표현과 의미 정보를 Vision-Language embedding space에 정렬해 known classification과 unknown rejection을 함께 수행하는 흐름을 보여준다." >}}
+
+### Semantic Attribute Construction
+
+#### Known-Class Attribute Text
 
 Known class의 text는 각 waveform의 structural pattern과 spectral characteristic을 결합해 구성합니다. Structural pattern은 ascending diagonal line, curved trace, stepwise frequency pattern, horizontal band처럼 TFI의 전체적인 형태를 설명하고, spectral characteristic은 continuous energy ridge, fragmented distribution, phase-transition artifact, oscillating frequency characteristic처럼 그 구조 위의 에너지 분포를 설명합니다.
 
 각 class에 대해 여러 candidate phrase를 만들고 training 중 structural pattern과 spectral characteristic을 sampling해 의미적으로 일관되면서도 다양한 text description을 생성합니다. 목적은 특정 문장을 외우게 하는 것이 아니라, 각 waveform class의 구조적 의미와 image embedding을 정렬하는 것입니다.
 
-### Attribute-Aware Base Text
+#### Attribute-Aware Base Text
 
 두 번째 text set은 특정 known class에 직접 연결되지 않는 generic time-frequency description으로 구성합니다. Vertical streak, horizontal band, diffuse blob, fragmented trace, broad smear, scattered energy, irregular cluster와 같은 attribute를 사용하고, 이를 “a radar spectrogram showing …” 또는 “a noisy spectrogram with …” 같은 template과 결합합니다.
 
@@ -92,8 +99,6 @@ Stage 1의 목적은 unknown을 직접 학습하는 것이 아니라, known rada
 동시에 해당 waveform의 structural pattern과 spectral characteristic을 포함하는 text를 CLIP text encoder로 embedding합니다. Image-to-text contrastive learning을 통해 각 radar image가 자신의 semantic attribute description과 가까워지도록 학습하고, known class를 단순 class ID가 아닌 waveform의 구조적 의미를 기준으로 정렬합니다.
 
 Stage 1은 unknown을 직접 학습하는 단계가 아니라, 이후 unknown-aware regularization이 작동할 수 있는 known waveform의 semantic reference space를 먼저 만드는 단계입니다.
-
-{{< case-figure src="figures/01_open-set-vlm-overview.png" alt="SAVOR 기반 open-set 레이다 파형 인식 전체 구조" type="Method" caption="그림 2. Radar time-frequency representation과 semantic attribute를 결합한 SAVOR open-set 레이다 파형 인식 전체 구조." description="레이더 시간·주파수 표현과 의미 정보를 Vision-Language embedding space에 정렬해 known classification과 unknown rejection을 함께 수행하는 흐름을 보여준다." >}}
 
 ## Stage 2 — Unknown-Aware Representation Learning
 
@@ -148,22 +153,6 @@ Maximum similarity가 충분히 높으면 가장 가까운 known class로 분류
   <span>Test Radar TFI</span><b>→</b><span>Image Encoder</span><b>→</b><span>Similarity to Known Prototypes</span><b>→</b><span>Maximum Similarity High: Known Class</span><b>/</b><span>Low: Unknown Reject</span>
 </div>
 
-## 실제 검증
-
-### Single-Unknown과 Two-Unknown
-
-Single-Unknown protocol에서는 각 waveform class를 한 번씩 unknown으로 제외하고 나머지 known class로 학습합니다. Inference에서 known waveform은 올바른 class로 분류하고, 제외된 waveform은 unknown으로 reject할 수 있는지 평가합니다.
-
-Two-Unknown protocol에서는 두 종류의 waveform을 동시에 unknown으로 제외해 unknown diversity가 증가한 조건을 평가합니다. Single-unknown보다 어려운 조건에서도 특정 unknown waveform 하나에만 맞춘 것이 아니라 일반적인 open-set representation을 학습했는지 확인할 수 있습니다.
-
-### Channel Robustness
-
-채널 조건은 simulated AWGN, simulated Rayleigh fading, GNU Radio와 USRP를 이용한 measured wireless 환경으로 구성했습니다. Rayleigh에서는 multipath와 Doppler 영향을 포함하고, controlled OTA 실험에서는 waveform을 송수신한 뒤 수신 신호를 SPWVD TFI로 변환해 동일한 SAVOR recognition chain을 평가했습니다.
-
-Measured wireless 평가는 대규모 operational radar dataset을 의미하는 것이 아니라, 실제 하드웨어와 무선 채널을 포함한 controlled OTA 검증으로 해석해야 합니다.
-
-{{< case-figure src="figures/channel_auc_oscr.png" alt="AWGN, Rayleigh, measured wireless 조건의 AUC-OSCR 비교" type="Experiment" caption="그림 5. Simulated AWGN, simulated Rayleigh, measured wireless 조건에서 SAVOR의 AUC-OSCR을 비교한 channel robustness 결과." description="채널 왜곡과 실제 hardware impairment가 존재하는 조건에서도 open-set recognition 성능이 어떻게 유지되는지 보여준다." >}}
-
 ## 모델 및 입력 설정
 
 본문에서는 결과 해석에 필요한 설정만 유지하고, 세부 loss weight와 noise scale은 생략했습니다.
@@ -180,31 +169,120 @@ Measured wireless 평가는 대규모 operational radar dataset을 의미하는 
 
 ## 평가 지표
 
-Open-set recognition은 known classification과 unknown rejection을 동시에 평가해야 하므로 Accuracy 하나만으로 판단하지 않았습니다.
+Open-set recognition은 known classification과 unknown rejection을 함께 다루므로, 이 연구에서는 threshold 변화에 따른 두 성능의 trade-off를 하나의 곡선으로 확인하는 AUC-OSCR을 주요 평가 지표로 사용했습니다.
 
-- Closed-set Accuracy: known waveform만 대상으로 class recognition 성능을 평가해 open-set 학습으로 known classification이 희생되지 않았는지 확인합니다.
-- AUROC / AUPRC / FPR95: known과 unknown의 분리 정도를 평가합니다. AUROC와 AUPRC는 높을수록 좋고, FPR95는 낮을수록 좋습니다.
-- AUC-OSCR: threshold를 변화시키면서 known sample을 올바른 class로 인식하는 성능과 unknown sample을 known으로 받아들이는 비율 사이의 trade-off를 함께 평가하는 이 연구의 primary metric입니다.
+- AUC-OSCR: known sample을 올바른 class로 인식하는 성능과 unknown sample을 known으로 받아들이는 비율 사이의 trade-off를 종합적으로 평가합니다.
 
-## 주요 성과
+## 실험 파형 및 파라미터 구성
 
-<div class="research-metric-grid">
-  <div class="research-metric"><strong class="research-metric-value">약 +0.05</strong><span class="research-metric-label">baseline 대비 평균 AUC-OSCR 향상</span></div>
-  <div class="research-metric"><strong class="research-metric-value">최대 +0.10</strong><span class="research-metric-label">challenging low-SNR 조건의 AUC-OSCR 향상</span></div>
-  <div class="research-metric"><strong class="research-metric-value">−14 ~ −4 dB</strong><span class="research-metric-label">성능 우위가 가장 뚜렷한 저 SNR 구간</span></div>
+<div class="experiment-config">
+  <p class="experiment-config-lead">연구 2와 구분되는 별도 synthetic dataset으로 15 waveform classes를 구성했습니다. <code>fs = 500 MHz</code> 조건에서 각 SNR·class 조합마다 1,000개를 생성하고, SPWVD 기반 224×224 time-frequency image로 −16~0 dB의 open-set recognition을 평가했습니다.</p>
+  <div class="experiment-config-table-wrap" tabindex="0">
+    <table class="experiment-config-table">
+      <caption>연구 3 synthetic waveform class 구성</caption>
+      <thead>
+        <tr>
+          <th scope="col">파형군</th>
+          <th scope="col">사용 클래스</th>
+          <th scope="col">주요 생성 파라미터</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>LFM</td>
+          <td>LFMD, LFMU</td>
+          <td><code>fc: fs/6–fs/5</code> · <code>BW: fs/20–fs/10</code> · <code>N: 512–1920</code></td>
+        </tr>
+        <tr>
+          <td>NLFM</td>
+          <td>NLFMT, NLFMS</td>
+          <td><code>fc: fs/6–fs/5</code> · <code>BW: fs/20–fs/10</code> · <code>N: 512–1920</code></td>
+        </tr>
+        <tr>
+          <td>Phase Code</td>
+          <td>Barker</td>
+          <td><code>fc</code> · <code>Lc: 2/3/4/5/7/11/13</code> · <code>Ncc: 20–24</code></td>
+        </tr>
+        <tr>
+          <td>Frequency Hopping</td>
+          <td>Costas</td>
+          <td><code>Nhop: 3–6</code> · <code>fmin: fs/30–fs/24</code> · <code>N: 512–1920</code></td>
+        </tr>
+        <tr>
+          <td>Polyphase</td>
+          <td>Frank, P1–P4</td>
+          <td><code>fc</code> · <code>Ncc</code> · frequency step/sub-code 수</td>
+        </tr>
+        <tr>
+          <td>Polytime</td>
+          <td>T1–T4</td>
+          <td><code>fc</code> · <code>BW</code> · <code>Ng: 4–6</code> · signal length</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="experiment-config-note">세부 범위는 논문 Table III를 기준으로 유지했습니다. Frank/P1/P2는 <code>Ncc={3,4,5}</code>, <code>M={6,7,8}</code>, P3/P4는 <code>Ncc={3,4,5}</code>, <code>Ns={4,16,36,49,64}</code>를 사용했습니다. T1/T2는 <code>Ng={4,5,6}</code>, T3/T4는 추가로 <code>B=fs/20–fs/10</code> 범위를 사용했습니다.</p>
+  <div class="experiment-config-summary" aria-label="연구 3 실험 요약">
+    <span class="experiment-config-chip">15 Waveform Classes</span>
+    <span class="experiment-config-chip">1,000 / class / SNR</span>
+    <span class="experiment-config-chip">fs 500 MHz</span>
+    <span class="experiment-config-chip">SNR −16~0 dB</span>
+    <span class="experiment-config-chip">SPWVD 224×224</span>
+    <span class="experiment-config-chip">AWGN / Rayleigh / Measured Wireless</span>
+  </div>
 </div>
 
-Single-Unknown 조건에서는 대부분의 SNR에서 가장 높은 AUC-OSCR을 보였고, 특히 −14 dB에서 −4 dB 사이의 저 SNR 영역에서 baseline CLIP, TCN, DSAE-MAAE와의 차이가 가장 뚜렷했습니다. Two-Unknown 조건에서도 unknown class diversity가 증가했음에도 open-set 성능 우위를 유지했습니다.
+## Experiments(시뮬레이션)
 
-Closed-set accuracy도 높은 수준을 유지해 unknown rejection 향상이 known classification 성능을 희생해서 얻은 결과가 아님을 확인했습니다. AUROC와 AUPRC 개선, FPR95 감소를 함께 확인해 unknown rejection 성능도 별도로 평가했습니다.
+### Single-Unknown protocol
 
-{{< case-figure src="figures/single_unknown_auc_oscr.png" alt="Single-Unknown 조건의 AUC-OSCR 성능 비교" type="Result" caption="그림 6. Single-Unknown 조건에서 SAVOR와 baseline CLIP, TCN, DSAE-MAAE의 AUC-OSCR을 SNR별로 비교한 결과." description="대부분의 SNR에서 known classification과 unknown rejection을 함께 고려한 SAVOR의 성능을 비교한다." >}}
+각 waveform class를 한 번씩 unknown으로 제외하고 나머지 class를 known으로 학습합니다. Inference에서는 known waveform은 올바른 class로 분류하고, 학습에서 제외한 한 종류의 waveform은 unknown으로 reject할 수 있는지 평가합니다.
 
-{{< case-figure src="figures/known-unknown-performance.png" alt="Known waveform classification 성능 비교" type="Result" caption="그림 7. Known waveform classification 성능을 비교해 open-set rejection 성능 향상과 known class recognition 유지 여부를 함께 확인한 결과." description="unknown rejection을 강화하면서 known waveform classification 성능이 유지되는지를 보여준다." >}}
+### Two-Unknown protocol
 
-## 연구 2와의 연결 및 연구의 한계
+두 종류의 waveform을 동시에 unknown으로 제외해 unknown diversity가 증가한 조건을 평가합니다. 한 종류의 unknown에만 맞춘 것이 아니라, 여러 unseen waveform을 일반적인 open-set representation으로 분리할 수 있는지 확인합니다.
 
-이전 연구에서는 reconstruction error를 이용해 학습하지 않은 waveform을 Known과 Unknown으로 구분했습니다. 하지만 구조적으로 유사한 waveform에서는 unknown도 known pattern으로 재구성될 수 있다는 한계가 있었습니다. [연구 2의 상세 페이지](../../projects/dsae-maae-unknown-radar/)에서 다룬 이 문제를 본 연구에서는 단순 unknown detection에서 open-set recognition으로 확장했습니다.
+### 시뮬레이션 채널 조건
+
+시뮬레이션 채널은 AWGN과 Rayleigh fading으로 구성했습니다. Rayleigh에서는 multipath와 Doppler 영향을 포함해 ideal AWGN보다 복잡한 propagation 환경에서 open-set representation이 유지되는지를 확인했습니다.
+
+실제 하드웨어와 무선 채널을 포함한 controlled OTA 평가는 시뮬레이션 결과와 분리해 다음 실환경 검증 섹션에서 다룹니다.
+
+### AUC-OSCR 결과
+
+왼쪽 결과는 Single-Unknown 조건, 오른쪽 결과는 Two-Unknowns 조건의 AUC-OSCR입니다. 두 결과는 unknown waveform을 제외하는 방식만 달리하고, 동일한 주요 지표로 open-set recognition 성능을 비교합니다.
+
+<div class="case-study-result-grid case-study-result-grid--two" aria-label="SAVOR Single-Unknown and Two-Unknowns AUC-OSCR results">
+
+{{< case-figure src="figures/result-auc-curve-01.png" alt="SAVOR Single-Unknown AUC-OSCR 결과" type="Result" caption="Single-Unknown · AUC-OSCR" description="한 종류의 unknown waveform을 제외한 조건에서 SAVOR와 비교 방법의 AUC-OSCR을 비교합니다." >}}
+
+{{< case-figure src="figures/result-auc-curve-02.png" alt="SAVOR Two-Unknowns AUC-OSCR 결과" type="Result" caption="Two-Unknowns · AUC-OSCR" description="두 종류의 unknown waveform을 제외한 조건에서 SAVOR와 비교 방법의 AUC-OSCR을 비교합니다." >}}
+
+</div>
+
+## Measurements(실측)
+
+시뮬레이션 결과와 별도로 GNU Radio와 USRP를 이용해 waveform을 실제 무선 채널로 송수신하고, 수신 신호를 SPWVD TFI로 변환해 동일한 SAVOR recognition chain을 평가했습니다. Measured wireless 평가는 대규모 operational radar dataset을 의미하는 것이 아니라, 실제 하드웨어와 무선 채널을 포함한 controlled OTA 검증입니다.
+
+{{< case-figure src="figures/result-performance-panels.png" alt="GNU Radio와 USRP 기반 SAVOR 실환경 처리 흐름" type="Experiment" layout="wide" caption="실환경 OTA 처리 흐름" description="파형 생성과 송신, 무선 채널, 수신·DC 제거, power measurement, SAVOR waveform recognition이 연결된 controlled OTA 구성입니다." >}}
+
+<div class="case-study-result-grid case-study-result-grid--three-centered" aria-label="SAVOR 실환경 OTA channel robustness results">
+
+{{< case-figure src="figures/result-auc-curve-03.png" alt="SAVOR AUC-OSCR의 AWGN Rayleigh measured wireless 비교" type="Result" caption="AUC-OSCR · Simulated / Measured" description="시뮬레이션 채널과 measured wireless 조건에서 AUC-OSCR을 비교합니다." >}}
+
+{{< case-figure src="figures/result-auc-curve-04.png" alt="SAVOR FPR95의 AWGN Rayleigh measured wireless 비교" type="Result" caption="FPR95 · Simulated / Measured" description="시뮬레이션과 실제 무선 조건에서 unknown false positive rate를 비교합니다." >}}
+
+{{< case-figure src="figures/result-auc-curve-05.png" alt="SAVOR known accuracy의 AWGN Rayleigh measured wireless 비교" type="Result" caption="Known Accuracy · Simulated / Measured" description="known waveform classification accuracy가 채널 조건에 따라 어떻게 변하는지 확인합니다." >}}
+
+{{< case-figure src="figures/result-auc-curve-06.png" alt="SAVOR AUPRC의 AWGN Rayleigh measured wireless 비교" type="Result" caption="AUPRC · Simulated / Measured" description="unknown rejection의 precision-recall 기반 성능을 채널별로 비교합니다." >}}
+
+{{< case-figure src="figures/result-auc-curve-07.png" alt="SAVOR AUROC의 AWGN Rayleigh measured wireless 비교" type="Result" caption="AUROC · Simulated / Measured" description="known과 unknown의 분리 성능을 채널별로 비교합니다." >}}
+
+</div>
+
+## 연구의 한계
+
+구조적으로 유사한 waveform에서는 unknown도 known pattern과 가까운 표현을 만들 수 있어, semantic representation만으로 모든 경계를 완벽하게 분리하기는 어렵습니다. 따라서 본 연구의 결과는 15종 waveform과 controlled open-set protocol, AWGN·simulated Rayleigh·controlled OTA 조건에서의 검증 범위로 해석해야 합니다.
 
 본 연구는 15종 waveform을 대상으로 한 controlled open-set protocol과 AWGN, simulated Rayleigh, controlled OTA 중심의 평가로 semantic attribute의 효과를 검증했습니다. 대규모 operational radar dataset 전체를 검증한 것은 아니며, full SAVOR를 FPGA에 구현한 연구도 아닙니다. 향후에는 더 다양한 실제 radar waveform과 channel 환경으로 확장하고, 경량화된 open-set recognition 모델의 edge 및 FPGA 적용을 검토할 수 있습니다.
 
@@ -216,10 +294,14 @@ Closed-set accuracy도 높은 수준을 유지해 unknown rejection 향상이 kn
 
 <div class="case-study-publication">
 
-## Publication
+## 관련 성과
 
 Jaehyeok Yoon and Haewoon Nam, “[SAVOR: Semantic Attribute-Guided Vision-Language Framework for Open-Set Radar Waveform Recognition](../../publications/semantic-attribute-guided-open-set-radar/),” *IEEE Transactions on Aerospace and Electronic Systems*, under revision.
 
 관련 학회 발표: Jaehyeok Yoon, Haewoon Nam, and Jaerock Kwon, “Joint Recognition of LPI Radar Signals Using a VLM with TFD-Text Alignment,” ICNGC, Da Nang, Vietnam, Dec. 2025. Best Paper Award.
+
+윤재혁, 남해운 (2026). “지도 학습 기반 CLIP을 활용한 레이더 신호 스펙트로그램 식별.” 2026년도 한국통신학회 동계종합학술발표회, 용평.
+
+파이썬 기반 Radar-Vision-Language(레이더-비전-언어) 구축, 등록번호 C-2025-005640.
 
 </div>
