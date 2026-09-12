@@ -21,7 +21,7 @@ hugoblox:
     # Short tagline displayed on your site
     tagline: ""
     # Site meta description for search engines and social sharing
-    description: "레이다·통신 신호 처리 R&D를 수행하는 윤재혁의 연구개발 CV입니다."
+    description: "저 SNR 레이더 신호를 검출·추정하고, 미지 파형 인식과 SDR/FPGA 구현을 연구하는 윤재혁의 포트폴리오입니다."
     # Social accounts (used for meta tags like Twitter Cards)
     social:
       twitter: "" # Twitter/X handle for Twitter Cards (without @)

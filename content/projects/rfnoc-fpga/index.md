@@ -23,9 +23,12 @@ publication_refs:
   - /publications/rfnoc-fpga-lpi-detection/
 summary: "저 SNR 레이더 신호의 실시간 처리를 위해 RFNoC/FPGA 검출·분류 체인을 구현하고, Cross-Resolution KD로 경량 분류 모델을 설계한 연구입니다."
 image:
-  filename: figures/preview.png
+  filename: figures/representative.png
   alt_text: "저 SNR 레이더 인식을 위한 FPGA 실시간 구현과 경량 모델 설계 연구 개요"
   caption: "※ 본 이미지는 연구의 전체 흐름을 이해하기 쉽게 설명하기 위해 AI로 제작한 개념도이며, 실제 실험 결과 이미지는 아닙니다."
+preview:
+  filename: figures/preview.png
+  alt_text: "RFNoC/FPGA 기반 실시간 레이더 신호처리와 Cross-Resolution KD 기반 경량 분류"
 links: []
 tags:
   - RFNoC
