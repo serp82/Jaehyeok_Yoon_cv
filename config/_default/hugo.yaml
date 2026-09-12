@@ -6,7 +6,7 @@
 # Website name (set in params.yaml under hugoblox.branding.name)
 title: '윤재혁 | Jaehyeok Yoon'
 # Website URL
-baseURL: '/'
+baseURL: 'https://jaehyeokyoon.xyz/'
 
 ############################
 ## LANGUAGE
