@@ -1,7 +1,7 @@
 ---
 layout: project
 type: project
-title: "저 SNR 레이더 신호 검출 및 제원 추정"
+title: "레이더 신호 검출 및 제원 추정"
 english_title: "High-Accuracy Radar Parameter Estimation Under Low SNR Environments"
 slug: "low-snr-radar-parameter-estimation"
 aliases:
